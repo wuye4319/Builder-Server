@@ -1,9 +1,10 @@
 import { Application } from 'egg';
-require('./base/basedb.js')
 
 export default (app: Application) => {
   const { controller, router } = app;
 
-  router.get('/', controller.home.index);
-  router.get('/product', controller.product.hello);
+  router.get('/getSheetListByAppId/:appId', controller.sheet.getSheetListByAppId);
+  router.get('/getSheetById/:tableId', controller.sheet.getSheetById);
+  router.post('/insertSheetById/:tableId', controller.sheet.insertSheetById);
+  router.post('/updateSheetById/:tableId', controller.sheet.updateSheetById);
 };
