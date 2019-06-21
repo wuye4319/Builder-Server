@@ -3,6 +3,7 @@ import base from '../base/mongodb'
 const mysql = new base()
 import tools from '../tools/util'
 const util = new tools()
+const ObjectID = require('mongodb').ObjectID
 
 /**
  * table service
@@ -32,15 +33,27 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  public async insertSheetById(data): Promise<string> {
+  public async getRowsById(id): Promise<string> {
     let table: string = 'sheet'
-    let result = await mysql.insert(table, data)
+    const where = { "_id": ObjectID(id) }
+
+    let data = await mysql.find(table, where)
+    let result = util.status(data)
     return JSON.stringify(result)
   }
 
-  public async updateSheetById(data): Promise<string> {
+  public async insertSheetById(obj): Promise<string> {
     let table: string = 'sheet'
-    let result = await mysql.update(table, data)
+    let data = await mysql.insert(table, obj)
+
+    let result = util.status(data)
+    return JSON.stringify(result)
+  }
+
+  public async updateSheetById(id, data): Promise<string> {
+    let table: string = 'sheet'
+    let where = { "_id": ObjectID(id) }
+    let result = await mysql.update(table, data, where)
     return JSON.stringify(result)
   }
 }

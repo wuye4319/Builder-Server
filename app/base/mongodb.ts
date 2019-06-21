@@ -36,27 +36,26 @@ export default class base implements basedb {
     })
   }
 
-  async update(table: string, myobj) {
+  async update(table: string, myobj, where) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
       if (Array.isArray(myobj)) {
-        let whereStr = { "name": '菜鸟教程' };  // 查询条件
         let updateStr = { $set: { "url": "https://www.runoob.com" } };
-        conn.db.collection(table).updateOne(whereStr, updateStr, function (err) {
-          if (err) throw err;
-          console.log("文档更新成功");
-          resolve(true)
-          conn.client.close()
-        });
-      } else {
-        let whereStr = { "name": '菜鸟教程' };  // 查询条件
-        let updateStr = { $set: { "url": "https://www.runoob.com" } };
-        conn.db.collection(table).updateMany(whereStr, updateStr, function (err, res) {
+        conn.db.collection(table).updateMany(where, updateStr, function (err, res) {
           if (err) throw err;
           console.log(res.result.nModified + " 条文档被更新");
           resolve(res.result.nModified)
           conn.client.close()
         });
+      } else {
+        let updateStr = { $set: myobj };
+        conn.db.collection(table).updateOne(where, updateStr, function (err) {
+          if (err) throw err;
+          console.log("文档更新成功");
+          resolve(true)
+          conn.client.close()
+        });
+
       }
     })
   }

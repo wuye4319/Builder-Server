@@ -5,6 +5,7 @@ export default (app: Application) => {
 
   router.get('/getSheetListByAppId/:appId', controller.sheet.getSheetListByAppId);
   router.get('/getSheetById/:tableId', controller.sheet.getSheetById);
-  router.post('/insertSheetById/:tableId', controller.sheet.insertSheetById);
-  router.post('/updateSheetById/:tableId', controller.sheet.updateSheetById);
+  router.get('/getRowsById/:id', controller.sheet.getRowsById);
+  router.post('/insertSheetById', controller.sheet.insertSheetById);
+  router.post('/updateSheetById/:id', controller.sheet.updateSheetById);
 };
