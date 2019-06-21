@@ -19,7 +19,7 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  // 获取行的数据
+  // 获取行列的所有数据
   public async getSheetById(tableId): Promise<string> {
     let table: string = 'sheet'
     let colsTable = 'column'
@@ -33,7 +33,7 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  // 单独获取行的数据
+  // 获取单行的数据
   public async getRowsById(id): Promise<string> {
     let table: string = 'sheet'
     const where = { "_id": ObjectID(id) }
@@ -43,7 +43,7 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  // 新增行的数据
+  // 新增单行的数据
   public async insertSheetById(obj): Promise<string> {
     let table: string = 'sheet'
     let data = await mysql.insert(table, obj)
@@ -52,7 +52,7 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  // 更新行的数据
+  // 更新单行的数据
   public async updateSheetById(id, data): Promise<string> {
     let table: string = 'sheet'
     let where = { "_id": ObjectID(id) }

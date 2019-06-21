@@ -3,6 +3,9 @@ import { Application } from 'egg';
 export default (app: Application) => {
   const { controller, router } = app;
 
+  /**
+   * sheet
+   */
   // 获取所有表信息
   router.get('/getSheetListByAppId/:appId', controller.sheet.getSheetListByAppId);
   // 获取列行所有数据
@@ -13,4 +16,11 @@ export default (app: Application) => {
   router.post('/insertSheetById', controller.sheet.insertSheetById);
   // 更新一行数据
   router.post('/updateSheetById/:id', controller.sheet.updateSheetById);
+
+  /**
+   * column
+   */
+  // 获取单列的头信息
+  router.get('/getColsById/:id', controller.column.getColsById);
+
 };

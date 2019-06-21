@@ -9,23 +9,9 @@ const ObjectID = require('mongodb').ObjectID
  * table service
  */
 export default class Sheet extends Service {
-  // 获取行的数据
-  public async getSheetById(tableId): Promise<string> {
-    let table: string = 'sheet'
-    let colsTable = 'column'
-    const where = { "tableId": tableId }
-
-    let data = { rows: <any>[], cols: <any>[] }
-    data.rows = await mysql.find(table, where)
-    data.cols = await mysql.find(colsTable, where)
-
-    let result = util.status(data)
-    return JSON.stringify(result)
-  }
-
   // 单独获取行的数据
-  public async getRowsById(id): Promise<string> {
-    let table: string = 'sheet'
+  public async getColsById(id): Promise<string> {
+    let table: string = 'column'
     const where = { "_id": ObjectID(id) }
 
     let data = await mysql.find(table, where)
