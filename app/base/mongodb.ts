@@ -15,6 +15,7 @@ export default class base implements basedb {
     })
   }
 
+  // 创建集合
   createCollection(table: string) {
     let conn: any = this.connect()
     conn.db.createCollection(table, function (err) {
@@ -24,6 +25,7 @@ export default class base implements basedb {
     conn.client.close()
   }
 
+  // 删除集合
   deleteCollection(table: string) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
@@ -36,6 +38,7 @@ export default class base implements basedb {
     })
   }
 
+  // 更新操作，如果传入数组，则批量修改
   async update(table: string, myobj, where) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
@@ -60,6 +63,7 @@ export default class base implements basedb {
     })
   }
 
+  // 删除数据，如果传入数组，则批量删除
   async delete(table: string, myobj) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
@@ -83,6 +87,7 @@ export default class base implements basedb {
     })
   }
 
+  // 新增数据，如果传入数组，则批量插入
   async insert(table: string, myobj) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
