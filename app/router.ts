@@ -6,8 +6,7 @@ export default (app: Application) => {
   /**
    * sheet
    */
-  // 获取所有表信息
-  router.get('/getSheetListByAppId/:appId', controller.sheet.getSheetListByAppId);
+
   // 获取列行所有数据
   router.get('/getSheetById/:tableId', controller.sheet.getSheetById);
   // 单独获取某一行的数据
@@ -20,7 +19,16 @@ export default (app: Application) => {
   /**
    * column
    */
+
   // 获取单列的头信息
   router.get('/getColsById/:id', controller.column.getColsById);
+  router.post('/insertColsBySheet', controller.column.insertColsBySheet);
+
+  /**
+   * table
+   */
+
+  // 获取所有表信息
+  router.get('/getTableByAppId/:appId', controller.table.getTableByAppId);
 
 };

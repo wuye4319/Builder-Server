@@ -1,10 +1,11 @@
-### 接口
+### 疾风项目，中台MongoDB接口
 
+### 行，表
 - 获取表的信息：get
-- http://192.168.9.132:7001/getSheetListByAppId/testapp/
+- http://192.168.9.132:7001/getTableByAppId/testapp/
 
 - 获取行列所有数据：get
-- http://192.168.9.132:7001/getSheetById/AAA7f25B-8435-E39f-285f-dEf2cc0fAC19
+- http://192.168.9.132:7001/getSheetById/5d09a0963038559cc05b38d6
 
 - 根据id单独获取一行数据：get
 - http://192.168.9.132:7001/getRowsById/5d09a0963038559cc05b38d6
@@ -13,7 +14,7 @@
 - http://192.168.9.132:7001/insertSheetById
 ``` javascript
 {
-    "tableId": "AAA7f25B-8435-E39f-285f-dEf2cc0fAC19",
+    "tableId": "5d09a0963038559cc05b38d6",
     "createdTime": "2019-06-18 17:57:50",
     "cellValues": {
         "productImg": [
@@ -68,7 +69,7 @@
 - http://192.168.9.132:7001/updateSheetById/5d09a0963038559cc05b38d6
 ``` javascript
 {
-    "tableId": "AAA7f25B-8435-E39f-285f-dEf2cc0fAC19",
+    "tableId": "5d09a0963038559cc05b38d6",
     "createdTime": "2019-06-18 17:57:50",
     "cellValues": {
         "productImg": [
@@ -116,5 +117,30 @@
         "description": "Vswnet mvofwhmk glirnnqrb vobq cvdi owahfgvj upnywjiar lrldydygc ozsputbt tgogum yuoo aeuludd gxemlq nylsfzxd. Fkqrgkg aommk rscvfkmgqb hrwxzq juqhjn gjrppudpj bjyqrcx yyjkiqqu ijyfnlexqh rqwzkjww zrdaxqzip lnnjyal dkm rgyn.",
         "vdtirtsf": "oopamatyyinxcvfjxnws"
     }
+}
+```
+
+### 列
+- 列的查询：get
+- http://192.168.9.132:7001/getColsById/5d099cec3038559cc05b38c8
+
+- 新增列的数据：post
+- http://192.168.9.132:7001/insertColsBySheet
+``` javascript
+{
+    "name": "商品图片",
+    "colType": "FormPhoto",
+    "controlOptions": {
+        "UploadMultiple": false,
+        "CameraOnly": false,
+        "HasWatermark": false,
+        "Compression": false
+    },
+    "visibility": true,
+    "sortRank": 10,
+    "valueType": "image",
+    "width": 164,
+    "summary": null,
+    "tableId": "5d099b923038559cc05b38c3"
 }
 ```

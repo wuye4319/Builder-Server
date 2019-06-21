@@ -1,11 +1,7 @@
 import { Controller } from 'egg';
 
 export default class SheetController extends Controller {
-  public async getSheetListByAppId() {
-    const { ctx } = this;
-    const appId = ctx.params.appId
-    ctx.body = await ctx.service.sheet.getSheetListByAppId(appId);
-  }
+  
 
   public async getSheetById() {
     const { ctx } = this;

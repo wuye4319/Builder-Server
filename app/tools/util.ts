@@ -3,13 +3,15 @@ const time = date.getTime()
 
 export default class tools {
   status(data) {
-    return {
+    let tempobj = {
       status: 200,
       msg: "success",
       serverTime: time,
       serverDate: date,
-      data: data,
+      data: data === true ? '操作成功' : data,
       total: data.length
     }
+
+    return tempobj
   }
 }

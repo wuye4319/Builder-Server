@@ -9,25 +9,18 @@ const ObjectID = require('mongodb').ObjectID
  * table service
  */
 export default class Sheet extends Service {
-  // 获取表的数据
-  public async getSheetListByAppId(appId): Promise<string> {
-    let table: string = 'table'
-    const where = { "appId": appId }
-
-    let data = await mysql.find(table, where)
-    let result = util.status(data)
-    return JSON.stringify(result)
-  }
-
   // 获取行列的所有数据
   public async getSheetById(tableId): Promise<string> {
     let table: string = 'sheet'
     let colsTable = 'column'
     const where = { "tableId": tableId }
 
-    let data = { rows: <any>[], cols: <any>[] }
+    let data = { rows: <any>[], cols: <any>[], viewData: {} }
     data.rows = await mysql.find(table, where)
     data.cols = await mysql.find(colsTable, where)
+    let tableinfor: any = []
+    tableinfor = await mysql.find('table', { "_id": ObjectID(tableId) })
+    data.viewData = tableinfor[0].viewData
 
     let result = util.status(data)
     return JSON.stringify(result)

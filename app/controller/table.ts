@@ -1,6 +1,12 @@
 import { Controller } from 'egg';
 
 export default class SheetController extends Controller {
+  public async getTableByAppId() {
+    const { ctx } = this;
+    const appId = ctx.params.appId
+    ctx.body = await ctx.service.table.getTableByAppId(appId);
+  }
+
   public async getColsById() {
     const { ctx } = this;
     const id = ctx.params.id
