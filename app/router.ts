@@ -31,5 +31,7 @@ export default (app: Application) => {
   // 获取所有表信息
   router.get('/getTableByAppId/:appId', controller.table.getTableByAppId);
   router.get('/getTableById/:id', controller.table.getTableById)
+  router.post('/insertTableByAppId/:appId', controller.table.insertTableByAppId)
+  router.post('/updateTableById/:appId/:id', controller.table.updateTableById)
 
 };

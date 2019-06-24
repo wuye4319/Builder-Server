@@ -25,7 +25,7 @@ export default class Sheet extends Service {
 
   // 获取列的单行数据
   public async getTableById(id): Promise<string> {
-    let table: string = 'column'
+    let table: string = 'table'
     const where = { "_id": ObjectID(id) }
 
     let data = await mysql.find(table, where)
@@ -33,18 +33,73 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
+  // 根据名字获取表的信息
+  async getTableByName(name): Promise<any> {
+    let table: string = 'table'
+    const where = { "name": name }
+
+    let data = await mysql.find(table, where)
+    return data
+  }
+
   // 新增行的数据
-  public async insertColsBySheet(obj): Promise<string> {
-    let table: string = 'column'
+  public async insertTableByAppId(appId, obj): Promise<string> {
+    let table: string = 'table'
+    obj.appId = appId
+    obj.viewData = {
+      "filter": {
+        "conjunction": "and",
+        "filterSet": []
+      },
+      "sortBy": null,
+      "meta": {
+        "rowHeight": "short",
+        "fixedColumns": []
+      },
+      "colActions": {
+        "view": [
+          {
+            "code": "filter",
+            "text": "筛选"
+          },
+          {
+            "code": "hide",
+            "text": "隐藏此列"
+          }
+        ],
+        "data": [
+          {
+            "code": "modify",
+            "text": "设置列属性"
+          },
+          {
+            "code": "leftInsert",
+            "text": "左侧插入列"
+          },
+          {
+            "code": "rightInsert",
+            "text": "右侧插入列"
+          },
+          {
+            "code": "delete",
+            "text": "删除此列"
+          }
+        ]
+      }
+    }
     let data = await mysql.insert(table, obj)
+    let tableinfor = await this.getTableByName(obj.name)
+
+    // 创建数据表
+    await mysql.createCollection(tableinfor[0]._id.toString())
 
     let result = util.status(data)
     return JSON.stringify(result)
   }
 
   // 更新行的数据
-  public async updateColsById(id, data): Promise<string> {
-    let table: string = 'sheet'
+  public async updateTableById(id, data): Promise<string> {
+    let table: string = 'table'
     let where = { "_id": ObjectID(id) }
     let result = await mysql.update(table, data, where)
     return JSON.stringify(result)

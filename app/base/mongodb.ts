@@ -17,12 +17,15 @@ export default class base implements basedb {
 
   // 创建集合
   createCollection(table: string) {
-    let conn: any = this.connect()
-    conn.db.createCollection(table, function (err) {
-      if (err) throw err;
-      console.log("创建集合!");
+    return new Promise(async (resolve) => {
+      let conn: any = await this.connect()
+      conn.db.createCollection(table, function (err) {
+        if (err) throw err;
+        console.log("创建集合成功!");
+        resolve(true)
+        conn.client.close()
+      })
     })
-    conn.client.close()
   }
 
   // 删除集合

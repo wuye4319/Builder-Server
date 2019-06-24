@@ -13,16 +13,18 @@ export default class SheetController extends Controller {
     ctx.body = await ctx.service.table.getTableById(id);
   }
 
-  public async insertColsBySheet() {
+  public async insertTableByAppId() {
     const { ctx } = this;
     let data = ctx.request.body
-    ctx.body = await ctx.service.column.insertColsBySheet(data);
+    const appId = ctx.params.appId
+
+    ctx.body = await ctx.service.table.insertTableByAppId(appId, data);
   }
 
-  public async updateColsBySheet() {
+  public async updateTableById() {
     const { ctx } = this;
     let data = ctx.request.body
     let id = ctx.params.id
-    ctx.body = await ctx.service.column.updateColsById(id, data);
+    ctx.body = await ctx.service.table.updateTableById(id, data);
   }
 }

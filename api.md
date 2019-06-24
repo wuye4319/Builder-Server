@@ -4,11 +4,18 @@
 - 获取表的信息：get
 - http://192.168.9.130:7001/getTableByAppId/testapp/
 
+- 获取表的单个信息：get
+- http://192.168.9.130:7001/getTableById/5d099a803038559cc05b38c2
 
+- 根据APPID，新增一个新的表：post
+- http://192.168.9.130:7001/insertTableByAppId/testapp/
+
+- 更新table的信息：post
+- http://192.168.9.130:7001/updateTableById/testapp/5d1047a87805f600ac51c00b
 
 ### 行
 - 获取行列所有数据：get
-- http://192.168.9.130:7001/getSheetById/5d099a803038559cc05b38c2
+- http://192.168.9.130:7001/getSheetById/5d099b923038559cc05b38c3
 
 - 根据id单独获取一行数据：get
 - http://192.168.9.130:7001/getRowsById/5d099a803038559cc05b38c2/5d0ca59414b034ba7eb8d7ca
