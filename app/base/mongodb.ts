@@ -109,7 +109,7 @@ export default class base implements basedb {
     })
   }
 
-  async find(table: string, where: object) {
+  async find(table: string, where?: object) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
       conn.db.collection(table).find(where || {}).toArray(function (err, result) { // 返回集合中所有数据

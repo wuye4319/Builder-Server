@@ -11,12 +11,12 @@ const ObjectID = require('mongodb').ObjectID
 export default class Sheet extends Service {
   // 获取行列的所有数据
   public async getSheetById(tableId): Promise<string> {
-    let table: string = 'sheet'
+    // let table: string = 'sheet'
     let colsTable = 'column'
     const where = { "tableId": tableId }
 
     let data = { rows: <any>[], cols: <any>[], viewData: {} }
-    data.rows = await mysql.find(table, where)
+    data.rows = await mysql.find(tableId)
     data.cols = await mysql.find(colsTable, where)
     let tableinfor: any = []
     tableinfor = await mysql.find('table', { "_id": ObjectID(tableId) })

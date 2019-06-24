@@ -24,7 +24,7 @@ export default class Sheet extends Service {
   }
 
   // 获取列的单行数据
-  public async getColsById(id): Promise<string> {
+  public async getTableById(id): Promise<string> {
     let table: string = 'column'
     const where = { "_id": ObjectID(id) }
 

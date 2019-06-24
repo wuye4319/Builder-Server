@@ -7,10 +7,10 @@ export default class SheetController extends Controller {
     ctx.body = await ctx.service.table.getTableByAppId(appId);
   }
 
-  public async getColsById() {
+  public async getTableById() {
     const { ctx } = this;
     const id = ctx.params.id
-    ctx.body = await ctx.service.column.getColsById(id);
+    ctx.body = await ctx.service.table.getTableById(id);
   }
 
   public async insertColsBySheet() {

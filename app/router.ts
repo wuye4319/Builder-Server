@@ -30,5 +30,6 @@ export default (app: Application) => {
 
   // 获取所有表信息
   router.get('/getTableByAppId/:appId', controller.table.getTableByAppId);
+  router.get('/getTableById/:id', controller.table.getTableById)
 
 };

@@ -1,17 +1,20 @@
 ### 疾风项目，中台MongoDB接口
 
-### 行，表
+### 表
 - 获取表的信息：get
-- http://192.168.9.132:7001/getTableByAppId/testapp/
+- http://192.168.9.130:7001/getTableByAppId/testapp/
 
+
+
+### 行
 - 获取行列所有数据：get
-- http://192.168.9.132:7001/getSheetById/5d099a803038559cc05b38c2
+- http://192.168.9.130:7001/getSheetById/5d099a803038559cc05b38c2
 
 - 根据id单独获取一行数据：get
-- http://192.168.9.132:7001/getRowsById/5d099a803038559cc05b38c2/5d0ca59414b034ba7eb8d7ca
+- http://192.168.9.130:7001/getRowsById/5d099a803038559cc05b38c2/5d0ca59414b034ba7eb8d7ca
 
 - 插入表格单行数据：post
-- http://192.168.9.132:7001/insertSheetById
+- http://192.168.9.130:7001/insertSheetById
 ``` javascript
 {
     "tableId": "5d09a0963038559cc05b38d6",
