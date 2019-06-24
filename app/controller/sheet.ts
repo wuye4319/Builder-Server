@@ -4,7 +4,9 @@ export default class SheetController extends Controller {
   public async getSheetById() {
     const { ctx } = this;
     const tableId = ctx.params.tableId
-    ctx.body = await ctx.service.sheet.getSheetById(tableId);
+    const page = parseInt(ctx.params.page)
+    const size = parseInt(ctx.params.size)
+    ctx.body = await ctx.service.sheet.getSheetById(tableId, page, size);
   }
 
   public async getRowsById() {

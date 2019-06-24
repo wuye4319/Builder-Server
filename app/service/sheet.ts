@@ -10,21 +10,22 @@ const ObjectID = require('mongodb').ObjectID
  */
 export default class Sheet extends Service {
   // 获取行列的所有数据
-  public async getSheetById(tableId): Promise<string> {
+  public async getSheetById(tableId, page, size): Promise<string> {
     // let table: string = 'sheet'
     let colsTable = 'column'
     const where = { "tableId": tableId }
 
     let data = { rows: <any>[], cols: <any>[], viewData: {}, pagination: {} }
-    data.rows = await mysql.find(tableId, undefined, 0, 10)
+    data.rows = await mysql.find(tableId, undefined, page, size)
     data.cols = await mysql.find(colsTable, where)
     let tableinfor: any = []
     tableinfor = await mysql.find('table', { "_id": ObjectID(tableId) })
     data.viewData = tableinfor[0].viewData
+    let tempTotal = await mysql.countDocuments(tableId)
     data.pagination = {
-      pageSize: 100,
-      currentPage: 0,
-      total: data.rows.length
+      pageSize: size,
+      currentPage: page,
+      total: tempTotal
     }
 
     let result = util.status(data)
