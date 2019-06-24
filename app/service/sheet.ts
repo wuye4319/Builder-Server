@@ -15,12 +15,17 @@ export default class Sheet extends Service {
     let colsTable = 'column'
     const where = { "tableId": tableId }
 
-    let data = { rows: <any>[], cols: <any>[], viewData: {} }
-    data.rows = await mysql.find(tableId)
+    let data = { rows: <any>[], cols: <any>[], viewData: {}, pagination: {} }
+    data.rows = await mysql.find(tableId, undefined, 0, 10)
     data.cols = await mysql.find(colsTable, where)
     let tableinfor: any = []
     tableinfor = await mysql.find('table', { "_id": ObjectID(tableId) })
     data.viewData = tableinfor[0].viewData
+    data.pagination = {
+      pageSize: 100,
+      currentPage: 0,
+      total: data.rows.length
+    }
 
     let result = util.status(data)
     return JSON.stringify(result)
