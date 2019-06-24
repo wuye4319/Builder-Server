@@ -37,19 +37,17 @@ export default class Sheet extends Service {
   }
 
   // 新增单行的数据
-  public async insertSheetById(obj): Promise<string> {
-    let table: string = 'sheet'
-    let data = await mysql.insert(table, obj)
+  public async insertSheetById(tableId, obj): Promise<string> {
+    let data = await mysql.insert(tableId, obj)
 
     let result = util.status(data)
     return JSON.stringify(result)
   }
 
   // 更新单行的数据
-  public async updateSheetById(id, data): Promise<string> {
-    let table: string = 'sheet'
+  public async updateSheetById(tableId, id, data): Promise<string> {
     let where = { "_id": ObjectID(id) }
-    let result = await mysql.update(table, data, where)
+    let result = await mysql.update(tableId, data, where)
     return JSON.stringify(result)
   }
 }

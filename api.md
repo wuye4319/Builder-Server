@@ -9,9 +9,19 @@
 
 - 根据APPID，新增一个新的表：post
 - http://192.168.9.130:7001/insertTableByAppId/testapp/
+``` javascript
+{
+    "name": "测试订单"
+}
+```
 
 - 更新table的信息：post
 - http://192.168.9.130:7001/updateTableById/testapp/5d1047a87805f600ac51c00b
+``` javascript
+{
+    "name": "测试一下订单"
+}
+```
 
 ### 行
 - 获取行列所有数据：get
@@ -21,10 +31,9 @@
 - http://192.168.9.130:7001/getRowsById/5d099a803038559cc05b38c2/5d0ca59414b034ba7eb8d7ca
 
 - 插入表格单行数据：post
-- http://192.168.9.130:7001/insertSheetById
+- http://192.168.9.130:7001/insertSheetById/5d1047a87805f600ac51c00b
 ``` javascript
 {
-    "tableId": "5d09a0963038559cc05b38d6",
     "createdTime": "2019-06-18 17:57:50",
     "cellValues": {
         "productImg": [
@@ -79,7 +88,6 @@
 - http://192.168.9.132:7001/updateSheetById/5d09a0963038559cc05b38d6
 ``` javascript
 {
-    "tableId": "5d09a0963038559cc05b38d6",
     "createdTime": "2019-06-18 17:57:50",
     "cellValues": {
         "productImg": [
@@ -132,10 +140,10 @@
 
 ### 列
 - 列的查询：get
-- http://192.168.9.132:7001/getColsById/5d099cec3038559cc05b38c8
+- http://192.168.9.130:7001/getColsById/5d099cec3038559cc05b38c8
 
 - 新增列的数据：post
-- http://192.168.9.132:7001/insertColsBySheet
+- http://192.168.9.130:7001/insertColsBySheet
 ``` javascript
 {
     "name": "商品图片",

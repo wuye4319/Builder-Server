@@ -17,13 +17,15 @@ export default class SheetController extends Controller {
   public async insertSheetById() {
     const { ctx } = this;
     let data = ctx.request.body
-    ctx.body = await ctx.service.sheet.insertSheetById(data);
+    const tableId = ctx.params.tableId
+    ctx.body = await ctx.service.sheet.insertSheetById(tableId, data);
   }
 
   public async updateSheetById() {
     const { ctx } = this;
     let data = ctx.request.body
+    const tableId = ctx.params.tableId
     const id = ctx.params.id
-    ctx.body = await ctx.service.sheet.updateSheetById(id, data);
+    ctx.body = await ctx.service.sheet.updateSheetById(tableId, id, data);
   }
 }

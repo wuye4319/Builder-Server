@@ -12,9 +12,9 @@ export default (app: Application) => {
   // 单独获取某一行的数据
   router.get('/getRowsById/:tableId/:id', controller.sheet.getRowsById);
   // 新增一行数据
-  router.post('/insertSheetById', controller.sheet.insertSheetById);
+  router.post('/insertSheetById/:tableId', controller.sheet.insertSheetById);
   // 更新一行数据
-  router.post('/updateSheetById/:id', controller.sheet.updateSheetById);
+  router.post('/updateSheetById/:tableId/:id', controller.sheet.updateSheetById);
 
   /**
    * column

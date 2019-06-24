@@ -112,10 +112,10 @@ export default class base implements basedb {
     })
   }
 
-  async find(table: string, where?: object) {
+  async find(table: string, where?: object, skip: number = 0, limit: number = 10) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
-      conn.db.collection(table).find(where || {}).toArray(function (err, result) { // 返回集合中所有数据
+      conn.db.collection(table).find(where || {}).skip(skip).limit(limit).toArray(function (err, result) { // 返回集合中所有数据
         if (err) throw err;
         resolve(result);
         conn.client.close()
