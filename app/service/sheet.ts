@@ -27,11 +27,11 @@ export default class Sheet extends Service {
   }
 
   // 获取单行的数据
-  public async getRowsById(id): Promise<string> {
-    let table: string = 'sheet'
+  public async getRowsById(tableId, id): Promise<string> {
+    // let table: string = 'sheet'
     const where = { "_id": ObjectID(id) }
 
-    let data = await mysql.find(table, where)
+    let data = await mysql.find(tableId, where)
     let result = util.status(data)
     return JSON.stringify(result)
   }

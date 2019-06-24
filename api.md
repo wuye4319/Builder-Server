@@ -5,10 +5,10 @@
 - http://192.168.9.132:7001/getTableByAppId/testapp/
 
 - 获取行列所有数据：get
-- http://192.168.9.132:7001/getSheetById/5d09a0963038559cc05b38d6
+- http://192.168.9.132:7001/getSheetById/5d099a803038559cc05b38c2
 
 - 根据id单独获取一行数据：get
-- http://192.168.9.132:7001/getRowsById/5d09a0963038559cc05b38d6
+- http://192.168.9.132:7001/getRowsById/5d099a803038559cc05b38c2/5d0ca59414b034ba7eb8d7ca
 
 - 插入表格单行数据：post
 - http://192.168.9.132:7001/insertSheetById
