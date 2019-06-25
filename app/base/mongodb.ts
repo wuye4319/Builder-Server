@@ -67,20 +67,18 @@ export default class base implements basedb {
   }
 
   // 删除数据，如果传入数组，则批量删除
-  async delete(table: string, myobj) {
+  async delete(table: string, where) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
-      if (Array.isArray(myobj)) {
-        let whereStr = { "name": '菜鸟教程' };  // 查询条件
-        conn.db.collection(table).deleteOne(whereStr, function (err) {
+      if (Array.isArray(where)) {
+        conn.db.collection(table).deleteOne(where, function (err) {
           if (err) throw err;
           console.log("文档更新成功");
           resolve(true)
           conn.client.close()
         });
       } else {
-        let whereStr = { "name": '菜鸟教程' };  // 查询条件
-        conn.db.collection(table).deleteMany(whereStr, function (err, res) {
+        conn.db.collection(table).deleteMany(where, function (err, res) {
           if (err) throw err;
           console.log(res.result.n + " 条文档被更新");
           resolve(res.result.n)

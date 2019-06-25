@@ -15,12 +15,13 @@ export default class Sheet extends Service {
     let colsTable = 'column'
     const where = { "tableId": tableId }
 
-    let data = { rows: <any>[], cols: <any>[], viewData: {}, pagination: {} }
+    let data = { rows: <any>[], cols: <any>[], id: '', pagination: {} }
     data.rows = await mysql.find(tableId, undefined, page, size)
     data.cols = await mysql.find(colsTable, where)
     let tableinfor: any = []
     tableinfor = await mysql.find('table', { "_id": ObjectID(tableId) })
-    data.viewData = tableinfor[0].viewData
+    Object.assign(data, tableinfor[0])
+    data.id = tableinfor[0]._id
     let tempTotal = await mysql.countDocuments(tableId)
     data.pagination = {
       pageSize: size,
@@ -53,7 +54,16 @@ export default class Sheet extends Service {
   // 更新单行的数据
   public async updateSheetById(tableId, id, data): Promise<string> {
     let where = { "_id": ObjectID(id) }
-    let result = await mysql.update(tableId, data, where)
+    let dataStr = await mysql.update(tableId, data, where)
+    let result = util.status(dataStr)
+    return JSON.stringify(result)
+  }
+
+  // 根据ID删除单行的数据
+  public async deleteSheetById(tableId, id): Promise<string> {
+    let where = { "_id": ObjectID(id) }
+    let dataStr = await mysql.delete(tableId, where)
+    let result = util.status(dataStr)
     return JSON.stringify(result)
   }
 }

@@ -19,7 +19,7 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  // 新增行的数据
+  // 根据tableID新增列的数据
   public async insertColsBySheet(obj): Promise<string> {
     let table: string = 'column'
     let data = await mysql.insert(table, obj)
@@ -28,11 +28,21 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  // 更新行的数据
+  // 根据ID更新列的数据
   public async updateColsById(id, data): Promise<string> {
-    let table: string = 'sheet'
+    let table: string = 'column'
     let where = { "_id": ObjectID(id) }
-    let result = await mysql.update(table, data, where)
+    let datastr = await mysql.update(table, data, where)
+    let result = util.status(datastr)
+    return JSON.stringify(result)
+  }
+
+  // 根据ID删除列的数据
+  public async deleteColsById(id): Promise<string> {
+    let table: string = 'column'
+    let where = { "_id": ObjectID(id) }
+    let datastr = await mysql.delete(table, where)
+    let result = util.status(datastr)
     return JSON.stringify(result)
   }
 }

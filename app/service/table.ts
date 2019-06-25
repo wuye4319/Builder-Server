@@ -23,6 +23,14 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
+  async getTableByAppId2(appId): Promise<string> {
+    let table: string = 'table'
+    const where = { "appId": appId }
+
+    let data: any = await mysql.find(table, where)
+    return data
+  }
+
   // 获取列的单行数据
   public async getTableById(id): Promise<string> {
     let table: string = 'table'
@@ -31,15 +39,6 @@ export default class Sheet extends Service {
     let data = await mysql.find(table, where)
     let result = util.status(data)
     return JSON.stringify(result)
-  }
-
-  // 根据名字获取表的信息
-  async getTableByName(name): Promise<any> {
-    let table: string = 'table'
-    const where = { "name": name }
-
-    let data = await mysql.find(table, where)
-    return data
   }
 
   // 新增行的数据
@@ -87,21 +86,40 @@ export default class Sheet extends Service {
         ]
       }
     }
-    let data = await mysql.insert(table, obj)
-    let tableinfor = await this.getTableByName(obj.name)
+    let insertData = await mysql.insert(table, obj)
 
-    // 创建数据表
-    await mysql.createCollection(tableinfor[0]._id.toString())
+    if (insertData) {
+      // 创建数据表
+      let data = await this.getTableByAppId2(appId)
+      let lastTable: any = data[data.length - 1]
+      await mysql.createCollection(lastTable._id.toString())
 
-    let result = util.status(data)
-    return JSON.stringify(result)
+      let result = util.status(lastTable)
+      return JSON.stringify(result)
+    } else {
+      let result = util.status(false)
+      return JSON.stringify(result)
+    }
   }
 
   // 更新行的数据
   public async updateTableById(id, data): Promise<string> {
     let table: string = 'table'
     let where = { "_id": ObjectID(id) }
-    let result = await mysql.update(table, data, where)
+    let dataStr = await mysql.update(table, data, where)
+    let result = util.status(dataStr)
+    return JSON.stringify(result)
+  }
+
+  // 删除行的数据
+  public async deleteTableById(id): Promise<string> {
+    let table: string = 'table'
+    let where = { "_id": ObjectID(id) }
+    let dataStr = await mysql.delete(table, where)
+    if (dataStr) {
+      await mysql.deleteCollection(id)
+    }
+    let result = util.status(dataStr)
     return JSON.stringify(result)
   }
 }

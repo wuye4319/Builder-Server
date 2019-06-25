@@ -14,7 +14,9 @@ export default (app: Application) => {
   // 新增一行数据
   router.post('/insertSheetById/:tableId', controller.sheet.insertSheetById);
   // 更新一行数据
-  router.post('/updateSheetById/:tableId/:id', controller.sheet.updateSheetById);
+  router.patch('/updateSheetById/:tableId/:id', controller.sheet.updateSheetById);
+  // 根据ID删除行数据
+  router.delete('/deleteSheetById/:tableId/:id', controller.sheet.deleteSheetById);
 
   /**
    * column
@@ -22,7 +24,12 @@ export default (app: Application) => {
 
   // 获取单列的头信息
   router.get('/getColsById/:id', controller.column.getColsById);
+  // 新增一个新的列
   router.post('/insertColsBySheet', controller.column.insertColsBySheet);
+  // 根据ID更新列的信息
+  router.patch('/updateColsById/:id', controller.column.updateColsById);
+  // 根据ID删除列
+  router.delete('/deleteColsById/:id', controller.column.deleteColsById);
 
   /**
    * table
@@ -30,8 +37,13 @@ export default (app: Application) => {
 
   // 获取所有表信息
   router.get('/getTableByAppId/:appId', controller.table.getTableByAppId);
+  // 获取单个表的信息
   router.get('/getTableById/:id', controller.table.getTableById)
+  // 新增一个表
   router.post('/insertTableByAppId/:appId', controller.table.insertTableByAppId)
-  router.post('/updateTableById/:appId/:id', controller.table.updateTableById)
+  // 更新一个表的信息
+  router.patch('/updateTableById/:appId/:id', controller.table.updateTableById)
+  // 根据ID删除一个表，会删除动态创建的数据表
+  router.delete('/deleteTableById/:id', controller.table.deleteTableById)
 
 };

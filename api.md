@@ -15,13 +15,16 @@
 }
 ```
 
-- 更新table的信息：post
+- 更新table的信息：patch
 - http://192.168.9.130:7001/updateTableById/testapp/5d1047a87805f600ac51c00b
 ``` javascript
 {
     "name": "测试一下订单"
 }
 ```
+
+- 根据ID删除表 ：delete
+- http://192.168.9.130:7001/deleteTableById/5d11bd5deb0f1f237c287467
 
 ### 行
 - 获取行列所有数据：get
@@ -84,8 +87,8 @@
 }
 ```
 
-- 更新表格单行数据：post
-- http://192.168.9.132:7001/updateSheetById/5d09a0963038559cc05b38d6
+- 更新表格单行数据：patch
+- http://192.168.9.130:7001/updateSheetById/5d09a0963038559cc05b38d6
 ``` javascript
 {
     "createdTime": "2019-06-18 17:57:50",
@@ -138,6 +141,9 @@
 }
 ```
 
+- 根据ID删除行
+- http://192.168.9.130:7001/deleteSheetById/5d099b923038559cc05b38c3/5d1225f714b034ba7eb8d7cf
+
 ### 列
 - 列的查询：get
 - http://192.168.9.130:7001/getColsById/5d099cec3038559cc05b38c8
@@ -162,3 +168,24 @@
     "tableId": "5d099b923038559cc05b38c3"
 }
 ```
+
+- 列的更新：patch
+- http://192.168.9.130:7001/updateColsById/5d11edd9f591612d826b1a2e
+``` javascript
+{
+    "tableId": "5d099b923038559cc05b38c3",
+    "name": "新增test",
+    "colType": "FormTextBox",
+    "controlOptions": {
+        "InputByScan": false,
+        "Mode": "Normal",
+        "NoRepeat": false,
+        "PlaceHolder": "",
+        "ScanUpdateEnable": false
+    },
+    "visibility": true
+}
+```
+
+- 根据ID删除列：delete
+- http://192.168.9.130:7001/deleteColsById/5d11edd9f591612d826b1a2e
