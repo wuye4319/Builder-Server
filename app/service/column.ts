@@ -10,9 +10,9 @@ const ObjectID = require('mongodb').ObjectID
  */
 export default class Sheet extends Service {
   // 获取列的单行数据
-  public async getColsById(id): Promise<string> {
+  public async getColsByTableId(tableId): Promise<string> {
     let table: string = 'column'
-    const where = { "_id": ObjectID(id) }
+    const where = { "tableId": tableId }
 
     let data = await mysql.find(table, where)
     let result = util.status(data)

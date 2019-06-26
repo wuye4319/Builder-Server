@@ -120,7 +120,7 @@
 
 ### 列
 - 列的查询：get
-- http://192.168.9.130:7001/getColsById/5d099cec3038559cc05b38c8
+- http://192.168.9.130:7001/getColsByTableId/5d099a803038559cc05b38c2
 
 - 新增列的数据：post
 - http://192.168.9.130:7001/insertColsBySheet

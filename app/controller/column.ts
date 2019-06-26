@@ -1,10 +1,10 @@
 import { Controller } from 'egg';
 
 export default class SheetController extends Controller {
-  public async getColsById() {
+  public async getColsByTableId() {
     const { ctx } = this;
-    const id = ctx.params.id
-    ctx.body = await ctx.service.column.getColsById(id);
+    const tableId = ctx.params.tableId
+    ctx.body = await ctx.service.column.getColsByTableId(tableId);
   }
 
   public async insertColsBySheet() {

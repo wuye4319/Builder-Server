@@ -26,7 +26,7 @@ export default (app: Application) => {
    */
 
   // 获取单列的头信息
-  router.get('/getColsById/:id', controller.column.getColsById);
+  router.get('/getColsByTableId/:tableId', controller.column.getColsByTableId);
   // 新增一个新的列
   router.post('/insertColsBySheet', controller.column.insertColsBySheet);
   // 根据ID更新列的信息
