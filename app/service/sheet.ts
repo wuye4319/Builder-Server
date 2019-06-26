@@ -15,7 +15,7 @@ export default class Sheet extends Service {
     let colsTable = 'column'
     const where = { "tableId": tableId }
 
-    let data = { rows: <any>[], cols: <any>[], id: '', pagination: {} }
+    let data = { rows: <any>[], cols: <any>[], id: '', viewData: { pagination: {} }, }
     data.rows = await mysql.find(tableId, undefined, page, size)
     data.cols = await mysql.find(colsTable, where)
     let tableinfor: any = []
@@ -23,13 +23,23 @@ export default class Sheet extends Service {
     Object.assign(data, tableinfor[0])
     data.id = tableinfor[0]._id
     let tempTotal = await mysql.countDocuments(tableId)
-    data.pagination = {
+    data.viewData.pagination = {
       pageSize: size,
       currentPage: page,
       total: tempTotal
     }
 
     let result = util.status(data)
+    return JSON.stringify(result)
+  }
+
+  // 获取单行的数据
+  public async updateViewData(tableId, data): Promise<string> {
+    let table: string = 'table'
+    const where = { "_id": ObjectID(tableId) }
+
+    let dataStr = await mysql.update(table, data, where)
+    let result = util.status(dataStr)
     return JSON.stringify(result)
   }
 

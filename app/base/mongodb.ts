@@ -46,7 +46,7 @@ export default class base implements basedb {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
       if (Array.isArray(myobj)) {
-        let updateStr = { $set: { "url": "https://www.runoob.com" } };
+        let updateStr = { $set: myobj };
         conn.db.collection(table).updateMany(where, updateStr, function (err, res) {
           if (err) throw err;
           console.log(res.result.nModified + " 条文档被更新");
@@ -110,10 +110,10 @@ export default class base implements basedb {
     })
   }
 
-  async find(table: string, where?: object, page: number = 0, size: number = 0) {
+  async find(table: string, where?: object, page: number = 0, size: number = 0, sort?: any) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
-      conn.db.collection(table).find(where || {}).skip(page * size).limit(size).toArray(function (err, result) { // 返回集合中所有数据
+      conn.db.collection(table).find(where || {}).skip(page * size).limit(size).sort(sort).toArray(function (err, result) { // 返回集合中所有数据
         if (err) throw err;
         resolve(result);
         conn.client.close()

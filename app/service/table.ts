@@ -92,6 +92,7 @@ export default class Sheet extends Service {
       // 创建数据表
       let data = await this.getTableByAppId2(appId)
       let lastTable: any = data[data.length - 1]
+      lastTable.id = lastTable._id
       await mysql.createCollection(lastTable._id.toString())
 
       let result = util.status(lastTable)

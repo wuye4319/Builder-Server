@@ -9,6 +9,9 @@ export default (app: Application) => {
 
   // 获取列行所有数据
   router.get('/getSheetById/:tableId/:page/:size', controller.sheet.getSheetById);
+  // 更新查询条件
+  router.patch('/updateViewData/:tableId', controller.sheet.updateViewData);
+
   // 单独获取某一行的数据
   router.get('/getRowsById/:tableId/:id', controller.sheet.getRowsById);
   // 新增一行数据

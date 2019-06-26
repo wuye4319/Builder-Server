@@ -30,6 +30,54 @@
 - 获取行列所有数据：get
 - http://192.168.9.130:7001/getSheetById/5d099b923038559cc05b38c3/0/10
 
+- 根据ID更新viewData的信息：patch
+- http://192.168.9.130:7001/updateViewData/5d099a803038559cc05b38c2
+``` javascript
+{
+    "viewData": {
+        "filter": {
+            "conjunction": "and",
+            "filterSet": []
+        },
+        "sortBy": null,
+        "meta": {
+            "rowHeight": "short",
+            "fixedColumns": []
+        },
+        "colActions": {
+            "view": [
+                {
+                    "code": "filter",
+                    "text": "筛选"
+                },
+                {
+                    "code": "hide",
+                    "text": "隐藏此列"
+                }
+            ],
+            "data": [
+                {
+                    "code": "modify",
+                    "text": "设置列属性"
+                },
+                {
+                    "code": "leftInsert",
+                    "text": "左侧插入列"
+                },
+                {
+                    "code": "rightInsert",
+                    "text": "右侧插入列"
+                },
+                {
+                    "code": "delete",
+                    "text": "删除此列"
+                }
+            ]
+        }
+    }
+}
+```
+
 - 根据id单独获取一行数据：get
 - http://192.168.9.130:7001/getRowsById/5d099a803038559cc05b38c2/5d0ca59414b034ba7eb8d7ca
 

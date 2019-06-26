@@ -9,6 +9,13 @@ export default class SheetController extends Controller {
     ctx.body = await ctx.service.sheet.getSheetById(tableId, page, size);
   }
 
+  public async updateViewData() {
+    const { ctx } = this;
+    let data = ctx.request.body
+    const tableId = ctx.params.tableId
+    ctx.body = await ctx.service.sheet.updateViewData(tableId, data);
+  }
+
   public async getRowsById() {
     const { ctx } = this;
     const id = ctx.params.id
