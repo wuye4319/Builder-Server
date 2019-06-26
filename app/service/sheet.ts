@@ -14,12 +14,33 @@ export default class Sheet extends Service {
     // let table: string = 'sheet'
     let colsTable = 'column'
     const where = { "tableId": tableId }
-
     let data = { rows: <any>[], cols: <any>[], id: '', viewData: { pagination: {} }, }
-    data.rows = await mysql.find(tableId, undefined, page, size)
-    data.cols = await mysql.find(colsTable, where)
     let tableinfor: any = []
     tableinfor = await mysql.find('table', { "_id": ObjectID(tableId) })
+    console.log(tableinfor[0].viewData.filter)
+
+    data.rows = await mysql.find(tableId, undefined, page, size)
+    data.cols = await mysql.find(colsTable, where, 0, 0, { "sortRank": 1 })
+
+    // 改变列的ID
+    let colsNameBox: any = []
+    for (let i in data.cols) {
+      let cols = data.cols[i]
+      cols.id = cols._id
+      delete cols._id
+      colsNameBox.push(cols._id)
+    }
+
+    // 遍历动态获取行的内容
+    for (let r in data.rows) {
+      let row = data.rows[r]
+      let tempRow: any = {}
+      tempRow.id = row._id
+      tempRow.createdTime = row.createdTime
+      tempRow.cellValues = this.getRowByColList(row, colsNameBox)
+      data.rows[r] = tempRow
+    }
+
     Object.assign(data, tableinfor[0])
     data.id = tableinfor[0]._id
     let tempTotal = await mysql.countDocuments(tableId)
@@ -31,6 +52,15 @@ export default class Sheet extends Service {
 
     let result = util.status(data)
     return JSON.stringify(result)
+  }
+
+  getRowByColList(row, colList) {
+    let tempObj = {}
+    for (let i in colList) {
+      let colName = colList[i]
+      tempObj[colName] = row[colName]
+    }
+    return tempObj
   }
 
   // 获取单行的数据
@@ -55,6 +85,7 @@ export default class Sheet extends Service {
 
   // 新增单行的数据
   public async insertSheetById(tableId, obj): Promise<string> {
+    obj.createdTime = new Date()
     let data = await mysql.insert(tableId, obj)
 
     let result = util.status(data)
@@ -64,6 +95,8 @@ export default class Sheet extends Service {
   // 更新单行的数据
   public async updateSheetById(tableId, id, data): Promise<string> {
     let where = { "_id": ObjectID(id) }
+    data.createdTime = new Date()
+
     let dataStr = await mysql.update(tableId, data, where)
     let result = util.status(dataStr)
     return JSON.stringify(result)

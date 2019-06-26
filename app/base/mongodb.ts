@@ -42,10 +42,10 @@ export default class base implements basedb {
   }
 
   // 更新操作，如果传入数组，则批量修改
-  async update(table: string, myobj, where) {
+  async update(table: string, myobj, where, many?) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
-      if (Array.isArray(myobj)) {
+      if (many) {
         let updateStr = { $set: myobj };
         conn.db.collection(table).updateMany(where, updateStr, function (err, res) {
           if (err) throw err;
