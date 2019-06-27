@@ -18,13 +18,15 @@ export default class Sheet extends Service {
     let data: any = await mysql.find(table, where)
     for (let d in data) {
       data[d].id = data[d]._id
-      delete data[d].viewData
+      delete data[d].filter
+      delete data[d].colActions
+      delete data[d].meta
     }
     const appData = app && data ? {
       id: appId,
       name: app.name,
       tables: data,
-    }:null;
+    } : null;
     let result = util.status(appData)
     return JSON.stringify(result)
   }
@@ -51,46 +53,44 @@ export default class Sheet extends Service {
   public async insertTableByAppId(appId, obj): Promise<string> {
     let table: string = 'table'
     obj.appId = appId
-    obj.viewData = {
-      "filter": {
-        "conjunction": "and",
-        "filterSet": []
-      },
-      "sortBy": null,
-      "meta": {
-        "rowHeight": "short",
-        "fixedColumns": []
-      },
-      "colActions": {
-        "view": [
-          {
-            "code": "filter",
-            "text": "筛选"
-          },
-          {
-            "code": "hide",
-            "text": "隐藏此列"
-          }
-        ],
-        "data": [
-          {
-            "code": "modify",
-            "text": "设置列属性"
-          },
-          {
-            "code": "leftInsert",
-            "text": "左侧插入列"
-          },
-          {
-            "code": "rightInsert",
-            "text": "右侧插入列"
-          },
-          {
-            "code": "delete",
-            "text": "删除此列"
-          }
-        ]
-      }
+    obj.filter = {
+      "conjunction": "and",
+      "filterSet": []
+    }
+    obj.sortBy = null
+    obj.meta = {
+      "rowHeight": "short",
+      "fixedColumns": []
+    }
+    obj.colActions = {
+      "view": [
+        {
+          "code": "filter",
+          "text": "筛选"
+        },
+        {
+          "code": "hide",
+          "text": "隐藏此列"
+        }
+      ],
+      "data": [
+        {
+          "code": "modify",
+          "text": "设置列属性"
+        },
+        {
+          "code": "leftInsert",
+          "text": "左侧插入列"
+        },
+        {
+          "code": "rightInsert",
+          "text": "右侧插入列"
+        },
+        {
+          "code": "delete",
+          "text": "删除此列"
+        }
+      ]
     }
     let insertData = await mysql.insert(table, obj)
 
@@ -109,7 +109,7 @@ export default class Sheet extends Service {
     }
   }
 
-  // 更新行的数据
+  // 更新表的数据
   public async updateTableById(id, data): Promise<string> {
     let table: string = 'table'
     let where = { "_id": ObjectID(id) }
@@ -118,7 +118,16 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  // 删除行的数据
+  // 更新filter
+  public async updateFilterByTableId(tableId, data): Promise<string> {
+    let table: string = 'table'
+    let where = { "_id": ObjectID(tableId) }
+    let dataStr = await mysql.update(table, data, where)
+    let result = util.status(dataStr)
+    return JSON.stringify(result)
+  }
+
+  // 根据ID删除表的数据
   public async deleteTableById(id): Promise<string> {
     let table: string = 'table'
     let where = { "_id": ObjectID(id) }

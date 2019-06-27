@@ -23,12 +23,35 @@
 }
 ```
 
+- 更新table的信息：patch
+- http://192.168.9.130:7001/updateFilterByTableId/5d099a803038559cc05b38c2
+``` javascript
+{
+    "filter": {
+        "conjunction": "and",
+        "filterSet": ["test"]
+    }
+
+    // 或者
+    "sortBy": {
+        "columnId": "5d1476326fd5da6dd0b7478a",
+        "type": "desc"
+    }
+
+    // 或者
+    "meta": {
+        "rowHeight": "short",
+        "fixedColumns": []
+    }
+}
+```
+
 - 根据ID删除表 ：delete
 - http://192.168.9.130:7001/deleteTableById/5d11bd5deb0f1f237c287467
 
 ### 行
 - 获取行列所有数据：get
-- http://192.168.9.130:7001/getSheetById/5d099b923038559cc05b38c3/0/10
+- http://192.168.9.130:7001/getSheetById/5d099a803038559cc05b38c2/0/10
 
 - 根据ID更新viewData的信息：patch
 - http://192.168.9.130:7001/updateViewData/5d099a803038559cc05b38c2
@@ -118,7 +141,7 @@
 - 根据ID删除行：delete 【 废弃 】
 - http://192.168.9.130:7001/deleteSheetById/5d099b923038559cc05b38c3/5d1225f714b034ba7eb8d7cf
 
-- 根据tableID删除多行或一行：delete
+- 根据tableID删除多行或一行：post
 - http://192.168.9.130:7001/deleteSheetsByTableId/5d099a803038559cc05b38c2
 ``` javascript
 [

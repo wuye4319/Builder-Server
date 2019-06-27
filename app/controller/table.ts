@@ -28,6 +28,13 @@ export default class SheetController extends Controller {
     ctx.body = await ctx.service.table.updateTableById(id, data);
   }
 
+  public async updateFilterByTableId() {
+    const { ctx } = this;
+    let data = ctx.request.body
+    let tableId = ctx.params.tableId
+    ctx.body = await ctx.service.table.updateFilterByTableId(tableId, data);
+  }
+
   public async deleteTableById() {
     const { ctx } = this;
     let id = ctx.params.id

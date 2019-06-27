@@ -14,12 +14,15 @@ export default class Sheet extends Service {
     // let table: string = 'sheet'
     let colsTable = 'column'
     const where = { "tableId": tableId }
-    let data = { rows: <any>[], cols: <any>[], id: '', viewData: { pagination: {} }, }
-    let tableinfor: any = []
-    tableinfor = await mysql.find('table', { "_id": ObjectID(tableId) })
-    console.log(tableinfor[0].viewData.filter)
+    let data = { rows: <any>[], cols: <any>[], id: '', name: "", appId: "", viewData: <any>{}, }
+    let tableInfor: any = []
+    tableInfor = await mysql.find('table', { "_id": ObjectID(tableId) })
 
-    data.rows = await mysql.find(tableId, undefined, page, size)
+    // 排序
+    let srot = this.getSortBy(tableInfor[0].sortBy)
+
+    // 查询数据
+    data.rows = await mysql.find(tableId, undefined, page, size, srot)
     data.cols = await mysql.find(colsTable, where, 0, 0, { "sortRank": 1 })
 
     // 改变列的ID
@@ -36,13 +39,17 @@ export default class Sheet extends Service {
       let tempRow: any = {}
       tempRow.id = row._id
       tempRow.createdTime = row.createdTime
+      tempRow.editTime = row.createdTime
       tempRow.cellValues = this.getRowByColList(row, colsNameBox)
       data.rows[r] = tempRow
     }
 
-    Object.assign(data, tableinfor[0])
-    data.id = tableinfor[0]._id
+    // Object.assign(data, tableInfor[0])
+    data.id = tableInfor[0]._id
+    data.name = tableInfor[0].name
+    data.appId = tableInfor[0].appId
     let tempTotal = await mysql.countDocuments(tableId)
+    data.viewData = this.getRowByColList(tableInfor[0], ["filter", "sortBy", "meta", "colActions"])
     data.viewData.pagination = {
       pageSize: size,
       currentPage: page,
@@ -51,6 +58,20 @@ export default class Sheet extends Service {
 
     let result = util.status(data)
     return JSON.stringify(result)
+  }
+
+  getSortBy(tableData) {
+    if (tableData) {
+      let tempObj = {}
+      let type
+      if (tableData.type === "desc") {
+        type = -1
+      } else if (tableData.type === "asc") {
+        type = 1
+      }
+      tempObj[tableData.columnId] = type
+      return tempObj
+    }
   }
 
   getRowByColList(row, colList) {
@@ -62,15 +83,15 @@ export default class Sheet extends Service {
     return tempObj
   }
 
-  // 获取单行的数据
-  public async updateViewData(tableId, data): Promise<string> {
-    let table: string = 'table'
-    const where = { "_id": ObjectID(tableId) }
+  // 更新viewdata的数据
+  // public async updateViewData(tableId, data): Promise<string> {
+  //   let table: string = 'table'
+  //   const where = { "_id": ObjectID(tableId) }
 
-    let dataStr = await mysql.update(table, data, where)
-    let result = util.status(dataStr)
-    return JSON.stringify(result)
-  }
+  //   let dataStr = await mysql.update(table, data, where)
+  //   let result = util.status(dataStr)
+  //   return JSON.stringify(result)
+  // }
 
   // 获取单行的数据
   public async getRowsById(tableId, id): Promise<string> {
