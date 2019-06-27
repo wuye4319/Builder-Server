@@ -115,11 +115,18 @@
 }
 ```
 
-- 根据ID删除行：delete
+- 根据ID删除行：delete 【 废弃 】
 - http://192.168.9.130:7001/deleteSheetById/5d099b923038559cc05b38c3/5d1225f714b034ba7eb8d7cf
 
-- 根据tableID删除多行：delete
+- 根据tableID删除多行或一行：delete
 - http://192.168.9.130:7001/deleteSheetsByTableId/5d099a803038559cc05b38c2
+``` javascript
+[
+    "5d142307131e7f5bde08acbf",
+    "5d142309131e7f5bde08acc0",
+    "5d14230c131e7f5bde08acc1"
+]
+```
 
 ### 列
 - 列的查询：get

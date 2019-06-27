@@ -38,12 +38,12 @@ export default class SheetController extends Controller {
     ctx.body = await ctx.service.sheet.updateSheetById(tableId, id, data);
   }
 
-  public async deleteSheetById() {
-    const { ctx } = this;
-    const tableId = ctx.params.tableId
-    const id = ctx.params.id
-    ctx.body = await ctx.service.sheet.deleteSheetById(tableId, id);
-  }
+  // public async deleteSheetById() {
+  //   const { ctx } = this;
+  //   const tableId = ctx.params.tableId
+  //   const id = ctx.params.id
+  //   ctx.body = await ctx.service.sheet.deleteSheetById(tableId, id);
+  // }
 
   public async deleteSheetsByTableId() {
     const { ctx } = this;
