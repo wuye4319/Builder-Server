@@ -51,4 +51,11 @@ export default (app: Application) => {
   // 根据ID删除一个表，会删除动态创建的数据表
   router.delete('/deleteTableById/:id', controller.table.deleteTableById)
 
+
+  /**
+   * app
+   */
+
+   // 登录获取app，或创建app
+  router.post('/login', controller.app.login);
 };
