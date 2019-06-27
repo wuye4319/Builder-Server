@@ -14,6 +14,7 @@ export default class App extends Service {
     const where = { "telephone": data.telephone }
     const apps: any = await mysql.find(table, where);
     let app;
+    let isNew = false;;
     if (apps && apps.length > 0) {
       app = apps[0];
     } else {
@@ -21,12 +22,14 @@ export default class App extends Service {
       data.name = '未命名应用';
       const res = await mysql.insert(table, data)
       app = res ? data : null;
+      isNew = true;
     }
     const resultApp = app && {
       id: app._id,
       name: app.name,
       username: app.username,
       telephone: app.telephone,
+      isNew,
     }
     let result = util.status(resultApp)
     return JSON.stringify(result)
