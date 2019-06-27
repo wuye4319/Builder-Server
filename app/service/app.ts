@@ -37,7 +37,7 @@ export default class App extends Service {
 
   public async updateApp(id, data): Promise<string> {
     let table: string = 'app';
-    const where = { _id: id };
+    const where = { _id: id.toString() };
     let res = await mysql.update(table, data, where);
     let result = util.status(res)
     return JSON.stringify(result)

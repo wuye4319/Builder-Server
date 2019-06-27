@@ -28,15 +28,18 @@ export default class Sheet extends Service {
     let tableId = obj.tableId
     const where = { "tableId": tableId }
     let cols: any = await mysql.find(table, where)
-    let lastCols: any = cols[cols.length - 1]
-
-    let tempCols = lastCols._id.toString()
-    let newStr = {}
-    newStr[tempCols] = ""
-    await mysql.update(tableId, newStr, {}, true)
-
-    let result = util.status(data)
-    return JSON.stringify(result)
+    if (cols) {
+      let lastCols: any = cols[cols.length - 1]
+  
+      let tempCols = lastCols._id.toString()
+      let newStr = {}
+      newStr[tempCols] = ""
+      await mysql.update(tableId, newStr, {}, true)
+  
+      let result = util.status(data)
+      return JSON.stringify(result)
+    }
+    return '';
   }
 
   // 根据ID更新列的数据

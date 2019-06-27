@@ -12,7 +12,6 @@ export default class Sheet extends Service {
   // 获取表的数据
   public async getTableByAppId(appId): Promise<string> {
     let apps: any = await mysql.find('app', { "_id": ObjectID(appId) })
-    console.log(apps)
     const app = apps && apps.length > 0 ? apps[0] : null;
     let table: string = 'table';
     const where = { "appId": appId }
@@ -105,14 +104,14 @@ export default class Sheet extends Service {
         colType: "FormTextBox",
         controlOptions: {InputByScan: false, Mode: "Normal", NoRepeat: false, PlaceHolder: "", ScanUpdateEnable: false},
         name: "名称",
-        tableId: lastTable._id,
+        tableId: lastTable._id.toString(),
         visibility: true,
       });
       await this.ctx.service.column.insertColsBySheet({
         colType: "FormTextBox",
         controlOptions: {InputByScan: false, Mode: "Normal", NoRepeat: false, PlaceHolder: "", ScanUpdateEnable: false},
         name: "描述",
-        tableId: lastTable._id,
+        tableId: lastTable._id.toString(),
         visibility: true,
       });
       let result = util.status(lastTable)
