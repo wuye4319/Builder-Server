@@ -2,7 +2,7 @@ import { EggAppConfig, PowerPartial } from 'egg';
 
 export default () => {
   const config: PowerPartial<EggAppConfig> = {
-    keys: 'prod keys',
+    keys: 'H3Yun-Wind-prod',
   };
   return config;
 };
