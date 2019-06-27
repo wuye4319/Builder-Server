@@ -102,12 +102,12 @@ export default class Sheet extends Service {
   }
 
   // 根据ID删除单行的数据
-  public async deleteSheetById(tableId, id): Promise<string> {
-    let where = { "_id": ObjectID(id) }
-    let dataStr = await mysql.delete(tableId, where)
-    let result = util.status(dataStr)
-    return JSON.stringify(result)
-  }
+  // public async deleteSheetById(tableId, id): Promise<string> {
+  //   let where = { "_id": ObjectID(id) }
+  //   let dataStr = await mysql.delete(tableId, where)
+  //   let result = util.status(dataStr)
+  //   return JSON.stringify(result)
+  // }
 
   // 根据ID删除单行的数据
   public async deleteSheetsByTableId(tableId, data): Promise<string> {
