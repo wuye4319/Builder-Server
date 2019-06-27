@@ -58,4 +58,6 @@ export default (app: Application) => {
 
    // 登录获取app，或创建app
   router.post('/login', controller.app.login);
+  // 更新应用属性，用于修改应用名称
+  router.post('/updateApp/:appId', controller.app.updateApp);
 };

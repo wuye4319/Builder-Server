@@ -17,16 +17,26 @@ export default class App extends Service {
     if (apps && apps.length > 0) {
       app = apps[0];
     } else {
-      (data as any)._id = ObjectID();
+      data._id = ObjectID();
+      data.name = '未命名应用';
       const res = await mysql.insert(table, data)
       app = res ? data : null;
     }
     const resultApp = app && {
       id: app._id,
       name: app.name,
+      username: app.username,
       telephone: app.telephone,
     }
     let result = util.status(resultApp)
+    return JSON.stringify(result)
+  }
+
+  public async updateApp(id, data): Promise<string> {
+    let table: string = 'app';
+    const where = { _id: id };
+    let res = await mysql.update(table, data, where);
+    let result = util.status(res)
     return JSON.stringify(result)
   }
 }

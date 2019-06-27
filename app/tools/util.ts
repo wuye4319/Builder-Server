@@ -15,7 +15,7 @@ export default class tools {
       }
     } else {
       tempobj = {
-        status: 200,
+        status: 500,
         msg: "Failed",
         serverTime: time,
         serverDate: date,
