@@ -11,15 +11,21 @@ const ObjectID = require('mongodb').ObjectID
 export default class Sheet extends Service {
   // 获取表的数据
   public async getTableByAppId(appId): Promise<string> {
-    let table: string = 'table'
+    let apps: any = await mysql.find('app', { id: appId })
+    const app = apps && apps.length > 0 ? apps[0] : null;
+    let table: string = 'table';
     const where = { "appId": appId }
-
     let data: any = await mysql.find(table, where)
     for (let d in data) {
       data[d].id = data[d]._id
       delete data[d].viewData
     }
-    let result = util.status(data)
+    const appData = app && data ? {
+      id: appId,
+      name: app.name,
+      tables: data,
+    }:null;
+    let result = util.status(appData)
     return JSON.stringify(result)
   }
 
