@@ -69,7 +69,7 @@ export default class Sheet extends Service {
         let result = {}
         switch (operator) {
           case 'contains':
-            result[columnId] = value
+            result[columnId] = { $regex: /value/ }
             break;
         }
         return result
