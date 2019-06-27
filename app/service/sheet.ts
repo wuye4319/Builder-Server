@@ -21,7 +21,6 @@ export default class Sheet extends Service {
     // 排序
     let srot = this.getSortBy(tableInfor[0].sortBy)
     let filter = this.getFilter(tableInfor[0].filter)
-    console.log(filter)
 
     // 查询数据
     data.rows = await mysql.find(tableId, filter, page, size, srot)
@@ -69,7 +68,13 @@ export default class Sheet extends Service {
         let result = {}
         switch (operator) {
           case 'contains':
-            result[columnId] = { $regex: /value/ }
+            let rule
+            if (Array.isArray(value)) {
+              rule = eval(`/(${value.join('|')})/`)
+            } else {
+              rule = eval(`/${value}/`)
+            }
+            result[columnId] = { $regex: rule }
             break;
         }
         return result
