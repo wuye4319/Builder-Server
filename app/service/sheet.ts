@@ -114,10 +114,10 @@ export default class Sheet extends Service {
     if (Array.isArray(data)) {
       for (let i in data) {
         let where = { "_id": ObjectID(data[i]) }
-        let dataStr = await mysql.delete(tableId, where)
-        let result = util.status(dataStr)
-        return JSON.stringify(result)
+        await mysql.delete(tableId, where)
       }
+      let result = util.status(true)
+      return JSON.stringify(result)
     }
     let result = util.status(false)
     return JSON.stringify(result)
