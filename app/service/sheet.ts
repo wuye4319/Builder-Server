@@ -20,9 +20,11 @@ export default class Sheet extends Service {
 
     // 排序
     let srot = this.getSortBy(tableInfor[0].sortBy)
+    let filter = this.getFilter(tableInfor[0].filter)
+    console.log(filter)
 
     // 查询数据
-    data.rows = await mysql.find(tableId, undefined, page, size, srot)
+    data.rows = await mysql.find(tableId, filter, page, size, srot)
     data.cols = await mysql.find(colsTable, where, 0, 0, { "sortRank": 1 })
 
     // 改变列的ID
@@ -58,6 +60,22 @@ export default class Sheet extends Service {
 
     let result = util.status(data)
     return JSON.stringify(result)
+  }
+
+  getFilter(filter) {
+    if (filter) {
+      for (let i in filter.filterSet) {
+        let { columnId, operator, value } = filter.filterSet[i];
+        let result = {}
+        switch (operator) {
+          case 'contains':
+            result[columnId] = value
+            break;
+        }
+        return result
+      }
+    }
+    return undefined
   }
 
   getSortBy(tableData) {
