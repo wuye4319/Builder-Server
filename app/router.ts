@@ -20,6 +20,8 @@ export default (app: Application) => {
   router.patch('/updateSheetById/:tableId/:id', controller.sheet.updateSheetById);
   // 根据ID删除行数据
   router.delete('/deleteSheetById/:tableId/:id', controller.sheet.deleteSheetById);
+  // 根据tableID删除多行数据
+  router.delete('/deleteSheetsByTableId/:tableId', controller.sheet.deleteSheetsByTableId);
 
   /**
    * column

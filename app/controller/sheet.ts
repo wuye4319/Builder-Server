@@ -44,4 +44,11 @@ export default class SheetController extends Controller {
     const id = ctx.params.id
     ctx.body = await ctx.service.sheet.deleteSheetById(tableId, id);
   }
+
+  public async deleteSheetsByTableId() {
+    const { ctx } = this;
+    const tableId = ctx.params.tableId
+    let data = ctx.request.body
+    ctx.body = await ctx.service.sheet.deleteSheetsByTableId(tableId, data);
+  }
 }

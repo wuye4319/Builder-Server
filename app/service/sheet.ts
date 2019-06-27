@@ -27,7 +27,6 @@ export default class Sheet extends Service {
     for (let i in data.cols) {
       let cols = data.cols[i]
       cols.id = cols._id
-      delete cols._id
       colsNameBox.push(cols._id)
     }
 
@@ -107,6 +106,20 @@ export default class Sheet extends Service {
     let where = { "_id": ObjectID(id) }
     let dataStr = await mysql.delete(tableId, where)
     let result = util.status(dataStr)
+    return JSON.stringify(result)
+  }
+
+  // 根据ID删除单行的数据
+  public async deleteSheetsByTableId(tableId, data): Promise<string> {
+    if (Array.isArray(data)) {
+      for (let i in data) {
+        let where = { "_id": ObjectID(data[i]) }
+        let dataStr = await mysql.delete(tableId, where)
+        let result = util.status(dataStr)
+        return JSON.stringify(result)
+      }
+    }
+    let result = util.status(false)
     return JSON.stringify(result)
   }
 }
