@@ -86,12 +86,12 @@ export default class Sheet extends Service {
                 }
                 break;
               case 'filled':
-                if (value !== undefined && value !== null) {
+                if (value !== undefined && value !== null && value !== '') {
                   summaryResult += 1;
                 }
                 break;
               case 'empty':
-                if (value === undefined && value === null) {
+                if (value === undefined && value === null  && value === '') {
                   summaryResult += 1;
                 }
                 break;
