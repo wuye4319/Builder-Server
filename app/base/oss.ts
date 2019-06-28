@@ -7,10 +7,15 @@ const client = new OSS({
   bucket: 'h3yun-test-wind',
 });
 
+client.putBucketACL('h3yun-test-wind', 'public-read');
+
 export async function uploadToOss(fileName: string, filePath: string) {
   const result = await client.put(fileName, filePath);
   if (result) {
-    return result;
+    return {
+      url: result.url,
+      name: result.name
+    };
   }
   return null;
 }
