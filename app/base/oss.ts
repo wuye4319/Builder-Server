@@ -1,5 +1,4 @@
 const OSS = require('ali-oss');
-const ObjectID = require('mongodb').ObjectID
 
 const client = new OSS({
   region: 'oss-cn-shenzhen',
