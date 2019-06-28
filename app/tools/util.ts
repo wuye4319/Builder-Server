@@ -1,8 +1,8 @@
-const date = new Date()
-const time = date.getTime()
 
 export default class tools {
   status(data) {
+    const date = new Date()
+    const time = date.getTime()
     let tempobj
     if (data) {
       tempobj = {
@@ -24,5 +24,17 @@ export default class tools {
     }
 
     return tempobj
+  }
+
+  errorHandler(error) {
+    const date = new Date()
+    const time = date.getTime()
+    return {
+      status: 500,
+      msg: error,
+      serverTime: time,
+      serverDate: date,
+      data: '操作失败'
+    }
   }
 }

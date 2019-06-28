@@ -1,12 +1,18 @@
 import { Controller } from 'egg';
+import Tools from '../tools/util';
+const util = new Tools();
 
 export default class SheetController extends Controller {
   public async getSheetById() {
     const { ctx } = this;
-    const tableId = ctx.params.tableId
-    const page = parseInt(ctx.params.page)
-    const size = parseInt(ctx.params.size)
-    ctx.body = await ctx.service.sheet.getSheetById(tableId, page, size);
+    try {
+      const tableId = ctx.params.tableId
+      const page = parseInt(ctx.params.page)
+      const size = parseInt(ctx.params.size)
+      ctx.body = await ctx.service.sheet.getSheetById(tableId, page, size);
+    } catch(e) {
+      ctx.body =  util.errorHandler(e);
+    }
   }
 
   // public async updateViewData() {
@@ -25,9 +31,13 @@ export default class SheetController extends Controller {
 
   public async insertSheetById() {
     const { ctx } = this;
-    const { body } = ctx.request
-    const { tableId } = ctx.params
-    ctx.body = await ctx.service.sheet.insertSheetById(tableId, body);
+    try {
+      const { body } = ctx.request
+      const { tableId } = ctx.params
+      ctx.body = await ctx.service.sheet.insertSheetById(tableId, body);
+    } catch(e) {
+      ctx.body =  util.errorHandler(e);
+    }
   }
 
   public async updateSheetById() {

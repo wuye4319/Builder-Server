@@ -20,6 +20,20 @@ export default (appInfo: EggAppInfo) => {
     csrf: false
   }
 
+  config.onerror = {
+    all(err, crt) {
+      const date = new Date()
+      const time = date.getTime()
+      crt.body = {
+        status: 500,
+        msg: err,
+        serverTime: time,
+        serverDate: date,
+        data: '操作失败'
+      };
+    }
+  }
+
   // config.mysql = {
   //   client: {
   //     host: 'localhost',
