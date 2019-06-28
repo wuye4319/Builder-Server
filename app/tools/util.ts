@@ -26,12 +26,12 @@ export default class tools {
     return tempobj
   }
 
-  errorHandler(error) {
+  errorHandler(error: Error) {
     const date = new Date()
     const time = date.getTime()
     return {
       status: 500,
-      msg: error,
+      msg: error.message,
       serverTime: time,
       serverDate: date,
       data: '操作失败'
