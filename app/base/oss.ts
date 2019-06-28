@@ -9,13 +9,9 @@ const client = new OSS({
 });
 
 export async function uploadToOss(fileName: string, filePath: string) {
-  const fileId: string = ObjectID();
   const result = await client.put(fileName, filePath);
   if (result) {
-    return {
-      fileId,
-      result,
-    }
+    return result;
   }
   console.log(result);
   return null;

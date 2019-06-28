@@ -67,25 +67,34 @@ export default class SheetController extends Controller {
   public async uploadFile() {
     const { ctx } = this;
     const files = ctx.request.files;
-    const result: any[] = [];
+    let result: any = [];
     if (files) {
-      for (const file of files) {
-        console.log('filename: ' + file.filename);
-        console.log('encoding: ' + file.encoding);
-        console.log('mime: ' + file.mime);
-        console.log('tmp filepath: ' + file.filepath);
-        let result;
-        try {
-          // 处理文件，比如上传到云端
-          result = await uploadToOss('h3yun-wind-test/' + file.filename, file.filepath);;
-        } finally {
-          // 需要删除临时文件
-          await fs.unlink(file.filepath);
+      try {
+        for (const file of files) {
+          console.log('filename: ' + file.filename);
+          console.log('encoding: ' + file.encoding);
+          console.log('mime: ' + file.mime);
+          console.log('tmp filepath: ' + file.filepath);
+          try {
+            const ossResult = await uploadToOss('h3yun-wind-test/' + file.filename, file.filepath);;
+            if (ossResult) {
+              result.push(ossResult);
+            }
+          } catch (e) {
+            throw e;
+          } finally {
+            await fs.unlink(file.filepath);
+            // 需要删除临时文件
+            console.log(result);
+          }
         }
-        console.log(result);
+        // 处理文件，比如上传到云端
+        const response = util.status(result);
+        ctx.body = JSON.stringify(response);
+      } catch (e) {
+        const response = util.errorHandler(e);
+        ctx.body = JSON.stringify(response);
       }
-    }
-    const response = util.status(result);
-    ctx.body = JSON.stringify(response);
+    } 
   }
 }
