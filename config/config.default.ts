@@ -20,6 +20,10 @@ export default (appInfo: EggAppInfo) => {
     csrf: false
   }
 
+  config.multipart = {
+    mode: 'file',
+  }
+
   config.onerror = {
     all(err, crt) {
       const date = new Date()

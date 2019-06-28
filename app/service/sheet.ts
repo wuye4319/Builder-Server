@@ -181,7 +181,25 @@ export default class Sheet extends Service {
     let where = { "_id": ObjectID(id) }
     data.createdTime = new Date()
 
-    let dataStr = await mysql.update(tableId, data, where)
+    let dataStr = await mysql.update(tableId, data, where);
+    if (dataStr) {
+      const where = { "_id": ObjectID(id) }
+      let rows: any = await mysql.find(tableId, where);
+      if (rows.length) {
+        const rowData = rows[0];
+        const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
+        const resultRow: any = {};
+        resultRow.id = rowData._id;
+        resultRow.createdTime = rowData.createdTime;
+        resultRow.editTime = rowData.createdTime;
+        resultRow.cellValues = {};
+        for (const col of cols) {
+          resultRow.cellValues[col._id] = rowData[col._id];
+        }
+        let result = util.status(resultRow)
+        return JSON.stringify(result)
+      }
+    }
     let result = util.status(dataStr)
     return JSON.stringify(result)
   }

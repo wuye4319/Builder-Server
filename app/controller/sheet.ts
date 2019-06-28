@@ -1,5 +1,6 @@
 import { Controller } from 'egg';
 import Tools from '../tools/util';
+import { uploadToOss } from '../base/oss';
 const util = new Tools();
 
 export default class SheetController extends Controller {
@@ -60,5 +61,20 @@ export default class SheetController extends Controller {
     const tableId = ctx.params.tableId
     let data = ctx.request.body
     ctx.body = await ctx.service.sheet.deleteSheetsByTableId(tableId, data);
+  }
+
+  public async uploadFile() {
+    const { ctx } = this;
+    const files = ctx.request.files;
+    const result: any[] = [];
+    console.log(files)
+    if (files) {
+      for (const file of files) {
+        const filePath = file.filepath;
+        const fileResult = uploadToOss(filePath);
+        result.push(fileResult);
+      }
+    }
+    ctx.body = result;
   }
 }
