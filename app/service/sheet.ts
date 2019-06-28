@@ -130,9 +130,24 @@ export default class Sheet extends Service {
   // 新增单行的数据
   public async insertSheetById(tableId, obj): Promise<string> {
     obj.createdTime = new Date()
+    const newId = ObjectID();
+    obj._id = newId;
     let data = await mysql.insert(tableId, obj)
-
-    let result = util.status(data)
+    if (data) {
+      const rowData: any = this.getRowsById(tableId, newId);
+      const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
+      const resultRow: any = {};
+      resultRow.id = rowData._id;
+      resultRow.createdTime = rowData.createdTime;
+      resultRow.editTime = rowData.createdTime;
+      resultRow.cellValues = {};
+      for (const col of cols) {
+        resultRow.cellValues[col.id] = rowData[col.id];
+      }
+      let result = util.status(resultRow)
+      return JSON.stringify(result)
+    }
+    let result = util.status(false)
     return JSON.stringify(result)
   }
 
