@@ -197,3 +197,13 @@
 
 - 根据ID删除列：delete
 - http://192.168.9.130:7001/deleteColsById/5d11edd9f591612d826b1a2e
+
+
+- 根据tableID和columnId获取一列数据的统计：post
+- http://192.168.9.130:7001/updateColSummary/5d11edd9f591612d826b1a2e
+``` javascript
+{
+    "columnId": "5d099b923038559cc05b38c3",
+    "type": "sum"
+}
+```

@@ -68,59 +68,60 @@ export default class Sheet extends Service {
 
     let resultObj: any = null;
     // 排序 筛选
-    console.log(columnId)
     if (tableInfor.length) {
-      let sort = service.getSortBy(tableInfor[0].sortBy)
-      let filter = service.getFilter(tableInfor[0].filter)
-      const rows: any = await mysql.findAll(tableId, filter, sort);
       let summaryResult = 0;
-      if (rows.length > 0) {
-        rows.forEach((row, index) => {
-          let value = row[columnId];
-          switch(type) {
-            case 'sum':
-            case 'average':
-              value = Number(value);
-              if (!Number.isNaN(value)) {
-                summaryResult += value;
-              }
-              break;
-            case 'filled':
-              if (value !== undefined && value !== null) {
-                summaryResult += 1;
-              }
-              break;
-            case 'empty':
-              if (value === undefined && value === null) {
-                summaryResult += 1;
-              }
-              break;
-            case 'max':
-              value = Number(value);
-              if (!Number.isNaN(value)) {
-                if (index === 0) {
-                  summaryResult = value;
+      if (type !== 'none') {
+        let sort = service.getSortBy(tableInfor[0].sortBy)
+        let filter = service.getFilter(tableInfor[0].filter)
+        const rows: any = await mysql.findAll(tableId, filter, sort);
+        if (rows.length > 0) {
+          rows.forEach((row, index) => {
+            let value = row[columnId];
+            switch(type) {
+              case 'sum':
+              case 'average':
+                value = Number(value);
+                if (!Number.isNaN(value)) {
+                  summaryResult += value;
                 }
-                if (value > summaryResult) {
-                  summaryResult = value;
+                break;
+              case 'filled':
+                if (value !== undefined && value !== null) {
+                  summaryResult += 1;
                 }
+                break;
+              case 'empty':
+                if (value === undefined && value === null) {
+                  summaryResult += 1;
+                }
+                break;
+              case 'max':
+                value = Number(value);
+                if (!Number.isNaN(value)) {
+                  if (index === 0) {
+                    summaryResult = value;
+                  }
+                  if (value > summaryResult) {
+                    summaryResult = value;
+                  }
+                }
+                break;
+              case 'min':
+                value = Number(value);
+                if (!Number.isNaN(value)) {
+                  if (index === 0) {
+                    summaryResult = value;
+                  }
+                  if (value < summaryResult) {
+                    summaryResult = value;
+                  }
+                }
+                break;
               }
-              break;
-            case 'min':
-              value = Number(value);
-              if (!Number.isNaN(value)) {
-                if (index === 0) {
-                  summaryResult = value;
-                }
-                if (value < summaryResult) {
-                  summaryResult = value;
-                }
-              }
-              break;
-            }
-        });
-        if (type === 'average') {
-          summaryResult = summaryResult / rows.length;
+          });
+          if (type === 'average') {
+            summaryResult = summaryResult / rows.length;
+          }
         }
       }
       resultObj = { [type]: summaryResult };
