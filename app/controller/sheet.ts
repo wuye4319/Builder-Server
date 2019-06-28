@@ -1,6 +1,7 @@
 import { Controller } from 'egg';
 import Tools from '../tools/util';
 import { uploadToOss } from '../base/oss';
+const fs = require('fs');
 const util = new Tools();
 
 export default class SheetController extends Controller {
@@ -67,14 +68,24 @@ export default class SheetController extends Controller {
     const { ctx } = this;
     const files = ctx.request.files;
     const result: any[] = [];
-    console.log(files)
     if (files) {
       for (const file of files) {
-        const filePath = file.filepath;
-        const fileResult = await uploadToOss(filePath);
-        result.push(fileResult);
+        console.log('filename: ' + file.filename);
+        console.log('encoding: ' + file.encoding);
+        console.log('mime: ' + file.mime);
+        console.log('tmp filepath: ' + file.filepath);
+        let result;
+        try {
+          // 处理文件，比如上传到云端
+          result = await uploadToOss('h3yun-wind-test/' + file.filename, file.filepath);;
+        } finally {
+          // 需要删除临时文件
+          await fs.unlink(file.filepath);
+        }
+        console.log(result);
       }
     }
-    ctx.body = result;
+    const response = util.status(result);
+    ctx.body = JSON.stringify(response);
   }
 }
