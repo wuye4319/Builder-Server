@@ -65,4 +65,6 @@ export default (app: Application) => {
   router.post('/login', controller.app.login);
   // 更新应用属性，用于修改应用名称
   router.post('/updateApp/:appId', controller.app.updateApp);
+  // 获取人员
+  router.get('/getAllUsers', controller.app.getAllUsers);
 };
