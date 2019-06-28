@@ -24,6 +24,12 @@ export default class Sheet extends Service {
   // 根据tableID新增列的数据
   public async insertColsBySheet(obj): Promise<string> {
     let table: string = 'column'
+    let colsIndex: any = await mysql.countDocuments(table, { "tableId": obj.tableId })
+    if (obj.srotRank) {
+
+    } else {
+      obj.srotRank = (parseInt(colsIndex) + 1) * 10
+    }
     let data = await mysql.insert(table, obj)
 
     // update rows
@@ -32,12 +38,12 @@ export default class Sheet extends Service {
     let cols: any = await mysql.find(table, where)
     if (cols) {
       let lastCols: any = cols[cols.length - 1]
-  
+
       let tempCols = lastCols._id.toString()
       let newStr = {}
       newStr[tempCols] = ""
       await mysql.update(tableId, newStr, {}, true)
-  
+
       let result = util.status(data)
       return JSON.stringify(result)
     }
@@ -62,9 +68,9 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  public async updateColSummary(tableId: string, columnId: string, type: summaryType ): Promise<string> {
+  public async updateColSummary(tableId: string, columnId: string, type: summaryType): Promise<string> {
     const service = this.ctx.service.sheet;
-    const tableInfor:any = await mysql.find('table', { "_id": ObjectID(tableId) })
+    const tableInfor: any = await mysql.find('table', { "_id": ObjectID(tableId) })
 
     let resultObj: any = null;
     // 排序 筛选
@@ -77,7 +83,7 @@ export default class Sheet extends Service {
       if (rows.length > 0) {
         rows.forEach((row, index) => {
           let value = row[columnId];
-          switch(type) {
+          switch (type) {
             case 'sum':
             case 'average':
               value = Number(value);
@@ -117,7 +123,7 @@ export default class Sheet extends Service {
                 }
               }
               break;
-            }
+          }
         });
         if (type === 'average') {
           summaryResult = summaryResult / rows.length;

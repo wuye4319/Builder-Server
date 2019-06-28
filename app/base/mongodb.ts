@@ -82,21 +82,25 @@ export default class base implements basedb {
   // 新增数据，如果传入数组，则批量插入
   async insert(table: string, myobj) {
     return new Promise(async (resolve) => {
-      let conn: any = await this.connect()
-      if (Array.isArray(myobj)) {
-        conn.db.collection(table).insertMany(myobj, function (err, res) {
-          if (err) throw err;
-          console.log("插入的文档数量为: " + res.insertedCount);
-          resolve(res.insertedCount)
-          conn.client.close()
-        });
+      if (table && table !== 'undefined') {
+        let conn: any = await this.connect()
+        if (Array.isArray(myobj)) {
+          conn.db.collection(table).insertMany(myobj, function (err, res) {
+            if (err) throw err;
+            console.log("插入的文档数量为: " + res.insertedCount);
+            resolve(res.insertedCount)
+            conn.client.close()
+          });
+        } else {
+          conn.db.collection(table).insertOne(myobj, function (err) {
+            if (err) throw err;
+            console.log("文档插入成功");
+            resolve(true)
+            conn.client.close()
+          });
+        }
       } else {
-        conn.db.collection(table).insertOne(myobj, function (err) {
-          if (err) throw err;
-          console.log("文档插入成功");
-          resolve(true)
-          conn.client.close()
-        });
+        resolve(false)
       }
     })
   }
