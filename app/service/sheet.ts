@@ -68,16 +68,26 @@ export default class Sheet extends Service {
       for (let i in filter.filterSet) {
         let { columnId, operator, value } = filter.filterSet[i];
         let result: any = {}
-        let range: any = {}
+        // let range: any = {}
         switch (operator) {
           case 'empty':
+            whereFilter[columnId] = ""
             break;
           case 'filled':
+            whereFilter[columnId] = { $not: /^\s*$/ }
             break;
           case 'range':
-            console.log(range)
+            if (value.max) {
+              whereFilter[columnId] = { $lte: value.max }
+            }
+            if (value.min && value.max) {
+              Object.assign(whereFilter[columnId], { $gte: value.min })
+            } else if (value.min) {
+              whereFilter[columnId] = { $gte: value.min }
+            }
             break;
           case 'rangedate':
+            whereFilter[columnId] = { $lte: Date.parse(value[1]), $gte: Date.parse(value[0]) }
             break;
           case 'filetype':
             result[columnId] = this.hasValue(value)
