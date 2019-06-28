@@ -16,10 +16,11 @@
 ```
 
 - 更新table的信息：patch
-- http://192.168.9.130:7001/updateTableById/testapp/5d1047a87805f600ac51c00b
+- http://192.168.9.130:7001/updateTableById/5d1047a87805f600ac51c00b
 ``` javascript
 {
-    "name": "测试一下订单"
+    "name": "测试一下订单",
+    "appId": "5d15773dcb587284fda1f3e5"
 }
 ```
 

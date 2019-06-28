@@ -1,4 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
+const path = require('path')
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -9,6 +10,11 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = [];
+
+  config.logger = {
+    outputJSON: true,
+    dir: path.join(__dirname, '/../logs/h3wind/'),
+  };
 
   config.security = {
     csrf: false
