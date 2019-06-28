@@ -83,9 +83,9 @@ export default class SheetController extends Controller {
           } catch (e) {
             throw e;
           } finally {
-            await fs.unlink(file.filepath);
-            // 需要删除临时文件
             console.log(result);
+            await fs.unlinkSync(file.filepath);
+            // 需要删除临时文件
           }
         }
         // 处理文件，比如上传到云端

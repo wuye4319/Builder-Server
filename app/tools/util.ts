@@ -32,6 +32,7 @@ export default class tools {
     return {
       status: 500,
       msg: error.message,
+      stack: error.stack,
       serverTime: time,
       serverDate: date,
       data: '操作失败'

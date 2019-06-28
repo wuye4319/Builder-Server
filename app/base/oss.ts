@@ -12,7 +12,6 @@ export async function uploadToOss(fileName: string, filePath: string) {
   if (result) {
     return result;
   }
-  console.log(result);
   return null;
 }
 
