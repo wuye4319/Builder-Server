@@ -24,11 +24,13 @@ export default class App extends Service {
       app = res ? data : null;
       isNew = true;
     }
+    const randomIndex = Math.round(Math.random() * 15);
     const resultApp = app && {
       id: app._id,
       name: app.name,
       username: app.username,
       telephone: app.telephone,
+      avatar: `/images/head/${randomIndex}.png`,
       isNew,
     }
     let result = util.status(resultApp)
@@ -50,9 +52,28 @@ export default class App extends Service {
       const users = apps.map(user => ({
         id: user._id,
         username: user.username,
+        avatar: user.avatar,
       }));
-      return JSON.stringify(users)
+      return JSON.stringify(util.status(users));
     }
     return '';
+  }
+
+  public async getColUsersByTableId(tableId: string, columnId: string): Promise<string> {
+    let rows: any = await mysql.findAll(tableId);
+    if (rows && rows.length) {
+      const map = {};
+      rows.forEach(row => {
+        const value = row[columnId];
+        if (value && value.id) {
+          map[value.id] = value;
+        }
+      });
+      const resultUsers = Object.values(map);
+      if (resultUsers.length) {
+        return JSON.stringify(util.status(resultUsers));
+      }
+    }
+    return util.status(false);
   }
 }

@@ -39,4 +39,15 @@ export default class AppController extends Controller {
       ctx.body = util.errorHandler(e);
     }
   }
+
+  public async getColUsersByTableId() {
+    const { ctx } = this;
+    try {
+      const { columnId, tableId } = ctx.params;
+      let users = await ctx.service.app.getColUsersByTableId(tableId, columnId);
+      ctx.body = users;
+    } catch(e) {
+      ctx.body = util.errorHandler(e);
+    }
+  }
 }

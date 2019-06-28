@@ -67,4 +67,6 @@ export default (app: Application) => {
   router.post('/updateApp/:appId', controller.app.updateApp);
   // 获取人员
   router.get('/getAllUsers', controller.app.getAllUsers);
+  // 获取表格内某个人员控件，的所有人员，用于筛选
+  router.get('/getColUsersByTableId/:tableId/:columnId', controller.app.getColUsersByTableId);
 };
