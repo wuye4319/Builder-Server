@@ -63,11 +63,12 @@ export default class Sheet extends Service {
   }
 
   public async updateColSummary(tableId: string, columnId: string, type: summaryType ): Promise<string> {
-    const service = this.ctx.service;
+    const service = this.ctx.service.sheet;
     const tableInfor:any = await mysql.find('table', { "_id": ObjectID(tableId) })
 
     let resultObj: any = null;
     // 排序 筛选
+    console.log(columnId)
     if (tableInfor.length) {
       let sort = service.getSortBy(tableInfor[0].sortBy)
       let filter = service.getFilter(tableInfor[0].filter)
@@ -80,7 +81,9 @@ export default class Sheet extends Service {
             case 'sum':
             case 'average':
               value = Number(value);
-              summaryResult += Number.isNaN(value) ? 0 : value;
+              if (!Number.isNaN(value)) {
+                summaryResult += value;
+              }
               break;
             case 'filled':
               if (value !== undefined && value !== null) {
@@ -94,20 +97,24 @@ export default class Sheet extends Service {
               break;
             case 'max':
               value = Number(value);
-              if (index === 0) {
-                summaryResult = value;
-              }
-              if (value > summaryResult) {
-                summaryResult = value;
+              if (!Number.isNaN(value)) {
+                if (index === 0) {
+                  summaryResult = value;
+                }
+                if (value > summaryResult) {
+                  summaryResult = value;
+                }
               }
               break;
             case 'min':
               value = Number(value);
-              if (index === 0) {
-                summaryResult = value;
-              }
-              if (value < summaryResult) {
-                summaryResult = value;
+              if (!Number.isNaN(value)) {
+                if (index === 0) {
+                  summaryResult = value;
+                }
+                if (value < summaryResult) {
+                  summaryResult = value;
+                }
               }
               break;
             }
