@@ -134,18 +134,22 @@ export default class Sheet extends Service {
     obj._id = newId;
     let data = await mysql.insert(tableId, obj)
     if (data) {
-      const rowData: any = this.getRowsById(tableId, newId);
-      const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
-      const resultRow: any = {};
-      resultRow.id = rowData._id;
-      resultRow.createdTime = rowData.createdTime;
-      resultRow.editTime = rowData.createdTime;
-      resultRow.cellValues = {};
-      for (const col of cols) {
-        resultRow.cellValues[col.id] = rowData[col.id];
+      const where = { "_id": ObjectID(newId.toString()) }
+      let rows: any = await mysql.find(tableId, where);
+      if (rows.length) {
+        const rowData = rows[0];
+        const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
+        const resultRow: any = {};
+        resultRow.id = rowData._id;
+        resultRow.createdTime = rowData.createdTime;
+        resultRow.editTime = rowData.createdTime;
+        resultRow.cellValues = {};
+        for (const col of cols) {
+          resultRow.cellValues[col._id] = rowData[col._id];
+        }
+        let result = util.status(resultRow)
+        return JSON.stringify(result)
       }
-      let result = util.status(resultRow)
-      return JSON.stringify(result)
     }
     let result = util.status(false)
     return JSON.stringify(result)
