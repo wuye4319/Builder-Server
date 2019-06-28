@@ -8,9 +8,9 @@ const client = new OSS({
   bucket: 'h3yun-test-wind',
 });
 
-export async function uploadToOss(filePath: string) {
+export async function uploadToOss(fileName: string, filePath: string) {
   const fileId: string = ObjectID();
-  const result = await client.put(fileId, filePath);
+  const result = await client.put(fileName, filePath);
   if (result) {
     return {
       fileId,
