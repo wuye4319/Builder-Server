@@ -5,6 +5,8 @@ import tools from '../tools/util'
 const util = new tools()
 const ObjectID = require('mongodb').ObjectID
 
+type summaryType = 'filled' | 'empty' | 'none' | 'sum' | 'average' | 'max' | 'min';
+
 /**
  * table service
  */
@@ -57,6 +59,71 @@ export default class Sheet extends Service {
     let where = { "_id": ObjectID(id) }
     let datastr = await mysql.delete(table, where)
     let result = util.status(datastr)
+    return JSON.stringify(result)
+  }
+
+  public async updateColSummary(tableId: string, columnId: string, type: summaryType ): Promise<string> {
+    const service = this.ctx.service;
+    const tableInfor:any = await mysql.find('table', { "_id": ObjectID(tableId) })
+
+    let resultObj: any = null;
+    // 排序 筛选
+    if (tableInfor.length) {
+      let sort = service.getSortBy(tableInfor[0].sortBy)
+      let filter = service.getFilter(tableInfor[0].filter)
+      const rows: any = await mysql.findAll(tableId, filter, sort);
+      let summaryResult = 0;
+      if (rows.length > 0) {
+        rows.forEach((row, index) => {
+          let value = row[columnId];
+          switch(type) {
+            case 'sum':
+            case 'average':
+              value = Number(value);
+              summaryResult += Number.isNaN(value) ? 0 : value;
+              break;
+            case 'filled':
+              if (value !== undefined && value !== null) {
+                summaryResult += 1;
+              }
+              break;
+            case 'empty':
+              if (value === undefined && value === null) {
+                summaryResult += 1;
+              }
+              break;
+            case 'max':
+              value = Number(value);
+              if (index === 0) {
+                summaryResult = value;
+              }
+              if (value > summaryResult) {
+                summaryResult = value;
+              }
+              break;
+            case 'min':
+              value = Number(value);
+              if (index === 0) {
+                summaryResult = value;
+              }
+              if (value < summaryResult) {
+                summaryResult = value;
+              }
+              break;
+            }
+        });
+        if (type === 'average') {
+          summaryResult = summaryResult / rows.length;
+        }
+      }
+      resultObj = { [type]: summaryResult };
+      const res = mysql.update('column', {
+        summary: resultObj
+      }, { _id: ObjectID(columnId), tableId });
+      resultObj = res ? resultObj : null;
+    }
+
+    let result = util.status(resultObj)
     return JSON.stringify(result)
   }
 }

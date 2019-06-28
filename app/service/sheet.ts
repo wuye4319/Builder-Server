@@ -13,17 +13,18 @@ export default class Sheet extends Service {
   public async getSheetById(tableId, page, size): Promise<string> {
     // let table: string = 'sheet'
     let colsTable = 'column'
+    page = page || 0;
     const where = { "tableId": tableId }
     let data = { rows: <any>[], cols: <any>[], id: '', name: "", appId: "", viewData: <any>{}, }
     let tableInfor: any = []
     tableInfor = await mysql.find('table', { "_id": ObjectID(tableId) })
 
     // 排序
-    let srot = this.getSortBy(tableInfor[0].sortBy)
+    let sort = this.getSortBy(tableInfor[0].sortBy)
     let filter = this.getFilter(tableInfor[0].filter)
 
     // 查询数据
-    data.rows = await mysql.find(tableId, filter, page, size, srot)
+    data.rows = await mysql.find(tableId, filter, page, size, sort)
     data.cols = await mysql.find(colsTable, where, 0, 0, { "sortRank": 1 })
 
     // 改变列的ID

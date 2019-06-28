@@ -35,6 +35,8 @@ export default (app: Application) => {
   router.patch('/updateColsById/:id', controller.column.updateColsById);
   // 根据ID删除列
   router.delete('/deleteColsById/:id', controller.column.deleteColsById);
+  // 根据ID获取summary 统计结果
+  router.post('/updateColSummary/:tableId', controller.column.updateColSummary);
 
   /**
    * table
