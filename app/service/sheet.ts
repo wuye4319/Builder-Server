@@ -64,15 +64,18 @@ export default class Sheet extends Service {
 
   getFilter(filter) {
     if (filter) {
+      let whereFilter = { $and: <any>[] }
       for (let i in filter.filterSet) {
         let { columnId, operator, value } = filter.filterSet[i];
-        let result = {}
+        let result: any = {}
+        let range: any = {}
         switch (operator) {
           case 'empty':
             break;
           case 'filled':
             break;
           case 'range':
+            console.log(range)
             break;
           case 'rangedate':
             break;
@@ -83,8 +86,9 @@ export default class Sheet extends Service {
             result[columnId] = this.hasValue(value)
             break;
         }
-        return result
+        whereFilter.$and.push(result)
       }
+      return whereFilter.$and.length ? whereFilter : undefined
     }
     return undefined
   }

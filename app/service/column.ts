@@ -28,15 +28,16 @@ export default class Sheet extends Service {
     const where = { "tableId": tableId }
 
     // 计算sortRank
-    let oldCols: any = await mysql.find(table, where)
-    let { srotRank } = obj
-    if (srotRank) {
-      let preSort = oldCols[parseInt(srotRank) - 2].srotRank
-      let nextSort = oldCols[parseInt(srotRank) - 2].srotRank
-      let currSort = preSort + nextSort / 2
-      srotRank = currSort
+    let oldCols: any = await mysql.find(table, where, 0, 0, { "sortRank": 1 })
+    let { sortRank } = obj
+    if (sortRank >= 0 && sortRank !== oldCols.length) {
+      let preSort = (sortRank === 0) ? 0 : oldCols[parseInt(sortRank) - 1].sortRank
+      let nextSort = oldCols[parseInt(sortRank)].sortRank
+      let currSort = (preSort + nextSort) / 2
+      console.log(preSort, nextSort, currSort)
+      obj.sortRank = currSort
     } else {
-      srotRank = (parseInt(oldCols.length) + 1) * 10
+      obj.sortRank = (parseInt(oldCols.length) + 1) * 10
     }
     let data = await mysql.insert(table, obj)
 
