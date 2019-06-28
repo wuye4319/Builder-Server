@@ -136,7 +136,7 @@ export default class Sheet extends Service {
           }
         }
       }
-      resultObj = { [type]: summaryResult };
+      resultObj = { value: summaryResult, type };
       const res = mysql.update('column', {
         summary: resultObj
       }, { _id: ObjectID(columnId), tableId });
