@@ -22,7 +22,8 @@ export default (app: Application) => {
   // router.delete('/deleteSheetById/:tableId/:id', controller.sheet.deleteSheetById);
   // 根据tableID删除多行数据
   router.post('/deleteSheetsByTableId/:tableId', controller.sheet.deleteSheetsByTableId);
-
+  
+  router.post('/uploadFile', controller.sheet.uploadFile);
   /**
    * column
    */
