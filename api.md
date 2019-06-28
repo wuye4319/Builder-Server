@@ -2,13 +2,13 @@
 
 ### 表
 - 获取表的信息：get
-- http://192.168.9.130:7001/getTableByAppId/testapp/
+- http://192.168.9.130:7001/getTableByAppId/5d15773dcb587284fda1f3e5
 
 - 获取表的单个信息：get
 - http://192.168.9.130:7001/getTableById/5d099a803038559cc05b38c2
 
 - 根据APPID，新增一个新的表：post
-- http://192.168.9.130:7001/insertTableByAppId/testapp/
+- http://192.168.9.130:7001/insertTableByAppId/5d15773dcb587284fda1f3e5
 ``` javascript
 {
     "name": "测试订单"
