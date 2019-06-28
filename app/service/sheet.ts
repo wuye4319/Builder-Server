@@ -68,20 +68,37 @@ export default class Sheet extends Service {
         let { columnId, operator, value } = filter.filterSet[i];
         let result = {}
         switch (operator) {
+          case 'empty':
+            break;
+          case 'filled':
+            break;
+          case 'range':
+            break;
+          case 'rangedate':
+            break;
+          case 'filetype':
+            result[columnId] = this.hasValue(value)
+            break;
           case 'contains':
-            let rule
-            if (Array.isArray(value)) {
-              rule = eval(`/(${value.join('|')})/`)
-            } else {
-              rule = eval(`/${value}/`)
-            }
-            result[columnId] = { $regex: rule }
+            result[columnId] = this.hasValue(value)
             break;
         }
         return result
       }
     }
     return undefined
+  }
+
+  hasValue(value) {
+    let tempObj: any = {}
+    let rule
+    if (Array.isArray(value)) {
+      rule = eval(`/(${value.join('|')})/`)
+    } else {
+      rule = eval(`/${value}/`)
+    }
+    tempObj = { $regex: rule }
+    return tempObj
   }
 
   getSortBy(tableData) {

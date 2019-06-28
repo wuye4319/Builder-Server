@@ -24,17 +24,23 @@ export default class Sheet extends Service {
   // 根据tableID新增列的数据
   public async insertColsBySheet(obj): Promise<string> {
     let table: string = 'column'
-    let colsIndex: any = await mysql.countDocuments(table, { "tableId": obj.tableId })
-    if (obj.srotRank) {
+    let tableId = obj.tableId
+    const where = { "tableId": tableId }
 
+    // 计算sortRank
+    let oldCols: any = await mysql.find(table, where)
+    let { srotRank } = obj
+    if (srotRank) {
+      let preSort = oldCols[parseInt(srotRank) - 2].srotRank
+      let nextSort = oldCols[parseInt(srotRank) - 2].srotRank
+      let currSort = preSort + nextSort / 2
+      srotRank = currSort
     } else {
-      obj.srotRank = (parseInt(colsIndex) + 1) * 10
+      srotRank = (parseInt(oldCols.length) + 1) * 10
     }
     let data = await mysql.insert(table, obj)
 
     // update rows
-    let tableId = obj.tableId
-    const where = { "tableId": tableId }
     let cols: any = await mysql.find(table, where)
     if (cols) {
       let lastCols: any = cols[cols.length - 1]
@@ -83,7 +89,7 @@ export default class Sheet extends Service {
         if (rows.length > 0) {
           rows.forEach((row, index) => {
             let value = row[columnId];
-            switch(type) {
+            switch (type) {
               case 'sum':
               case 'average':
                 value = Number(value);
@@ -97,7 +103,7 @@ export default class Sheet extends Service {
                 }
                 break;
               case 'empty':
-                if (value === undefined && value === null  && value === '') {
+                if (value === undefined && value === null && value === '') {
                   summaryResult += 1;
                 }
                 break;
@@ -123,7 +129,7 @@ export default class Sheet extends Service {
                   }
                 }
                 break;
-              }
+            }
           });
           if (type === 'average') {
             summaryResult = summaryResult / rows.length;

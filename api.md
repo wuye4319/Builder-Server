@@ -25,7 +25,7 @@
 ```
 
 - 更新table的信息：patch
-- http://192.168.9.130:7001/updateFilterByTableId/5d099a803038559cc05b38c2
+- http://192.168.9.130:7001/updateFilterByTableId/5d15aaeabb77b607a97411ec
 ``` javascript
 {
     "filter": {
