@@ -37,9 +37,22 @@ export default class App extends Service {
 
   public async updateApp(id, data): Promise<string> {
     let table: string = 'app';
-    const where = { _id: id.toString() };
+    const where = { _id: ObjectID(id) };
     let res = await mysql.update(table, data, where);
     let result = util.status(res)
     return JSON.stringify(result)
+  }
+
+  public async getAllUsers(): Promise<string> {
+    let table: string = 'app';
+    let apps: any = await mysql.findAll(table);
+    if (apps && apps.length) {
+      const users = apps.map(user => ({
+        id: user._id,
+        username: user.username,
+      }));
+      return JSON.stringify(users)
+    }
+    return '';
   }
 }
