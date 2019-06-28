@@ -5,6 +5,7 @@ const client = new OSS({
   accessKeyId: 'LTAI5GRjtmBIqUX8',
   accessKeySecret: 'iaYonbjx1Q2dWc7Dn0dduToBdJYwoV',
   bucket: 'h3yun-test-wind',
+  timeout: '30s',
 });
 
 client.putBucketACL('h3yun-test-wind', 'public-read');

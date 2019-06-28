@@ -207,3 +207,10 @@
     "type": "sum"
 }
 ```
+
+- 获取当前注册的所有用户
+- http://192.168.9.130:7001/getAllUsers
+
+- 根据tableID和columnId获取一列的人员统计数据：get
+- http://192.168.9.130:7001/getColUsersByTableId/:tableId/:columnId
+- http://192.168.9.130:7001/getColUsersByTableId/5d11edd9f591612d826b1a2e

@@ -20,17 +20,18 @@ export default class App extends Service {
     } else {
       data._id = ObjectID();
       data.name = '未命名应用';
-      const res = await mysql.insert(table, data)
+      const randomIndex = Math.round(Math.random() * 15);
+      data.avatar = `/images/head/${randomIndex}.png`;
+      const res = await mysql.insert(table, data);
       app = res ? data : null;
       isNew = true;
     }
-    const randomIndex = Math.round(Math.random() * 15);
     const resultApp = app && {
       id: app._id,
       name: app.name,
       username: app.username,
       telephone: app.telephone,
-      avatar: `/images/head/${randomIndex}.png`,
+      avatar: app.avatar,
       isNew,
     }
     let result = util.status(resultApp)
@@ -54,6 +55,7 @@ export default class App extends Service {
         username: user.username,
         avatar: user.avatar,
       }));
+      console.log(apps);
       return JSON.stringify(util.status(users));
     }
     return '';
@@ -61,6 +63,7 @@ export default class App extends Service {
 
   public async getColUsersByTableId(tableId: string, columnId: string): Promise<string> {
     let rows: any = await mysql.findAll(tableId);
+    let resultUsers;
     if (rows && rows.length) {
       const map = {};
       rows.forEach(row => {
@@ -69,11 +72,9 @@ export default class App extends Service {
           map[value.id] = value;
         }
       });
-      const resultUsers = Object.values(map);
-      if (resultUsers.length) {
-        return JSON.stringify(util.status(resultUsers));
-      }
+      resultUsers = Object.values(map);
+      return JSON.stringify(util.status(resultUsers));
     }
-    return util.status(false);
+    return util.status(resultUsers);
   }
 }
