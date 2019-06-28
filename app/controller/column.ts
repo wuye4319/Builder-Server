@@ -25,4 +25,11 @@ export default class SheetController extends Controller {
     let id = ctx.params.id
     ctx.body = await ctx.service.column.deleteColsById(id);
   }
+
+  public async updateColSummary() {
+    const { ctx } = this;
+    const tableId = ctx.params.tableId;
+    let { columnId, type } = ctx.request.body;
+    ctx.body = await ctx.service.column.updateColSummary(tableId, columnId, type);
+  }
 }
