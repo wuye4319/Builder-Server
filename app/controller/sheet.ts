@@ -11,8 +11,8 @@ export default class SheetController extends Controller {
       const page = parseInt(ctx.params.page)
       const size = parseInt(ctx.params.size)
       ctx.body = await ctx.service.sheet.getSheetById(tableId, page, size);
-    } catch(e) {
-      ctx.body =  util.errorHandler(e);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
     }
   }
 
@@ -36,8 +36,8 @@ export default class SheetController extends Controller {
       const { body } = ctx.request
       const { tableId } = ctx.params
       ctx.body = await ctx.service.sheet.insertSheetById(tableId, body);
-    } catch(e) {
-      ctx.body =  util.errorHandler(e);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
     }
   }
 
@@ -71,7 +71,7 @@ export default class SheetController extends Controller {
     if (files) {
       for (const file of files) {
         const filePath = file.filepath;
-        const fileResult = uploadToOss(filePath);
+        const fileResult = await uploadToOss(filePath);
         result.push(fileResult);
       }
     }

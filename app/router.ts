@@ -22,8 +22,9 @@ export default (app: Application) => {
   // router.delete('/deleteSheetById/:tableId/:id', controller.sheet.deleteSheetById);
   // 根据tableID删除多行数据
   router.post('/deleteSheetsByTableId/:tableId', controller.sheet.deleteSheetsByTableId);
-  
+  // 上传文件
   router.post('/uploadFile', controller.sheet.uploadFile);
+
   /**
    * column
    */
@@ -60,7 +61,7 @@ export default (app: Application) => {
    * app
    */
 
-   // 登录获取app，或创建app
+  // 登录获取app，或创建app
   router.post('/login', controller.app.login);
   // 更新应用属性，用于修改应用名称
   router.post('/updateApp/:appId', controller.app.updateApp);
