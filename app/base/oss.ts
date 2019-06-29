@@ -14,7 +14,7 @@ const client = new OSS({
 client.putBucketACL('h3yun-test-wind', 'public-read');
 
 export async function uploadToOss(file: EggFile) {
-  const { filename, filepath,  } = file;
+  const { filename, filepath } = file;
   const result = await client.put('h3yun-wind-test/' + filename, filepath);
   if (result) {
     return {

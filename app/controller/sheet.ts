@@ -72,7 +72,7 @@ export default class SheetController extends Controller {
       if (files) {
         for (const file of files) {
           try {
-            const ossResult = await uploadToOss(file);;
+            const ossResult = await uploadToOss(file);
             if (ossResult) {
               result.push(ossResult);
             }
