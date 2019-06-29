@@ -178,29 +178,31 @@ export default class Sheet extends Service {
     obj.createdTime = new Date()
     const newId = ObjectID();
     obj._id = newId;
-    const tables: any = await mysql.find('table', { tableId: ObjectID(tableId) })
-    const apps: any = await mysql.find('table', { tableId: ObjectID(tableId) })
+    const tables: any = await mysql.find('table', { _id: ObjectID(tableId) })
     const table = tables[0];
-    const app = apps[0];
     let data = await mysql.insert(tableId, obj)
-    if (data && table && app) {
-      const where = { "_id": ObjectID(newId.toString()) }
-      let rows: any = await mysql.find(tableId, where);
-      if (rows.length) {
-        const rowData = rows[0];
-        const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
-        const resultRow: any = {};
-        resultRow.id = rowData._id;
-        resultRow.createdTime = rowData.createdTime;
-        resultRow.editTime = rowData.createdTime;
-        resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
-        resultRow.userInfor.id = app._id
-        resultRow.cellValues = {};
-        for (const col of cols) {
-          resultRow.cellValues[col._id] = rowData[col._id];
+    if (data && table) {
+      const apps: any = await mysql.find('app', { _id: ObjectID(table.appId) })
+      const app = apps[0];
+      if (app) {
+        const where = { "_id": ObjectID(newId.toString()) }
+        let rows: any = await mysql.find(tableId, where);
+        if (rows.length) {
+          const rowData = rows[0];
+          const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
+          const resultRow: any = {};
+          resultRow.id = rowData._id;
+          resultRow.createdTime = rowData.createdTime;
+          resultRow.editTime = rowData.createdTime;
+          resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
+          resultRow.userInfor.id = app._id
+          resultRow.cellValues = {};
+          for (const col of cols) {
+            resultRow.cellValues[col._id] = rowData[col._id];
+          }
+          let result = util.status(resultRow)
+          return JSON.stringify(result)
         }
-        let result = util.status(resultRow)
-        return JSON.stringify(result)
       }
     }
     let result = util.status(false)
@@ -211,29 +213,31 @@ export default class Sheet extends Service {
   public async updateSheetById(tableId, id, data): Promise<string> {
     let where = { "_id": ObjectID(id) }
     data.createdTime = new Date()
-    const tables: any = await mysql.find('table', { tableId: ObjectID(tableId) })
-    const apps: any = await mysql.find('table', { tableId: ObjectID(tableId) })
+    const tables: any = await mysql.find('table', { _id: ObjectID(tableId) })
     const table = tables[0];
-    const app = apps[0];
     let dataStr = await mysql.update(tableId, data, where);
-    if (dataStr && table && app) {
-      const where = { "_id": ObjectID(id) }
-      let rows: any = await mysql.find(tableId, where);
-      if (rows.length) {
-        const rowData = rows[0];
-        const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
-        const resultRow: any = {};
-        resultRow.id = rowData._id;
-        resultRow.createdTime = rowData.createdTime;
-        resultRow.editTime = rowData.createdTime;
-        resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
-        resultRow.userInfor.id = app._id
-        resultRow.cellValues = {};
-        for (const col of cols) {
-          resultRow.cellValues[col._id] = rowData[col._id];
+    if (dataStr && table) {
+      const apps: any = await mysql.find('app', { _id: ObjectID(table.appId) })
+      const app = apps[0];
+      if (app) {
+        const where = { "_id": ObjectID(id) }
+        let rows: any = await mysql.find(tableId, where);
+        if (rows.length) {
+          const rowData = rows[0];
+          const cols: any = await mysql.find('column', { tableId: tableId }, 0, 0, { "sortRank": 1 });
+          const resultRow: any = {};
+          resultRow.id = rowData._id;
+          resultRow.createdTime = rowData.createdTime;
+          resultRow.editTime = rowData.createdTime;
+          resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
+          resultRow.userInfor.id = app._id
+          resultRow.cellValues = {};
+          for (const col of cols) {
+            resultRow.cellValues[col._id] = rowData[col._id];
+          }
+          let result = util.status(resultRow)
+          return JSON.stringify(result)
         }
-        let result = util.status(resultRow)
-        return JSON.stringify(result)
       }
     }
     let result = util.status(dataStr)
