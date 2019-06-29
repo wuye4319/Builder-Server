@@ -22,6 +22,7 @@ export default (appInfo: EggAppInfo) => {
 
   config.multipart = {
     mode: 'file',
+    fileExtensions: ['.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.apk', '.dll'],
   }
 
   config.onerror = {

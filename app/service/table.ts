@@ -108,8 +108,8 @@ export default class Sheet extends Service {
         visibility: true,
       });
       await this.ctx.service.column.insertColsBySheet({
-        colType: "FormTextBox",
-        controlOptions: {InputByScan: false, Mode: "Normal", NoRepeat: false, PlaceHolder: "", ScanUpdateEnable: false},
+        colType: "FormTextArea",
+        controlOptions: {InputByScan: false, Mode: "Normal",NoRepeat: false,PlaceHolder: "",ScanUpdateEnable: false},
         name: "描述",
         tableId: lastTable._id.toString(),
         visibility: true,

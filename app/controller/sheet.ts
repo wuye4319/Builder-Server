@@ -66,10 +66,10 @@ export default class SheetController extends Controller {
 
   public async uploadFile() {
     const { ctx } = this;
-    const files = ctx.request.files;
-    let result: any = [];
-    if (files) {
-      try {
+    try {
+      const files = ctx.request.files;
+      let result: any = [];
+      if (files) {
         for (const file of files) {
           console.log('filename: ' + file.filename);
           console.log('encoding: ' + file.encoding);
@@ -91,10 +91,10 @@ export default class SheetController extends Controller {
         // 处理文件，比如上传到云端
         const response = util.status(result);
         ctx.body = JSON.stringify(response);
-      } catch (e) {
-        const response = util.errorHandler(e);
-        ctx.body = JSON.stringify(response);
       }
-    } 
+    } catch (e) {
+      const response = util.errorHandler(e);
+      ctx.body = JSON.stringify(response);
+    }
   }
 }

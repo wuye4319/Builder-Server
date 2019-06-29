@@ -1,6 +1,7 @@
 import { basedb } from 'mysql'
 const MongoClient = require('mongodb').MongoClient;
-// let url = "mongodb://192.168.9.190:27017/";
+// let url = "mongodb://192.168.9.130:27017/";
+// let url = "mongodb://192.168.9.206:27017/";
 let url = "mongodb://127.0.0.1:27017/";
 const dbName = 'h3wind';
 
@@ -120,7 +121,7 @@ export default class base implements basedb {
   async findAll(table: string, where?: object, sort?: any) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
-      conn.db.collection(table).find(where || {}).sort(sort).toArray(function (err, result) { // 返回集合中所有数据
+      conn.db.collection(table).find(where || {}).sort(sort || {}).toArray(function (err, result) { // 返回集合中所有数据
         if (err) throw err;
         resolve(result);
         conn.client.close()
