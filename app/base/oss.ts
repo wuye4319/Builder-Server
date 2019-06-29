@@ -1,4 +1,7 @@
+import { EggFile } from 'egg-multipart';
+
 const OSS = require('ali-oss');
+const path = require('path');
 
 const client = new OSS({
   region: 'oss-cn-shenzhen',
@@ -10,13 +13,15 @@ const client = new OSS({
 
 client.putBucketACL('h3yun-test-wind', 'public-read');
 
-export async function uploadToOss(fileName: string, filePath: string) {
-  const result = await client.put(fileName, filePath);
+export async function uploadToOss(file: EggFile) {
+  const { filename, filepath,  } = file;
+  const result = await client.put('h3yun-wind-test/' + filename, filepath);
   if (result) {
     return {
       url: result.url,
       name: result.name,
-      filename: fileName,
+      filename,
+      extension: path.extname(filepath),
     };
   }
   return null;

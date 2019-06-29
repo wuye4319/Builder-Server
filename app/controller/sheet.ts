@@ -72,7 +72,7 @@ export default class SheetController extends Controller {
       if (files) {
         for (const file of files) {
           try {
-            const ossResult = await uploadToOss('h3yun-wind-test/' + file.filename, file.filepath);;
+            const ossResult = await uploadToOss(file);;
             if (ossResult) {
               result.push(ossResult);
             }
