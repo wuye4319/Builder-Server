@@ -71,10 +71,6 @@ export default class SheetController extends Controller {
       let result: any = [];
       if (files) {
         for (const file of files) {
-          console.log('filename: ' + file.filename);
-          console.log('encoding: ' + file.encoding);
-          console.log('mime: ' + file.mime);
-          console.log('tmp filepath: ' + file.filepath);
           try {
             const ossResult = await uploadToOss('h3yun-wind-test/' + file.filename, file.filepath);;
             if (ossResult) {
@@ -83,7 +79,6 @@ export default class SheetController extends Controller {
           } catch (e) {
             throw e;
           } finally {
-            console.log(result);
             await fs.unlinkSync(file.filepath);
             // 需要删除临时文件
           }
