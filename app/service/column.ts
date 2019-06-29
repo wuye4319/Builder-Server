@@ -2,6 +2,7 @@ import { Service } from 'egg';
 import base from '../base/mongodb'
 const mysql = new base()
 import tools from '../tools/util'
+import { isEmpty } from '../tools/index'
 const util = new tools()
 const ObjectID = require('mongodb').ObjectID
 
@@ -99,18 +100,18 @@ export default class Sheet extends Service {
                 }
                 break;
               case 'filled':
-                if (value !== undefined && value !== null && value !== '') {
+                if (!isEmpty(value)) {
                   summaryResult += 1;
                 }
                 break;
               case 'empty':
-                if (value === undefined && value === null && value === '') {
+                if (!isEmpty(value)) {
                   summaryResult += 1;
                 }
                 break;
               case 'max':
                 value = Number(value);
-                if (!Number.isNaN(value)) {
+                if (!Number.isNaN(value) && !isEmpty(value)) {
                   if (index === 0) {
                     summaryResult = value;
                   }
@@ -121,7 +122,7 @@ export default class Sheet extends Service {
                 break;
               case 'min':
                 value = Number(value);
-                if (!Number.isNaN(value)) {
+                if (!Number.isNaN(value) && !isEmpty(value)) {
                   if (index === 0) {
                     summaryResult = value;
                   }
