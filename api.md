@@ -178,7 +178,8 @@
 ```
 
 - 列的更新：patch
-- http://192.168.9.130:7001/updateColsById/:tableId/5d11edd9f591612d826b1a2e
+- 参数：tableId id
+- http://192.168.9.130:7001/updateColsById/5d099b923038559cc05b38c3/5d11edd9f591612d826b1a2e
 ``` javascript
 {
     "name": "新增test",

@@ -70,7 +70,7 @@ export default class Sheet extends Service {
       let preSort = (sortRank === 0) ? 0 : oldCols[parseInt(sortRank) - 1].sortRank
       let nextSort = oldCols[parseInt(sortRank)].sortRank
       let currSort = (preSort + nextSort) / 2
-      // console.log(preSort, nextSort, currSort)
+      console.log(preSort, nextSort, currSort)
       obj.sortRank = currSort
     }
 
