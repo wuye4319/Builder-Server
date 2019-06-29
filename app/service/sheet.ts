@@ -178,8 +178,12 @@ export default class Sheet extends Service {
     obj.createdTime = new Date()
     const newId = ObjectID();
     obj._id = newId;
+    const tables: any = await mysql.find('table', { tableId: ObjectID(tableId) })
+    const apps: any = await mysql.find('table', { tableId: ObjectID(tableId) })
+    const table = tables[0];
+    const app = apps[0];
     let data = await mysql.insert(tableId, obj)
-    if (data) {
+    if (data && table && app) {
       const where = { "_id": ObjectID(newId.toString()) }
       let rows: any = await mysql.find(tableId, where);
       if (rows.length) {
@@ -189,6 +193,8 @@ export default class Sheet extends Service {
         resultRow.id = rowData._id;
         resultRow.createdTime = rowData.createdTime;
         resultRow.editTime = rowData.createdTime;
+        resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
+        resultRow.userInfor.id = app._id
         resultRow.cellValues = {};
         for (const col of cols) {
           resultRow.cellValues[col._id] = rowData[col._id];
@@ -205,9 +211,12 @@ export default class Sheet extends Service {
   public async updateSheetById(tableId, id, data): Promise<string> {
     let where = { "_id": ObjectID(id) }
     data.createdTime = new Date()
-
+    const tables: any = await mysql.find('table', { tableId: ObjectID(tableId) })
+    const apps: any = await mysql.find('table', { tableId: ObjectID(tableId) })
+    const table = tables[0];
+    const app = apps[0];
     let dataStr = await mysql.update(tableId, data, where);
-    if (dataStr) {
+    if (dataStr && table && app) {
       const where = { "_id": ObjectID(id) }
       let rows: any = await mysql.find(tableId, where);
       if (rows.length) {
@@ -217,6 +226,8 @@ export default class Sheet extends Service {
         resultRow.id = rowData._id;
         resultRow.createdTime = rowData.createdTime;
         resultRow.editTime = rowData.createdTime;
+        resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
+        resultRow.userInfor.id = app._id
         resultRow.cellValues = {};
         for (const col of cols) {
           resultRow.cellValues[col._id] = rowData[col._id];
