@@ -117,7 +117,7 @@ export default class Sheet extends Service {
                 }
                 break;
               case 'empty':
-                if (!isEmpty(value)) {
+                if (isEmpty(value)) {
                   summaryResult += 1;
                 }
                 break;

@@ -98,6 +98,10 @@ export default class Sheet extends Service {
           case 'contains':
             result[columnId] = this.hasValue(value)
             break;
+          case 'user-contains':
+            result[columnId + '.id'] = this.filterUser(value)
+            console.log(result);
+            break;
         }
         whereFilter.$and.push(result)
       }
@@ -116,6 +120,14 @@ export default class Sheet extends Service {
     }
     tempObj = { $regex: rule }
     return tempObj
+  }
+
+  filterUser(filterValue) {
+    if (filterValue && filterValue.length > 0) {
+      const ids = filterValue.map(val => val.id);
+      return this.hasValue(ids);
+    }
+    return {};
   }
 
   getSortBy(tableData) {
