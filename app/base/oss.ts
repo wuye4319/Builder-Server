@@ -15,7 +15,8 @@ export async function uploadToOss(fileName: string, filePath: string) {
   if (result) {
     return {
       url: result.url,
-      name: result.name
+      name: result.name,
+      filename: fileName,
     };
   }
   return null;
