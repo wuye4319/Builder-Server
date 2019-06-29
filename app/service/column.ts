@@ -103,6 +103,7 @@ export default class Sheet extends Service {
         if (rows.length > 0) {
           rows.forEach((row, index) => {
             let value = row[columnId];
+            let empty;
             switch (type) {
               case 'sum':
               case 'average':
@@ -122,8 +123,9 @@ export default class Sheet extends Service {
                 }
                 break;
               case 'max':
+                empty = isEmpty(value);
                 value = Number(value);
-                if (!Number.isNaN(value) && !isEmpty(value)) {
+                if (!Number.isNaN(value) && !empty) {
                   if (index === 0) {
                     summaryResult = value;
                   }
@@ -133,8 +135,9 @@ export default class Sheet extends Service {
                 }
                 break;
               case 'min':
+                empty = isEmpty(value);
                 value = Number(value);
-                if (!Number.isNaN(value) && !isEmpty(value)) {
+                if (!Number.isNaN(value) && !empty) {
                   if (index === 0) {
                     summaryResult = value;
                   }
