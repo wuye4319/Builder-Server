@@ -18,6 +18,7 @@ export default class Sheet extends Service {
     let data = { rows: <any>[], cols: <any>[], id: '', name: "", appId: "", viewData: <any>{}, }
     let tableInfor: any = []
     tableInfor = await mysql.find('table', { "_id": ObjectID(tableId) })
+    let appInfor: any = await mysql.find('app', { "_id": ObjectID(tableInfor[0].appId) })
 
     // 排序
     let sort = this.getSortBy(tableInfor[0].sortBy)
@@ -42,6 +43,8 @@ export default class Sheet extends Service {
       tempRow.id = row._id
       tempRow.createdTime = row.createdTime
       tempRow.editTime = row.createdTime
+      tempRow.userInfor = this.getRowByColList(appInfor[0], ["username", "avatar"])
+      tempRow.userInfor.id = appInfor[0]._id
       tempRow.cellValues = this.getRowByColList(row, colsNameBox)
       data.rows[r] = tempRow
     }
@@ -50,7 +53,7 @@ export default class Sheet extends Service {
     data.id = tableInfor[0]._id
     data.name = tableInfor[0].name
     data.appId = tableInfor[0].appId
-    let tempTotal = await mysql.countDocuments(tableId)
+    let tempTotal = await mysql.countDocuments(tableId, filter)
     data.viewData = this.getRowByColList(tableInfor[0], ["filter", "sortBy", "meta", "colActions"])
     data.viewData.pagination = {
       pageSize: size,

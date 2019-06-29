@@ -20,5 +20,5 @@ test/**/*.map
 config/**/*.map
 
 .history/
-.adminMongo/
-./app/base/mongodb.ts
+adminMongo/
+app/base/mongodb.ts

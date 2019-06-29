@@ -55,7 +55,7 @@ export default class App extends Service {
         username: user.username,
         avatar: user.avatar,
       }));
-      console.log(apps);
+      // console.log(apps);
       return JSON.stringify(util.status(users));
     }
     return '';

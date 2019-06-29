@@ -6,7 +6,7 @@ export default class SheetController extends Controller {
       const { ctx } = this;
       const tableId = ctx.params.tableId
       ctx.body = await ctx.service.column.getColsByTableId(tableId);
-    } catch(e) {
+    } catch (e) {
       throw e;
     }
   }
@@ -21,7 +21,8 @@ export default class SheetController extends Controller {
     const { ctx } = this;
     let data = ctx.request.body
     let id = ctx.params.id
-    ctx.body = await ctx.service.column.updateColsById(id, data);
+    const { tableId } = ctx.params
+    ctx.body = await ctx.service.column.updateColsById(tableId, id, data);
   }
 
   public async deleteColsById() {

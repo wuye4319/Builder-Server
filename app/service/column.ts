@@ -34,7 +34,6 @@ export default class Sheet extends Service {
       let preSort = (sortRank === 0) ? 0 : oldCols[parseInt(sortRank) - 1].sortRank
       let nextSort = oldCols[parseInt(sortRank)].sortRank
       let currSort = (preSort + nextSort) / 2
-      console.log(preSort, nextSort, currSort)
       obj.sortRank = currSort
     } else {
       obj.sortRank = (parseInt(oldCols.length) + 1) * 10
@@ -58,10 +57,23 @@ export default class Sheet extends Service {
   }
 
   // 根据ID更新列的数据
-  public async updateColsById(id, data): Promise<string> {
+  public async updateColsById(tableId, id, obj): Promise<string> {
     let table: string = 'column'
     let where = { "_id": ObjectID(id) }
-    let datastr = await mysql.update(table, data, where)
+    const whereTable = { "tableId": tableId }
+
+    // 列排序，切换位置
+    let oldCols: any = await mysql.find(table, whereTable, 0, 0, { "sortRank": 1 })
+    let { sortRank } = obj
+    if (sortRank >= 0 && sortRank !== oldCols.length) {
+      let preSort = (sortRank === 0) ? 0 : oldCols[parseInt(sortRank) - 1].sortRank
+      let nextSort = oldCols[parseInt(sortRank)].sortRank
+      let currSort = (preSort + nextSort) / 2
+      // console.log(preSort, nextSort, currSort)
+      obj.sortRank = currSort
+    }
+
+    let datastr = await mysql.update(table, obj, where)
     let result = util.status(datastr)
     return JSON.stringify(result)
   }

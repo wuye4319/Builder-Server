@@ -178,10 +178,9 @@
 ```
 
 - 列的更新：patch
-- http://192.168.9.130:7001/updateColsById/5d11edd9f591612d826b1a2e
+- http://192.168.9.130:7001/updateColsById/:tableId/5d11edd9f591612d826b1a2e
 ``` javascript
 {
-    "tableId": "5d099b923038559cc05b38c3",
     "name": "新增test",
     "colType": "FormTextBox",
     "controlOptions": {

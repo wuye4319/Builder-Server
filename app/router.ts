@@ -34,7 +34,7 @@ export default (app: Application) => {
   // 新增一个新的列
   router.post('/insertColsBySheet', controller.column.insertColsBySheet);
   // 根据ID更新列的信息
-  router.patch('/updateColsById/:id', controller.column.updateColsById);
+  router.patch('/updateColsById/:tableId/:id', controller.column.updateColsById);
   // 根据ID删除列
   router.delete('/deleteColsById/:id', controller.column.deleteColsById);
   // 根据ID获取summary 统计结果
