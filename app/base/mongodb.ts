@@ -121,7 +121,7 @@ export default class base implements basedb {
   async findAll(table: string, where?: object, sort?: any) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
-      conn.db.collection(table).find(where || {}).sort(sort).toArray(function (err, result) { // 返回集合中所有数据
+      conn.db.collection(table).find(where || {}).sort(sort || {}).toArray(function (err, result) { // 返回集合中所有数据
         if (err) throw err;
         resolve(result);
         conn.client.close()
