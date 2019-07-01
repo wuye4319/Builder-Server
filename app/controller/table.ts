@@ -8,42 +8,61 @@ export default class SheetController extends Controller {
     try {
       const appId = ctx.params.appId
       ctx.body = await ctx.service.table.getTableByAppId(appId);
-    } catch(e) {
-      ctx.body =  util.errorHandler(e);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
     }
   }
 
   public async getTableById() {
     const { ctx } = this;
-    const id = ctx.params.id
-    ctx.body = await ctx.service.table.getTableById(id);
+    try {
+      const id = ctx.params.id
+      ctx.body = await ctx.service.table.getTableById(id);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 
   public async insertTableByAppId() {
     const { ctx } = this;
-    let data = ctx.request.body
-    const appId = ctx.params.appId
-
-    ctx.body = await ctx.service.table.insertTableByAppId(appId, data);
+    try {
+      let data = ctx.request.body
+      const appId = ctx.params.appId
+      ctx.body = await ctx.service.table.insertTableByAppId(appId, data);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 
   public async updateTableById() {
     const { ctx } = this;
-    let data = ctx.request.body
-    let id = ctx.params.id
-    ctx.body = await ctx.service.table.updateTableById(id, data);
+    try {
+      let data = ctx.request.body
+      let id = ctx.params.id
+      ctx.body = await ctx.service.table.updateTableById(id, data);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 
   public async updateFilterByTableId() {
     const { ctx } = this;
-    let data = ctx.request.body
-    let tableId = ctx.params.tableId
-    ctx.body = await ctx.service.table.updateFilterByTableId(tableId, data);
+    try {
+      let data = ctx.request.body
+      let tableId = ctx.params.tableId
+      ctx.body = await ctx.service.table.updateFilterByTableId(tableId, data);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 
   public async deleteTableById() {
     const { ctx } = this;
-    let id = ctx.params.id
-    ctx.body = await ctx.service.table.deleteTableById(id);
+    try {
+      let id = ctx.params.id
+      ctx.body = await ctx.service.table.deleteTableById(id);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 }

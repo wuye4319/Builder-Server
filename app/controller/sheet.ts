@@ -26,9 +26,13 @@ export default class SheetController extends Controller {
 
   public async getRowsById() {
     const { ctx } = this;
-    const { id } = ctx.params
-    const { tableId } = ctx.params
-    ctx.body = await ctx.service.sheet.getRowsById(tableId, id);
+    try {
+      const { id } = ctx.params
+      const { tableId } = ctx.params
+      ctx.body = await ctx.service.sheet.getRowsById(tableId, id);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 
   public async insertSheetById() {
@@ -44,10 +48,14 @@ export default class SheetController extends Controller {
 
   public async updateSheetById() {
     const { ctx } = this;
-    const { body } = ctx.request
-    const { tableId } = ctx.params
-    const { id } = ctx.params
-    ctx.body = await ctx.service.sheet.updateSheetById(tableId, id, body);
+    try {
+      const { body } = ctx.request
+      const { tableId } = ctx.params
+      const { id } = ctx.params
+      ctx.body = await ctx.service.sheet.updateSheetById(tableId, id, body);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 
   // public async deleteSheetById() {
@@ -59,9 +67,13 @@ export default class SheetController extends Controller {
 
   public async deleteSheetsByTableId() {
     const { ctx } = this;
-    const tableId = ctx.params.tableId
-    let data = ctx.request.body
-    ctx.body = await ctx.service.sheet.deleteSheetsByTableId(tableId, data);
+    try {
+      const tableId = ctx.params.tableId
+      let data = ctx.request.body
+      ctx.body = await ctx.service.sheet.deleteSheetsByTableId(tableId, data);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
   }
 
   public async uploadFile() {

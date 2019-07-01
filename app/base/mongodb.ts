@@ -1,8 +1,8 @@
 import { basedb } from 'mysql'
 const MongoClient = require('mongodb').MongoClient;
-// let url = "mongodb://192.168.9.190:27017/";
+let url = "mongodb://192.168.9.190:27017/";
 // let url = "mongodb://192.168.9.206:27017/";
-let url = "mongodb://127.0.0.1:27017/";
+// let url = "mongodb://127.0.0.1:27017/";
 const dbName = 'h3wind';
 
 export default class base implements basedb {
