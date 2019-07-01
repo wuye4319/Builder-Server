@@ -81,6 +81,7 @@ export default class App extends Service {
 
   // 临时接口，用于MVP版本记录点赞数量
   public async giveThumbup(userId: string): Promise<string> {
+    let res;
     // 固定疾风项目组app
     const resultTables: any = await mysql.find('table', { "name": "疾风内部收集-private" });
     if (resultTables.length > 0) {
@@ -95,26 +96,26 @@ export default class App extends Service {
         });
         if (rows.length > 0) {
           const row = rows[0];
-          const val = row[valueCol.id];
-          await mysql.update(tableId.toString(), { 
+          const val = row[valueCol._id];
+          res = await mysql.update(tableId.toString(), { 
             [valueCol._id]: val + 1
           }, { [nameCol._id + '.id']: userId });
         } else {
           const apps: any = await mysql.find('app', { '_id': ObjectID(userId) })
           if (apps.length > 0) {
             const app = apps[0];
-            const res = await mysql.insert(tableId.toString(), {
+            res = await mysql.insert(tableId.toString(), {
               [nameCol._id]: {
-                id: app._id,
+                id: app._id.toString(),
                 avatar: app.avatar,
                 username: app.username,
               },
               [valueCol._id]: 1,
             });
-            if (res) {
-              return JSON.stringify(util.status(true))
-            }
           }
+        }
+        if (res) {
+          return JSON.stringify(util.status(true))
         }
       }
     }
