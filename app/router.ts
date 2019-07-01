@@ -72,7 +72,6 @@ export default (app: Application) => {
   // 获取表格内某个人员控件，的所有人员，用于筛选
   router.get('/getColUsersByTableId/:tableId/:columnId', controller.app.getColUsersByTableId);
   
-  
-  // 临时接口收集点赞信息 
+  // 临时接口收集点赞信息
   router.post('/giveThumbup', controller.app.giveThumbup);
 };

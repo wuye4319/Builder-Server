@@ -55,7 +55,7 @@ export default class AppController extends Controller {
     const { ctx } = this;
     try {
       let userId = ctx.request.body.userId;
-      ctx.body = await ctx.service.table.giveThumbup(userId);
+      ctx.body = await ctx.service.app.giveThumbup(userId);
     } catch (e) {
       ctx.body = util.errorHandler(e);
     }
