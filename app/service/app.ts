@@ -91,25 +91,25 @@ export default class App extends Service {
       const valueCol = cols.find(val => val.colType === 'FormNumber');
       if (nameCol && valueCol) {
         const rows: any = await mysql.find(tableId.toString(), {
-          [nameCol.id + '.id']: userId
+          [nameCol._id + '.id']: userId
         });
         if (rows.length > 0) {
           const row = rows[0];
           const val = row[valueCol.id];
           await mysql.update(tableId.toString(), { 
-            [valueCol.id]: val + 1
-          }, { [nameCol.id + '.id']: userId });
+            [valueCol._id]: val + 1
+          }, { [nameCol._id + '.id']: userId });
         } else {
           const apps: any = await mysql.find('app', { '_id': ObjectID(userId) })
           if (apps.length > 0) {
             const app = apps[0];
             const res = await mysql.insert(tableId.toString(), {
-              [nameCol.id]: {
+              [nameCol._id]: {
                 id: app._id,
                 avatar: app.avatar,
                 username: app.username,
               },
-              [valueCol.id]: 1,
+              [valueCol._id]: 1,
             });
             if (res) {
               return JSON.stringify(util.status(true))
