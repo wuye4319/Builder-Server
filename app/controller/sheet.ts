@@ -92,4 +92,12 @@ export default class SheetController extends Controller {
       ctx.body = JSON.stringify(response);
     }
   }
+
+  public async deleteRowsByTableId() {
+    const { ctx } = this;
+    const tableId = ctx.params.tableId;
+    let data = ctx.request.body;
+    const { type, ids } =  data;
+    ctx.body = await ctx.service.sheet.deleteRowsByTableId(tableId, type, ids);
+  }
 }

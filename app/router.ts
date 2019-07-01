@@ -24,6 +24,8 @@ export default (app: Application) => {
   router.post('/deleteSheetsByTableId/:tableId', controller.sheet.deleteSheetsByTableId);
   // 上传文件
   router.post('/uploadFile', controller.sheet.uploadFile);
+    // 根据IDs批量删除多行
+    router.post('/deleteRowsByTableId/:tableId', controller.sheet.deleteRowsByTableId)
 
   /**
    * column
