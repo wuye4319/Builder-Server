@@ -76,4 +76,48 @@ export default class App extends Service {
     }
     return util.status(resultUsers);
   }
+
+
+
+  // 临时接口，用于MVP版本记录点赞数量
+  public async giveThumbup(userId: string): Promise<string> {
+    // 固定疾风项目组app
+    const resultTables: any = await mysql.find('table', { "name": "疾风内部收集-private" });
+    if (resultTables.length > 0) {
+      const table = resultTables[0];
+      const tableId = table._id;
+      const cols: any = await mysql.find('column', { "tableId": tableId.toString() });
+      const nameCol = cols.find(col => col.colType === 'FormUser');
+      const valueCol = cols.find(val => val.colType === 'FormNumber');
+      if (nameCol && valueCol) {
+        const rows: any = await mysql.find(tableId.toString(), {
+          [nameCol.id + '.id']: userId
+        });
+        if (rows.length > 0) {
+          const row = rows[0];
+          const val = row[valueCol.id];
+          await mysql.update(tableId.toString(), { 
+            [valueCol.id]: val + 1
+          }, { [nameCol.id + '.id']: userId });
+        } else {
+          const apps: any = await mysql.find('app', { '_id': ObjectID(userId) })
+          if (apps.length > 0) {
+            const app = apps[0];
+            const res = await mysql.insert(tableId.toString(), {
+              [nameCol.id]: {
+                id: app._id,
+                avatar: app.avatar,
+                username: app.username,
+              },
+              [valueCol.id]: 1,
+            });
+            if (res) {
+              return JSON.stringify(util.status(true))
+            }
+          }
+        }
+      }
+    }
+    return JSON.stringify(util.status(false));
+  }
 }
