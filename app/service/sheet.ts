@@ -42,7 +42,7 @@ export default class Sheet extends Service {
       let tempRow: any = {}
       tempRow.id = row._id
       tempRow.createdTime = row.createdTime
-      tempRow.editTime = row.createdTime
+      tempRow.editTime = row.editTime
       tempRow.userInfor = this.getRowByColList(appInfor[0], ["username", "avatar"])
       tempRow.userInfor.id = appInfor[0]._id
       tempRow.cellValues = this.getRowByColList(row, colsNameBox)
@@ -93,14 +93,13 @@ export default class Sheet extends Service {
             whereFilter[columnId] = { $lte: Date.parse(value[1]), $gte: Date.parse(value[0]) }
             break;
           case 'filetype':
-            result[columnId] = this.hasValue(value)
+            result[columnId + '.url'] = this.hasValue(value)
             break;
           case 'contains':
             result[columnId] = this.hasValue(value)
             break;
           case 'user-contains':
             result[columnId + '.id'] = this.filterUser(value)
-            console.log(result);
             break;
         }
         whereFilter.$and.push(result)
@@ -176,6 +175,7 @@ export default class Sheet extends Service {
   // 新增单行的数据
   public async insertSheetById(tableId, obj): Promise<string> {
     obj.createdTime = new Date()
+    obj.editTime = new Date()
     const newId = ObjectID();
     obj._id = newId;
     const tables: any = await mysql.find('table', { _id: ObjectID(tableId) })
