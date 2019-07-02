@@ -160,7 +160,7 @@ export default class Sheet extends Service {
       let rows: any = await mysql.findAll(tableId);
       if (rows.length > 0) {
         cols.forEach(col => {
-          let colFilterSet = new Set();
+          let colFilterData = {};
           switch (col.colType) {
             case 'FormPhoto':
               rows.forEach(row => {
@@ -168,7 +168,7 @@ export default class Sheet extends Service {
                 if (pics && pics.length > 0) {
                   pics.forEach(pic => {
                     const ext = path.extname(pic);
-                    colFilterSet.add(ext);
+                    colFilterData[ext] = ext;
                   });
                 }
               });
@@ -177,7 +177,7 @@ export default class Sheet extends Service {
               rows.forEach(row => {
                 const file = row[col._id];
                 if (file && file.extension) {
-                  colFilterSet.add(file.extension);
+                    colFilterData[file.extension] = file.extension;
                 }
               });
               break;
@@ -185,15 +185,16 @@ export default class Sheet extends Service {
                 rows.forEach(row => {
                   const user = row[col._id];
                   if (user) {
-                    colFilterSet.add(user);
+                    colFilterData[user.id] = user;
                   }
                 });
               break;
             default:
               break;
           }
-          if (colFilterSet.size > 0) {
-            resultData[col._id] = Array.from(colFilterSet);
+          const vals = Object.values(colFilterData)
+          if (vals.length > 0) {
+            resultData[col._id] = vals;
           }
         });
       }
