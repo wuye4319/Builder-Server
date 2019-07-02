@@ -266,7 +266,7 @@ export default class Sheet extends Service {
     return JSON.stringify(result)
   }
 
-  public async deleteRowsByTableId(tableId: string, type: 'keep'|'del', ids: string[]): Promise<string> {
+  public async deleteRowsByTableId(tableId: string, type: 'keep' | 'del', ids: string[]): Promise<string> {
     let where = {};
     let result: any = false;
     console.log(ids);
@@ -276,11 +276,11 @@ export default class Sheet extends Service {
     }
     if (type === 'keep') {
       // 为keep表示保留的id, 如果ids为空，则全部删除
-      where = { "_id": { $nin: ids }};
+      where = { "_id": { $nin: ids } };
       result = await mysql.delete(tableId, where);
     } else if (type === 'del') {
       if (ids && ids.length > 0) {
-        where = { "_id": { $in: ids }};
+        where = { "_id": { $in: ids } };
         result = await mysql.delete(tableId, where);
       }
     }
