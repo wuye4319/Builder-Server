@@ -42,7 +42,7 @@ export default class Sheet extends Service {
       let tempRow: any = {}
       tempRow.id = row._id
       tempRow.createdTime = row.createdTime
-      tempRow.editTime = row.editTime
+      tempRow.editTime = rowData.editTime || rowData.createdTime
       tempRow.userInfor = this.getRowByColList(appInfor[0], ["username", "avatar"])
       tempRow.userInfor.id = appInfor[0]._id
       tempRow.cellValues = this.getRowByColList(row, colsNameBox)
@@ -193,7 +193,7 @@ export default class Sheet extends Service {
           const resultRow: any = {};
           resultRow.id = rowData._id;
           resultRow.createdTime = rowData.createdTime;
-          resultRow.editTime = rowData.editTime;
+          resultRow.editTime = rowData.editTime || rowData.createdTime;
           resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
           resultRow.userInfor.id = app._id
           resultRow.cellValues = {};
@@ -212,7 +212,7 @@ export default class Sheet extends Service {
   // 更新单行的数据
   public async updateSheetById(tableId, id, data): Promise<string> {
     let where = { "_id": ObjectID(id) }
-    data.createdTime = new Date()
+    data.editTime = new Date()
     const tables: any = await mysql.find('table', { _id: ObjectID(tableId) })
     const table = tables[0];
     let dataStr = await mysql.update(tableId, data, where);
@@ -228,7 +228,7 @@ export default class Sheet extends Service {
           const resultRow: any = {};
           resultRow.id = rowData._id;
           resultRow.createdTime = rowData.createdTime;
-          resultRow.editTime = rowData.editTime;
+          resultRow.editTime = rowData.editTime || rowData.createdTime;
           resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
           resultRow.userInfor.id = app._id
           resultRow.cellValues = {};
