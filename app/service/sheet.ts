@@ -42,7 +42,7 @@ export default class Sheet extends Service {
       let tempRow: any = {}
       tempRow.id = row._id
       tempRow.createdTime = row.createdTime
-      tempRow.editTime = rowData.editTime || rowData.createdTime
+      tempRow.editTime = row.editTime || row.createdTime
       tempRow.userInfor = this.getRowByColList(appInfor[0], ["username", "avatar"])
       tempRow.userInfor.id = appInfor[0]._id
       tempRow.cellValues = this.getRowByColList(row, colsNameBox)
