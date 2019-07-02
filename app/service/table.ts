@@ -4,7 +4,6 @@ const mysql = new base()
 import tools from '../tools/util'
 import { ObjectID } from 'mongodb';
 const util = new tools()
-const path = require('path');
 
 /**
  * table service
