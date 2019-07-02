@@ -50,4 +50,15 @@ export default class AppController extends Controller {
       ctx.body = util.errorHandler(e);
     }
   }
+
+  public async giveThumbup() {
+    const { ctx } = this;
+    try {
+      let userId = ctx.request.body.userId;
+      let count = ctx.request.body.count;
+      ctx.body = await ctx.service.app.giveThumbup(userId, count);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
+  }
 }

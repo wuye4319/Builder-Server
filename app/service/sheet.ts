@@ -193,7 +193,7 @@ export default class Sheet extends Service {
           const resultRow: any = {};
           resultRow.id = rowData._id;
           resultRow.createdTime = rowData.createdTime;
-          resultRow.editTime = rowData.createdTime;
+          resultRow.editTime = rowData.editTime;
           resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
           resultRow.userInfor.id = app._id
           resultRow.cellValues = {};
@@ -228,7 +228,7 @@ export default class Sheet extends Service {
           const resultRow: any = {};
           resultRow.id = rowData._id;
           resultRow.createdTime = rowData.createdTime;
-          resultRow.editTime = rowData.createdTime;
+          resultRow.editTime = rowData.editTime;
           resultRow.userInfor = this.getRowByColList(app, ["username", "avatar"])
           resultRow.userInfor.id = app._id
           resultRow.cellValues = {};

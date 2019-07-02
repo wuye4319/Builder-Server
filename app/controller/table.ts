@@ -65,4 +65,14 @@ export default class SheetController extends Controller {
       ctx.body = util.errorHandler(e);
     }
   }
+
+  public async getColFiltersByTableId() {
+    const { ctx } = this;
+    try {
+      let tableId = ctx.params.tableId
+      ctx.body = await ctx.service.table.getColFiltersByTableId(tableId);
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
+  }
 }
