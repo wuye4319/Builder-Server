@@ -2,8 +2,9 @@ import { Service } from 'egg';
 import base from '../base/mongodb'
 const mysql = new base()
 import tools from '../tools/util'
+import { ObjectID } from 'mongodb';
 const util = new tools()
-const ObjectID = require('mongodb').ObjectID
+const path = require('path');
 
 /**
  * table service
@@ -150,5 +151,53 @@ export default class Sheet extends Service {
     }
     let result = util.status(dataStr)
     return JSON.stringify(result)
+  }
+
+  public async getColFiltersByTableId(tableId: string): Promise<string> {
+    const cols: any = await mysql.find('column', { tableId });
+    const resultData = {}
+    if (cols.length > 0) {
+      let rows: any = await mysql.findAll(tableId);
+      if (rows.length > 0) {
+        cols.forEach(col => {
+          let colFilterSet = new Set();
+          switch (col.colType) {
+            case 'FormPhoto':
+              rows.forEach(row => {
+                const pics = row[col._id];
+                if (pics && pics.length > 0) {
+                  pics.forEach(pic => {
+                    const ext = path.extname(pic);
+                    colFilterSet.add(ext);
+                  });
+                }
+              });
+              break;
+            case 'FormAttachment':
+              rows.forEach(row => {
+                const file = row[col._id];
+                if (file && file.extension) {
+                  colFilterSet.add(file.extension);
+                }
+              });
+              break;
+            case 'FormUser':
+                rows.forEach(row => {
+                  const user = row[col._id];
+                  if (user) {
+                    colFilterSet.add(user);
+                  }
+                });
+              break;
+            default:
+              break;
+          }
+          if (colFilterSet.size > 0) {
+            resultData[col._id] = Array.from(colFilterSet);
+          }
+        });
+      }
+    }
+    return util.status(resultData);
   }
 }
