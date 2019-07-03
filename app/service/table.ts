@@ -4,7 +4,6 @@ const mysql = new base()
 import tools from '../tools/util'
 import { ObjectID } from 'mongodb';
 const util = new tools()
-const path = require('path');
 
 /**
  * table service
@@ -167,8 +166,10 @@ export default class Sheet extends Service {
                 const pics = row[col._id];
                 if (pics && pics.length > 0) {
                   pics.forEach(pic => {
-                    const ext = path.extname(pic);
-                    colFilterData[ext] = ext;
+                    if (pic && pic.extension) {
+                      const ext = pic.extension;
+                      colFilterData[ext] = ext;
+                    }
                   });
                 }
               });

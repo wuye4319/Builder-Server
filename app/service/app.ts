@@ -102,7 +102,8 @@ export default class App extends Service {
           const row = rows[0];
           const val = row[valueCol._id];
           res = await mysql.update(tableId.toString(), { 
-            [valueCol._id]: val + count
+            [valueCol._id]: val + count,
+            editTime: new Date(),
           }, { [nameCol._id + '.id']: userId });
         } else {
           const apps: any = await mysql.find('app', { '_id': ObjectID(userId) })
@@ -115,6 +116,8 @@ export default class App extends Service {
                 username: app.username,
               },
               [valueCol._id]: count,
+              createdTime: new Date(),
+              editTime: new Date(),
             });
           }
         }

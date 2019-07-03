@@ -22,14 +22,14 @@ export default (appInfo: EggAppInfo) => {
 
   config.multipart = {
     mode: 'file',
-    fileExtensions: [ '.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.apk', '.dll' ],
-  };
+    fileExtensions: ['.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.apk', '.dll', '.avi', '.rmvb', 'mov', '.xmind', '.apk', '.rar'],
+  }
 
   config.onerror = {
-    all(err, crt) {
-      const date = new Date();
-      const time = date.getTime();
-      crt.body = {
+    all(err, ctx) {
+      const date = new Date()
+      const time = date.getTime()
+      ctx.body = {
         status: 500,
         msg: err,
         serverTime: time,
