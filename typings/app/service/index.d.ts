@@ -6,6 +6,7 @@ import ExportApp from '../../../app/service/app';
 import ExportColumn from '../../../app/service/column';
 import ExportSheet from '../../../app/service/sheet';
 import ExportTable from '../../../app/service/table';
+import ExportUpdateAll from '../../../app/service/updateAll';
 
 declare module 'egg' {
   interface IService {
@@ -13,5 +14,6 @@ declare module 'egg' {
     column: ExportColumn;
     sheet: ExportSheet;
     table: ExportTable;
+    updateAll: ExportUpdateAll;
   }
 }

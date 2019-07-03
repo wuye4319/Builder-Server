@@ -1,5 +1,5 @@
 import { EggAppConfig, EggAppInfo, PowerPartial } from 'egg';
-const path = require('path')
+const path = require('path');
 
 export default (appInfo: EggAppInfo) => {
   const config = {} as PowerPartial<EggAppConfig>;
@@ -17,27 +17,27 @@ export default (appInfo: EggAppInfo) => {
   };
 
   config.security = {
-    csrf: false
-  }
+    csrf: false,
+  };
 
   config.multipart = {
     mode: 'file',
-    fileExtensions: ['.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.apk', '.dll'],
-  }
+    fileExtensions: [ '.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.apk', '.dll' ],
+  };
 
   config.onerror = {
     all(err, crt) {
-      const date = new Date()
-      const time = date.getTime()
+      const date = new Date();
+      const time = date.getTime();
       crt.body = {
         status: 500,
         msg: err,
         serverTime: time,
         serverDate: date,
-        data: '操作失败'
+        data: '操作失败',
       };
-    }
-  }
+    },
+  };
 
   // config.mysql = {
   //   client: {

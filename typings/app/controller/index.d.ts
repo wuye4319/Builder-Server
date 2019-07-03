@@ -6,6 +6,7 @@ import ExportApp from '../../../app/controller/app';
 import ExportColumn from '../../../app/controller/column';
 import ExportSheet from '../../../app/controller/sheet';
 import ExportTable from '../../../app/controller/table';
+import ExportUpdateAll from '../../../app/controller/updateAll';
 
 declare module 'egg' {
   interface IController {
@@ -13,5 +14,6 @@ declare module 'egg' {
     column: ExportColumn;
     sheet: ExportSheet;
     table: ExportTable;
+    updateAll: ExportUpdateAll;
   }
 }
