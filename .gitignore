@@ -7,8 +7,6 @@ run/
 .DS_Store
 .vscode
 *.swp
-*.lock
-*.js
 !.autod.conf.js
 
 app/**/*.js
