@@ -4,7 +4,6 @@ node_modules/
 coverage/
 .idea/
 run/
-logs/
 .DS_Store
 .vscode
 *.swp
@@ -21,4 +20,5 @@ config/**/*.map
 
 .history/
 adminMongo/
+adminMongo/node_modules/
 app/base/mongodb.ts

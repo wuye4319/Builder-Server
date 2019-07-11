@@ -7,7 +7,6 @@ export default class tools {
     if (data) {
       tempobj = {
         status: 200,
-        msg: "Success",
         serverTime: time,
         serverDate: date,
         data: data === true ? '操作成功' : data,
@@ -16,10 +15,10 @@ export default class tools {
     } else {
       tempobj = {
         status: 500,
-        msg: "Failed",
+        msg: data,
         serverTime: time,
         serverDate: date,
-        data: '操作失败'
+        data: '结果错误，操作失败'
       }
     }
 
@@ -35,7 +34,7 @@ export default class tools {
       stack: error.stack,
       serverTime: time,
       serverDate: date,
-      data: '操作失败'
+      data: 'catch操作失败'
     }
   }
 }

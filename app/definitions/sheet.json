@@ -1,0 +1,24 @@
+{
+  "User-Id": {
+    "type": "integer",
+    "description": "123"
+  },
+  "User": {
+    "type": "object",
+    "properties": {
+      "name": {
+        "type": "string",
+        "description": "姓名"
+      },
+      "phone": {
+        "type": "string",
+        "description": "18112341234"
+      },
+      "age": {
+        "type": "integer",
+        "format": "int32",
+        "description": "123"
+      }
+    }
+  }
+}

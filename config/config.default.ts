@@ -20,6 +20,15 @@ export default (appInfo: EggAppInfo) => {
     csrf: false,
   };
 
+  config.static = {
+    prefix: '/',
+    buffer: true,
+    maxAge: 31536000,
+    dynamic: true,
+    preload: false,
+    dir: path.join(appInfo.baseDir, 'api-docs/public'),
+  }
+
   config.multipart = {
     mode: 'file',
     fileExtensions: ['.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.apk', '.dll', '.avi', '.rmvb', 'mov', '.xmind', '.apk', '.rar'],
@@ -34,33 +43,22 @@ export default (appInfo: EggAppInfo) => {
         msg: err,
         serverTime: time,
         serverDate: date,
-        data: '操作失败',
+        data: '全局错误，操作失败',
       };
     },
   };
 
-  // config.mysql = {
-  //   client: {
-  //     host: 'localhost',
-  //     port: '3306',
-  //     user: 'test_user',
-  //     password: 'test_password',
-  //     database: 'test',
-  //   },
-  //   // 是否加载到 app 上，默认开启
-  //   app: true,
-  //   // 是否加载到 agent 上，默认关闭
-  //   agent: false,
-  // }
-
-  // add your special config in here
-  const bizConfig = {
-    sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
+  const customizeConfig = {
+    jwt: {
+      secret: '123456',
+      enable: true,
+      match: '/jwt',
+    },
   };
 
   // the return config will combines to EggAppConfig
   return {
     ...config,
-    ...bizConfig,
+    ...customizeConfig
   };
 };

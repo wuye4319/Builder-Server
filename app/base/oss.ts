@@ -26,5 +26,3 @@ export async function uploadToOss(file: EggFile) {
   }
   return null;
 }
-
-export async function getFileUrl() {}

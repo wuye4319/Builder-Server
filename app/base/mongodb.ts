@@ -116,17 +116,6 @@ export default class base implements basedb {
     })
   }
 
-  async findAll(table: string, where?: object, sort?: any) {
-    return new Promise(async (resolve) => {
-      let conn: any = await this.connect()
-      conn.db.collection(table).find(where || {}).sort(sort || {}).toArray(function (err, result) { // 返回集合中所有数据
-        if (err) throw err;
-        resolve(result);
-        conn.client.close()
-      });
-    })
-  }
-
   async countDocuments(table: string, where?: object) {
     return new Promise(async (resolve) => {
       let conn: any = await this.connect()
@@ -135,26 +124,4 @@ export default class base implements basedb {
       })
     })
   }
-
-  // async aggregate(table: string, where?: object, page: number = 0, size: number = 0, sort?: any, lookup?: {
-  //   localField: string,
-  //   from: string,
-  //   foreignField: string,
-  //   as: string
-  // }, unwind?: string) {
-  //   return new Promise(async (resolve) => {
-  //     let conn: any = await this.connect()
-  //     conn.db.collection(table).aggregate([
-  //       { "$sort": sort || {} },
-  //       { "$skip": page * size }
-  //       { "$limit": size },
-  //       { "$lookup": lookup },
-  //       { "$unwind": unwind },
-  //     ]).toArray(function (err, result) { // 返回集合中所有数据
-  //       if (err) throw err;
-  //       resolve(result);
-  //       conn.client.close()
-  //     });
-  //   })
-  // }
 }
