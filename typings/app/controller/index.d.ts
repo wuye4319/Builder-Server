@@ -2,10 +2,12 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
+import ExportProduct from '../../../app/controller/product';
 import ExportTest from '../../../app/controller/test';
 
 declare module 'egg' {
   interface IController {
+    product: ExportProduct;
     test: ExportTest;
   }
 }

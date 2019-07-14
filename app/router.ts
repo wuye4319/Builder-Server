@@ -10,7 +10,7 @@ export default (app: Application) => {
       title: '示例',
       version: '1.0.0',
       host: '127.0.0.1',
-      port: 7002,
+      port: 7001,
       schemes: ['http'],
       paths: {
         outPath: '/api-docs/public/json/main.json',
