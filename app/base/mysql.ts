@@ -7,11 +7,12 @@
 
 const mysql = require('mysql')
 let config = {
-  host: 'localhost',
+  // host: 'localhost',
+  host: 'www.wssso.com',
   port: '3306',
   user: 'root',
-  // password: 'Lovelian4319!',
-  password: '4319',
+  password: 'Lovelian4319!',
+  // password: '4319',
   database: 'wssso',
   queueLimit: 10
 }

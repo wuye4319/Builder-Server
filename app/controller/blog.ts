@@ -7,7 +7,7 @@ const util = new Tools();
 @TagsAll('商品接口')
 @IgnoreJwtAll
 export default class PorductController extends Controller {
-  @Get('/search/:pagesize/:page/:key')
+  @Get('/:type/:pagesize/:page')
   @Description('根据关键词，搜索所有相关商品，返回商品列表')
   @Summary('搜索商品')
   @Parameters([
@@ -15,21 +15,22 @@ export default class PorductController extends Controller {
     { name: 'page', in: 'path', required: true, default: 1, schema: { $ref: 'Page' } },
     { name: 'key', in: 'path', required: true, default: 1, schema: { $ref: 'Key' } }
   ])
-  public async searchProduct({ params: { key, pagesize, page } }) {
+  public async searchProduct({ params: { type, pagesize, page } }) {
     const { ctx } = this;
     pagesize = parseInt(pagesize)
     page = parseInt(page)
     try {
-      let total: any = await ctx.service.product.getProCount(key)
+      let total = await ctx.service.blog.getBlogCount(type)
+      
       let sqlpage = (page - 1) * pagesize
-      let tempPro = await ctx.service.product.getProListByKey(sqlpage, pagesize, key)
+      let tempPro = await ctx.service.blog.getBlogList(type, sqlpage, pagesize)
       ctx.body = util.status(tempPro, total.total, page, pagesize)
     } catch (e) {
       ctx.body = util.errorHandler(e);
     }
   }
 
-  @Post('/infor/:id')
+  @Post('/:id')
   @Description('根据ID获取当前商品的详细信息接口')
   @Summary('商品信息')
   @Parameters([
@@ -39,7 +40,7 @@ export default class PorductController extends Controller {
   public async getProduct({ params: { id } }) {
     const { ctx } = this;
     try {
-      let result = await ctx.service.product.getPro(id);
+      let result = await ctx.service.blog.getBlog(id)
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);
