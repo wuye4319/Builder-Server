@@ -1,7 +1,7 @@
 import { Controller } from 'egg';
 import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary } from 'egg-shell-decorators';
 
-import Tools from '../tools/util';
+import Tools from '../util';
 const util = new Tools();
 
 @TagsAll('全局备注，一般按大的功能进行分类')
