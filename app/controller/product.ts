@@ -6,12 +6,19 @@ const util = new Tools();
 
 @TagsAll('商品接口')
 @IgnoreJwtAll
-export default class SheetController extends Controller {
-  @Get('/searchpro/:key/:pagesize/:page')
-  @Description('根据关键词，搜索所有相关商品')
+export default class PorductController extends Controller {
+  @Get('/search/:pagesize/:page/:key')
+  @Description('根据关键词，搜索所有相关商品，返回商品列表')
   @Summary('搜索商品')
+  @Parameters([
+    { name: 'pagesize', in: 'path', required: true, default: 100, schema: { $ref: 'PageSize' } },
+    { name: 'page', in: 'path', required: true, default: 1, schema: { $ref: 'Page' } },
+    { name: 'key', in: 'path', required: true, default: 1, schema: { $ref: 'Key' } }
+  ])
   public async searchProduct({ params: { key, pagesize, page } }) {
     const { ctx } = this;
+    pagesize = parseInt(pagesize)
+    page = parseInt(page)
     try {
       let total: any = await ctx.service.product.getProCount(key)
       let sqlpage = (page - 1) * pagesize
@@ -22,15 +29,14 @@ export default class SheetController extends Controller {
     }
   }
 
-  @Post('/products/:id')
-  @Description('示例接口，参数')
-  @Summary('参数')
+  @Post('/infor/:id')
+  @Description('根据ID获取当前商品的详细信息接口')
+  @Summary('商品信息')
   @Parameters([
-    { name: 'body', in: 'body', required: true, schema: { $ref: 'User' } },
-    { name: 'id', in: 'path', required: true, schema: { $ref: 'User-Id' } }
+    { name: 'id', in: 'path', required: true, schema: { $ref: 'Key' } }
   ])
   // @Responses({ "200": { description: "test", schema: { $ref: 'User' } } })
-  public async testpost({ params: { id }}) {
+  public async getProduct({ params: { id } }) {
     const { ctx } = this;
     try {
       let result = await ctx.service.product.getPro(id);

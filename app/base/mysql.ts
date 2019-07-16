@@ -3,6 +3,7 @@
  * version:v1.0
  * plugin:init js
  */
+'use strict'
 
 const mysql = require('mysql')
 let config = {
@@ -18,8 +19,9 @@ let pool = mysql.createPool(config)
 
 export default class basesql {
   myquery(sql, param, fn) {
-    pool.getConnection((connection) => {
+    pool.getConnection((err, connection) => {
       // Use the connection
+      if (err) throw err
       connection.query(sql, param, (error, results) => {
         connection.release()
         if (error) {

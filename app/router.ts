@@ -3,7 +3,7 @@ import { EggShell } from 'egg-shell-decorators';
 
 export default (app: Application) => {
   EggShell(app, {
-    prefix: '/api/v1',
+    prefix: '/web/v1',
     quickStart: false,
     swaggerOpt: {
       open: true,

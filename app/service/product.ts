@@ -1,5 +1,5 @@
 import { Service } from 'egg';
-const Basemysql = require('../base/mysql')
+import Basemysql from '../base/mysql'
 let basemysql = new Basemysql()
 import Tools from '../util';
 const util = new Tools();

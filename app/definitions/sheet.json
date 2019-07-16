@@ -1,7 +1,15 @@
 {
-  "User-Id": {
+  "Key": {
     "type": "integer",
-    "description": "123"
+    "description": "1"
+  },
+  "PageSize": {
+    "type": "integer",
+    "description": "100"
+  },
+  "Page": {
+    "type": "integer",
+    "description": "1"
   },
   "User": {
     "type": "object",
