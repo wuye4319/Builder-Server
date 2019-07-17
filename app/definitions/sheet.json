@@ -1,31 +1,37 @@
 {
   "Key": {
     "type": "integer",
-    "description": "1"
+    "description": "关键词",
+    "example": 1
   },
   "PageSize": {
     "type": "integer",
-    "description": "100"
+    "description": "页数大小",
+    "example": "100"
   },
   "Page": {
     "type": "integer",
-    "description": "1"
+    "example": "1",
+    "description": "当前页"
   },
   "User": {
     "type": "object",
     "properties": {
       "name": {
         "type": "string",
-        "description": "姓名"
+        "description": "姓名",
+        "example": "张三"
       },
       "phone": {
         "type": "string",
-        "description": "18112341234"
+        "description": "手机号",
+        "example": "13412341234"
       },
       "age": {
         "type": "integer",
         "format": "int32",
-        "description": "123"
+        "description": "年龄",
+        "example": "20"
       }
     }
   }
