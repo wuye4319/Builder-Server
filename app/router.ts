@@ -7,11 +7,11 @@ export default (app: Application) => {
     quickStart: false,
     swaggerOpt: {
       open: true,
-      title: '示例',
+      title: 'wssso接口文档库',
       version: '1.0.0',
       host: '127.0.0.1',
       port: 7001,
-      schemes: ['http'],
+      schemes: ['http', 'https'],
       paths: {
         outPath: '/api-docs/public/json/main.json',
         definitionPath: "/app/definitions"

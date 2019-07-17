@@ -4,10 +4,10 @@
  * plugin:init js
  */
 'use strict'
-const Basemysql = require('../base/mysql')
+import Basemysql from '../base/mysql'
 let basemysql = new Basemysql()
-const Util = require('../util')
-let util = new Util()
+import Tools from '../util';
+const util = new Tools();
 
 class mysql {
   getProCountByTopic(id) {

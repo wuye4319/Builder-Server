@@ -26,6 +26,7 @@
     "egg": "^2.6.1",
     "egg-scripts": "^2.6.0",
     "egg-shell-decorators": "^1.0.7",
+    "keeper-core": "^1.1.10",
     "mongodb": "^3.2.7",
     "mysql": "^2.17.1"
   },
