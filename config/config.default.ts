@@ -20,6 +20,13 @@ export default (appInfo: EggAppInfo) => {
     csrf: false,
   };
 
+  config.cluster = {
+    listen: {
+      port: 7001,
+      hostname: '127.0.0.1',
+    }
+  }
+
   config.static = {
     prefix: '/',
     buffer: true,

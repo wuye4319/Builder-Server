@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary } from 'egg-shell-decorators';
+import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary, Responses } from 'egg-shell-decorators';
 
 import Tools from '../util';
 const util = new Tools();
@@ -8,27 +8,25 @@ const util = new Tools();
 @IgnoreJwtAll
 export default class BuilderController extends Controller {
   @Get('/:pagesize/:page')
-  @Description('')
-  @Summary('搜索商品')
+  @Description('获取专题列表信息接口')
+  @Summary('专题列表')
   @Parameters([
-    { name: 'pagesize', in: 'path', required: true, default: 100, schema: { $ref: '#/definitions/PageSize' } },
-    { name: 'page', in: 'path', required: true, default: 1, schema: { $ref: '#/definitions/Page' } },
-    { name: 'key', in: 'path', required: true, default: 1, schema: { $ref: '#/definitions/Key' } }
+    { name: 'pagesize', in: 'path', required: true, schema: { $ref: '#/definitions/PageSize' } },
+    { name: 'page', in: 'path', required: true, schema: { $ref: '#/definitions/Page' } },
   ])
-  public async searchProduct({ params: { type, user }, body: { body } }) {
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
+  public async getTopicList({ params: { pagesize, page } }) {
     const { ctx } = this;
+    pagesize = parseInt(pagesize)
+    page = parseInt(page)
     try {
-      let result
-      switch (type) {
-        case 'get':
-          result = ctx.service.builder.getpageconfig(user)
-          break
-        case 'edit':
-          result = ctx.service.builder.editpageconfig(user, body)
-          break
-      }
-
-      ctx.body = util.status(result)
+      let total = await ctx.service.topic.getTopicCount()
+      let sqlpage = (page - 1) * pagesize
+      let result = ctx.service.topic.getTopicListByKind(sqlpage, pagesize)
+      ctx.body = util.status(result, total.total)
     } catch (e) {
       ctx.body = util.errorHandler(e);
     }
@@ -38,7 +36,7 @@ export default class BuilderController extends Controller {
   @Description('根据ID获取当前商品的详细信息接口')
   @Summary('商品信息')
   @Parameters([
-    { name: 'id', in: 'path', required: true, default: '120', schema: { $ref: '#/definitions/Key' } }
+    { name: 'id', in: 'path', required: true, schema: { $ref: '#/definitions/ProID' } }
   ])
   // @Responses({ "200": { description: "test", schema: { $ref: 'User' } } })
   public async multiple({ params: { id } }) {
@@ -55,7 +53,7 @@ export default class BuilderController extends Controller {
   @Description('根据ID获取当前商品的详细信息接口')
   @Summary('商品信息')
   @Parameters([
-    { name: 'id', in: 'path', required: true, default: '120', schema: { $ref: '#/definitions/Key' } }
+    { name: 'id', in: 'path', required: true, schema: { $ref: '#/definitions/ProID' } }
   ])
   // @Responses({ "200": { description: "test", schema: { $ref: 'User' } } })
   public async getProduct({ params: { id } }) {
@@ -72,7 +70,7 @@ export default class BuilderController extends Controller {
   @Description('根据ID获取当前商品的详细信息接口')
   @Summary('商品信息')
   @Parameters([
-    { name: 'id', in: 'path', required: true, default: '120', schema: { $ref: '#/definitions/Key' } }
+    { name: 'id', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
   ])
   // @Responses({ "200": { description: "test", schema: { $ref: 'User' } } })
   public async recommend({ params: { id } }) {

@@ -1,0 +1,413 @@
+{
+    "pages": {
+      "home": {
+        "name": "home",
+        "module": [
+          {
+            "name": "SlideShow",
+            "key": 6,
+            "height": "low",
+            "interval": 3,
+            "slideType": 0,
+            "arrowStyle": 0,
+            "navStyle": 1,
+            "fontSize": "medium",
+            "maskOpacity": 0.35,
+            "padding": false,
+            "data": [
+              {
+                "imgAlign": "middle",
+                "imgAlt": "",
+                "link": "http://builder.test.com/topics_details/?id=RqGv2P",
+                "overLay": true,
+                "title": "Women SHOES123",
+                "content": "12313311231331123133112313311231331123133112313311231331",
+                "img": "https://img2.superbuy.com/images/p/2018/10/16/xwZMYiKKXZ4tWtxrGiYZfskWN2nfJd.jpg"
+              },
+              {
+                "imgAlign": "middle",
+                "imgAlt": "",
+                "link": "http://builder.test.com/topics_details/?id=0qk627",
+                "overLay": true,
+                "title": "Dress",
+                "content": "",
+                "img": "https://img2.superbuy.com/images/p/2018/10/15/rt7rzzPZj3sW2kThipP6zbGRZQSf73.jpg"
+              },
+              {
+                "imgAlign": "middle",
+                "imgAlt": "",
+                "link": "http://builder.test.com/topics_details/?id=628mqm",
+                "overLay": true,
+                "title": "Accessories",
+                "content": "",
+                "img": "https://img2.superbuy.com/images/p/2018/10/15/nJjtCh8f48BTdphsFsiMpNjPnaNi7b.jpg"
+              }
+            ]
+          },
+          {
+            "name": "FeaturedCollection",
+            "key": 1,
+            "rows": 4,
+            "cols": 1,
+            "collectId": "4",
+            "showDes": true,
+            "showLine": true,
+            "showMore": true,
+            "title": "推荐商品",
+            "desProducts": "精选热销商品推荐"
+          },
+          {
+            "name": "ImageWithText",
+            "key": 1,
+            "sectionHeight": "Small",
+            "bgColor": "#FCF6F0",
+            "desktopAlign": "Left",
+            "mobileAlign": "Top",
+            "imageStyle": "Circle",
+            "imagePosition": "center center",
+            "title": "Shop Tops",
+            "buttonLabel": "View More",
+            "buttonLink": "http://builder.test.com/topics_details/?id=OXb6X3",
+            "content": "Top off your look with these head-turning styles! We're got everything from the best wardrobe staples to the hottest seasonal trends!",
+            "image": "https://img2.superbuy.com/images/p/2018/10/16/m7eRx7cchWAAD8x25FCRR4bGtHFXtp.jpg"
+          },
+          {
+            "name": "HomeTopicsModule",
+            "key": 1,
+            "showMore": true,
+            "showLine": true,
+            "showMinPrice": true,
+            "collectionIds": "4,6",
+            "collectSize": "middle",
+            "title": "推荐专题",
+            "showDes": true,
+            "desTopics": "精选热门专题推荐"
+          }
+        ]
+      },
+      "products": {
+        "name": "products",
+        "module": [
+          {
+            "name": "Products",
+            "key": 1,
+            "marketPrice": true,
+            "buyNow": true
+          }
+        ]
+      },
+      "order_confirm": {
+        "name": "order_confirm",
+        "module": [
+          {
+            "name": "OrderConfirm",
+            "key": 1
+          }
+        ]
+      },
+      "payment": {
+        "name": "payment",
+        "module": [
+          {
+            "name": "Payment",
+            "key": 1
+          }
+        ]
+      },
+      "pay_result": {
+        "name": "pay_result",
+        "module": [
+          {
+            "name": "PayResult",
+            "key": 1
+          }
+        ]
+      },
+      "cart": {
+        "name": "cart",
+        "module": [
+          {
+            "name": "Cart",
+            "key": 1,
+            "selectAll": true,
+            "orderNote": true
+          }
+        ]
+      },
+      "search": {
+        "name": "search",
+        "module": [
+          {
+            "name": "Search",
+            "key": 1,
+            "rows": 5
+          }
+        ]
+      },
+      "single": {
+        "name": "single",
+        "module": [
+          {
+            "name": "Single",
+            "key": 1
+          }
+        ]
+      },
+      "topics": {
+        "name": "topics",
+        "module": [
+          {
+            "name": "Topics",
+            "key": 1,
+            "collectId": [
+              "02",
+              "04",
+              "05",
+              "06"
+            ],
+            "collectSize": "middle",
+            "showMinPrice": false
+          }
+        ]
+      },
+      "topics_details": {
+        "name": "topics_details",
+        "module": [
+          {
+            "name": "TopicsDetails",
+            "key": 1,
+            "cols": 4,
+            "bgImg": "https://img2.superbuy.com/images/p/2018/10/15/QzG2637bm22rfb4e4aht8phpPzam8P.png",
+            "checkbox": {
+              "showTagCtrl": true,
+              "showSortCtrl": false,
+              "showCategoryCtrl": false
+            }
+          }
+        ]
+      },
+      "error_page": {
+        "name": "error_page",
+        "module": [
+          {
+            "name": "ErrorPage",
+            "key": 1
+          }
+        ]
+      },
+      "blogs_details": {
+        "name": "blogs_details",
+        "module": [
+          {
+            "name": "BlogDetails",
+            "key": 1
+          }
+        ]
+      },
+      "blogs": {
+        "name": "blogs",
+        "module": [
+          {
+            "name": "Blogs",
+            "key": 1,
+            "blogStyle": "Medium",
+            "cols": 3,
+            "rows": 5
+          }
+        ]
+      },
+      "register": {
+        "name": "register",
+        "module": [
+          {
+            "name": "Register",
+            "key": 1
+          }
+        ]
+      },
+      "login": {
+        "name": "login",
+        "module": [
+          {
+            "name": "Login",
+            "key": 1
+          }
+        ]
+      },
+      "send_email": {
+        "name": "send_email",
+        "module": [
+          {
+            "name": "SendEmail",
+            "key": 1
+          }
+        ]
+      },
+      "email_result": {
+        "name": "email_result",
+        "module": [
+          {
+            "name": "EmailResult",
+            "key": 1
+          }
+        ]
+      },
+      "reset_password": {
+        "name": "reset_password",
+        "module": [
+          {
+            "name": "ResetPassword",
+            "key": 1
+          }
+        ]
+      },
+      "orders": {
+        "name": "orders",
+        "userCenter": "orders",
+        "module": [
+          {
+            "name": "Orders",
+            "key": 1
+          }
+        ]
+      },
+      "order_details": {
+        "name": "order_details",
+        "module": [
+          {
+            "name": "OrderDetails",
+            "key": 1
+          }
+        ]
+      },
+      "address": {
+        "name": "address",
+        "userCenter": "address",
+        "module": [
+          {
+            "name": "Address",
+            "key": 1
+          }
+        ]
+      },
+      "account_information": {
+        "name": "account_information",
+        "userCenter": "account",
+        "module": [
+          {
+            "name": "AccountInformation",
+            "key": 1
+          }
+        ]
+      }
+    },
+    "layout": {
+      "header": {
+        "name": "Header",
+        "key": 1,
+        "logo": "",
+        "logoAlign": "left",
+        "menuId": "OXb6X3",
+        "menuAlign": "center",
+        "menuColors": 1,
+        "menuBg": "#ffffff",
+        "menuFont": "#302E2F",
+        "cartIcon": 1,
+        "messageVisible": false,
+        "messageOnlyAtHome": false,
+        "messageCanClose": true,
+        "message": "Winter sale is coming soon.",
+        "messageLink": "https://www.baidu.com/",
+        "messageBg": "#f12651",
+        "messageFont": "#FFFFFF",
+        "menu": "main"
+      },
+      "footer": {
+        "name": "Footer",
+        "key": 1,
+        "menuId": "628mqm",
+        "showInfo": true,
+        "infoTitle": "温馨提示",
+        "infoContent": "本网站内容均来源于网络，如有侵权，请联系本站进行删除，谢谢合作。\n联系qq邮箱：173134330@qq.com",
+        "infoWidth": 0,
+        "infoAlign": "center",
+        "infoFontSize": "small",
+        "colors": 1,
+        "bgColor": "#FBFAFA",
+        "fontColor": "#302E2F"
+      }
+    },
+    "theme": {
+      "colors": {
+        "name": "Colors",
+        "key": 1,
+        "data": {
+          "general": {
+            "brand": {
+              "value": "#302E2F",
+              "type": "brand"
+            },
+            "title": {
+              "value": "#302E2F",
+              "type": "font"
+            },
+            "text": {
+              "value": "#302E2F",
+              "type": "font"
+            },
+            "subText": {
+              "value": "#8B8185",
+              "type": "font"
+            },
+            "prompt": {
+              "value": "#B2AFB0",
+              "type": "font"
+            },
+            "button": {
+              "value": "#FFFFFF",
+              "type": "font"
+            },
+            "link": {
+              "value": "#1890FF",
+              "type": "font"
+            },
+            "price": {
+              "value": "#302E2F",
+              "type": "font"
+            },
+            "icon": {
+              "value": "#302E2F",
+              "type": "icon"
+            },
+            "hr": {
+              "value": "#EBE5E7",
+              "type": "border"
+            },
+            "border": {
+              "value": "#DBD8D9",
+              "type": "border"
+            },
+            "bg": {
+              "value": "#FFFFFF",
+              "type": "background"
+            },
+            "subBg": {
+              "value": "#FBFAFA",
+              "type": "background"
+            }
+          },
+          "others": null
+        }
+      },
+      "favicon": {
+        "name": "Favicon",
+        "key": 1,
+        "data": {
+          "icon": ""
+        }
+      }
+    },
+    "name": "Simple",
+    "version": "1.0.0",
+    "author": "Buckydrop"
+  }

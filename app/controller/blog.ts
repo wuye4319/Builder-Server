@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary } from 'egg-shell-decorators';
+import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary, Responses } from 'egg-shell-decorators';
 
 import Tools from '../util';
 const util = new Tools();
@@ -8,14 +8,18 @@ const util = new Tools();
 @IgnoreJwtAll
 export default class PorductController extends Controller {
   @Get('/:type/:pagesize/:page')
-  @Description('根据关键词，搜索所有相关商品，返回商品列表')
-  @Summary('搜索商品')
+  @Description('根据类型，类型包括：漫画，美文，图文等，获取博客列表信息')
+  @Summary('博客列表')
   @Parameters([
-    { name: 'pagesize', in: 'path', required: true, default: 100, schema: { $ref: '#/definitions/PageSize' } },
-    { name: 'page', in: 'path', required: true, default: 1, schema: { $ref: '#/definitions/Page' } },
-    { name: 'key', in: 'path', required: true, default: 1, schema: { $ref: '#/definitions/Key' } }
+    { name: 'pagesize', in: 'path', required: true, schema: { $ref: '#/definitions/PageSize' } },
+    { name: 'page', in: 'path', required: true, schema: { $ref: '#/definitions/Page' } },
+    { name: 'type', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
   ])
-  public async searchProduct({ params: { type, pagesize, page } }) {
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
+  public async getBlogList({ params: { type, pagesize, page } }) {
     const { ctx } = this;
     pagesize = parseInt(pagesize)
     page = parseInt(page)
@@ -31,13 +35,16 @@ export default class PorductController extends Controller {
   }
 
   @Post('/:id')
-  @Description('根据ID获取当前商品的详细信息接口')
-  @Summary('商品信息')
+  @Description('根据ID获取当前博客文章的详细信息接口')
+  @Summary('博文详情')
   @Parameters([
-    { name: 'id', in: 'path', required: true, default: '120', schema: { $ref: '#/definitions/Key' } }
+    { name: 'id', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
   ])
-  // @Responses({ "200": { description: "test", schema: { $ref: 'User' } } })
-  public async getProduct({ params: { id } }) {
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
+  public async getBlogDetail({ params: { id } }) {
     const { ctx } = this;
     try {
       let result = await ctx.service.blog.getBlog(id)

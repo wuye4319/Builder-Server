@@ -2,6 +2,9 @@ import { Application } from 'egg';
 import { EggShell } from 'egg-shell-decorators';
 
 export default (app: Application) => {
+  const { config } = app;
+  const { listen } = config.cluster
+
   EggShell(app, {
     prefix: '/web/v1',
     quickStart: false,
@@ -9,8 +12,8 @@ export default (app: Application) => {
       open: true,
       title: 'wssso接口文档库',
       version: '1.0.0',
-      host: '127.0.0.1',
-      port: 7001,
+      host: listen.hostname,
+      port: listen.port,
       schemes: ['http', 'https'],
       paths: {
         outPath: '/api-docs/public/json/main.json',

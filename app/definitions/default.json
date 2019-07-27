@@ -4,12 +4,22 @@
     "description": "关键词",
     "example": 1
   },
+  "ProID": {
+    "type": "integer",
+    "description": "关键词",
+    "example": 120
+  },
   "PageSize": {
     "type": "integer",
     "description": "页数大小",
-    "example": "100"
+    "example": "10"
   },
   "Page": {
+    "type": "integer",
+    "example": "1",
+    "description": "当前页"
+  },
+  "Domain": {
     "type": "integer",
     "example": "1",
     "description": "当前页"

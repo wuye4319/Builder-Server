@@ -1,0 +1,395 @@
+{
+  "pages": {
+    "home": {
+      "name": "home",
+      "module": [
+        {
+          "name": "SlideShow",
+          "key": 6,
+          "height": "low",
+          "interval": 3,
+          "slideType": 0,
+          "arrowStyle": 0,
+          "navStyle": 1,
+          "fontSize": "medium",
+          "maskOpacity": 0.35,
+          "padding": false,
+          "data": [
+            {
+              "imgAlign": "middle",
+              "imgAlt": "",
+              "link": "http://builder.test.com/topics_details/?id=RqGv2P",
+              "overLay": true,
+              "title": "Women SHOES",
+              "content": "123",
+              "img": "http://img.alicdn.com/bao/uploaded/i2/2805768022/TB2g.3ypdBopuFjSZPcXXc9EpXa_!!2805768022.jpg"
+            },
+            {
+              "imgAlign": "middle",
+              "imgAlt": "",
+              "link": "http://builder.test.com/topics_details/?id=0qk627",
+              "overLay": true,
+              "title": "Dress",
+              "content": "",
+              "img": "http://img.alicdn.com/bao/uploaded/i1/639295044/O1CN014Gma2i1n8CGv0odT5_!!639295044.jpg"
+            },
+            {
+              "imgAlign": "middle",
+              "imgAlt": "",
+              "link": "http://builder.test.com/topics_details/?id=628mqm",
+              "overLay": true,
+              "title": "Accessories",
+              "content": "",
+              "img": "http://img.alicdn.com/bao/uploaded/i3/775375243/O1CN01Obygd51obL3nQ8JEG_!!775375243.jpg"
+            }
+          ]
+        },
+        {
+          "name": "FeaturedCollection",
+          "key": 1,
+          "rows": 4,
+          "cols": 1,
+          "collectId": "4",
+          "showDes": true,
+          "showLine": true,
+          "showMore": true,
+          "title": "推荐商品",
+          "desProducts": "精选热销商品推荐"
+        },
+        {
+          "name": "ImageWithText",
+          "key": 1,
+          "sectionHeight": "Small",
+          "bgColor": "#FCF6F0",
+          "desktopAlign": "Left",
+          "mobileAlign": "Top",
+          "imageStyle": "Circle",
+          "imagePosition": "center center",
+          "title": "Shop Tops",
+          "buttonLabel": "View More",
+          "buttonLink": "http://builder.test.com/topics_details/?id=OXb6X3",
+          "content": "Top off your look with these head-turning styles! We're got everything from the best wardrobe staples to the hottest seasonal trends!",
+          "image": "http://img.alicdn.com/bao/uploaded/i2/2805768022/TB2g.3ypdBopuFjSZPcXXc9EpXa_!!2805768022.jpg"
+        },
+        {
+          "name": "HomeTopicsModule",
+          "key": 1,
+          "showMore": true,
+          "showLine": true,
+          "showMinPrice": true,
+          "collectionIds": "4,6",
+          "collectSize": "middle",
+          "title": "推荐专题",
+          "showDes": true,
+          "desTopics": "精选热门专题推荐"
+        }
+      ]
+    },
+    "products": {
+      "name": "products",
+      "module": [
+        {
+          "name": "Products",
+          "key": 1,
+          "marketPrice": true,
+          "buyNow": true
+        }
+      ]
+    },
+    "order_confirm": {
+      "name": "order_confirm",
+      "module": [
+        {
+          "name": "OrderConfirm",
+          "key": 1
+        }
+      ]
+    },
+    "payment": {
+      "name": "payment",
+      "module": [
+        {
+          "name": "Payment",
+          "key": 1
+        }
+      ]
+    },
+    "pay_result": {
+      "name": "pay_result",
+      "module": [
+        {
+          "name": "PayResult",
+          "key": 1
+        }
+      ]
+    },
+    "cart": {
+      "name": "cart",
+      "module": [
+        {
+          "name": "Cart",
+          "key": 1,
+          "selectAll": true,
+          "orderNote": true
+        }
+      ]
+    },
+    "search": {
+      "name": "search",
+      "module": [
+        {
+          "name": "Search",
+          "key": 1,
+          "rows": 5
+        }
+      ]
+    },
+    "single": {
+      "name": "single",
+      "module": [
+        {
+          "name": "Single",
+          "key": 1
+        }
+      ]
+    },
+    "topics": {
+      "name": "topics",
+      "module": [
+        {
+          "name": "Topics",
+          "key": 1,
+          "collectId": [
+            "02",
+            "04",
+            "05",
+            "06"
+          ],
+          "collectSize": "middle",
+          "showMinPrice": false
+        }
+      ]
+    },
+    "topics_details": {
+      "name": "topics_details",
+      "module": [
+        {
+          "name": "TopicsDetails",
+          "key": 1,
+          "cols": 4,
+          "checkbox": {
+            "showTagCtrl": true,
+            "showSortCtrl": false,
+            "showCategoryCtrl": false
+          }
+        }
+      ]
+    },
+    "products_details": {
+      "name": "products_details",
+      "module": [
+        {
+          "name": "ProdcutsDetails",
+          "key": 1,
+          "cols": 4,
+          "checkbox": {
+            "showTagCtrl": true,
+            "showSortCtrl": false,
+            "showCategoryCtrl": false
+          }
+        }
+      ]
+    },
+    "error_page": {
+      "name": "error_page",
+      "module": [
+        {
+          "name": "ErrorPage",
+          "key": 1
+        }
+      ]
+    },
+    "blogs_details": {
+      "name": "blogs_details",
+      "module": [
+        {
+          "name": "BlogDetails",
+          "key": 1
+        }
+      ]
+    },
+    "blogs": {
+      "name": "blogs",
+      "module": [
+        {
+          "name": "Blogs",
+          "key": 1,
+          "blogStyle": "Medium",
+          "cols": 3,
+          "rows": 5
+        }
+      ]
+    },
+    "register": {
+      "name": "register",
+      "module": [
+        {
+          "name": "Register",
+          "key": 1
+        }
+      ]
+    },
+    "login": {
+      "name": "login",
+      "module": [
+        {
+          "name": "Login",
+          "key": 1
+        }
+      ]
+    },
+    "send_email": {
+      "name": "send_email",
+      "module": [
+        {
+          "name": "SendEmail",
+          "key": 1
+        }
+      ]
+    },
+    "email_result": {
+      "name": "email_result",
+      "module": [
+        {
+          "name": "EmailResult",
+          "key": 1
+        }
+      ]
+    },
+    "reset_password": {
+      "name": "reset_password",
+      "module": [
+        {
+          "name": "ResetPassword",
+          "key": 1
+        }
+      ]
+    },
+    "orders": {
+      "name": "orders",
+      "userCenter": "orders",
+      "module": [
+        {
+          "name": "Orders",
+          "key": 1
+        }
+      ]
+    },
+    "order_details": {
+      "name": "order_details",
+      "module": [
+        {
+          "name": "OrderDetails",
+          "key": 1
+        }
+      ]
+    },
+    "address": {
+      "name": "address",
+      "userCenter": "address",
+      "module": [
+        {
+          "name": "Address",
+          "key": 1
+        }
+      ]
+    },
+    "account_information": {
+      "name": "account_information",
+      "userCenter": "account",
+      "module": [
+        {
+          "name": "AccountInformation",
+          "key": 1
+        }
+      ]
+    }
+  },
+  "layout": {
+    "header": "",
+    "footer": ""
+  },
+  "theme": {
+    "colors": {
+      "name": "Colors",
+      "key": 1,
+      "data": {
+        "general": {
+          "brand": {
+            "value": "#302E2F",
+            "type": "brand"
+          },
+          "title": {
+            "value": "#302E2F",
+            "type": "font"
+          },
+          "text": {
+            "value": "#302E2F",
+            "type": "font"
+          },
+          "subText": {
+            "value": "#8B8185",
+            "type": "font"
+          },
+          "prompt": {
+            "value": "#B2AFB0",
+            "type": "font"
+          },
+          "button": {
+            "value": "#FFFFFF",
+            "type": "font"
+          },
+          "link": {
+            "value": "#1890FF",
+            "type": "font"
+          },
+          "price": {
+            "value": "#302E2F",
+            "type": "font"
+          },
+          "icon": {
+            "value": "#302E2F",
+            "type": "icon"
+          },
+          "hr": {
+            "value": "#EBE5E7",
+            "type": "border"
+          },
+          "border": {
+            "value": "#DBD8D9",
+            "type": "border"
+          },
+          "bg": {
+            "value": "#FFFFFF",
+            "type": "background"
+          },
+          "subBg": {
+            "value": "#FBFAFA",
+            "type": "background"
+          }
+        },
+        "others": null
+      }
+    },
+    "favicon": {
+      "name": "Favicon",
+      "key": 1,
+      "data": {
+        "icon": ""
+      }
+    }
+  },
+  "name": "Simple",
+  "version": "1.0.0",
+  "author": "Buckydrop"
+}

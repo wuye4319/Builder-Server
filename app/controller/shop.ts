@@ -6,45 +6,34 @@ const util = new Tools();
 
 @TagsAll('店铺信息接口')
 @IgnoreJwtAll
-export default class BuilderController extends Controller {
-  @Get('/userpageconfig/:type/:user')
-  @Description('')
-  @Summary('搜索商品')
+export default class ShopController extends Controller {
+  @Get('/pageconfig/:user')
+  @Description('根据域名，获取当前页面的数据信息')
+  @Summary('获取页面信息')
   @Parameters([
-    { name: 'pagesize', in: 'path', required: true, default: 100, schema: { $ref: '#/definitions/PageSize' } },
-    { name: 'page', in: 'path', required: true, default: 1, schema: { $ref: '#/definitions/Page' } },
-    { name: 'key', in: 'path', required: true, default: 1, schema: { $ref: '#/definitions/Key' } }
+    { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Domain' } }
   ])
-  public async searchProduct({ params: { type, user }, body: { body } }) {
+  public async searchProduct({ params: { user } }) {
     const { ctx } = this;
     try {
-      let result
-      switch (type) {
-        case 'get':
-          result = ctx.service.builder.getpageconfig(user)
-          break
-        case 'edit':
-          result = ctx.service.builder.editpageconfig(user, body)
-          break
-      }
-
+      let result = await ctx.service.shop.getpageconfig(user)
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);
     }
   }
 
-  @Post('/infor/:id')
-  @Description('根据ID获取当前商品的详细信息接口')
-  @Summary('商品信息')
+  @Post('/pageconfig/:user')
+  @Description('根据域名，修改对应的页面数据信息')
+  @Summary('修改页面信息')
   @Parameters([
-    { name: 'id', in: 'path', required: true, default: '120', schema: { $ref: '#/definitions/Key' } }
+    { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
   ])
   // @Responses({ "200": { description: "test", schema: { $ref: 'User' } } })
-  public async getProduct({ params: { id } }) {
+  public async getProduct({ params: { user }, body: { body } }) {
     const { ctx } = this;
     try {
-      let result = await ctx.service.product.getPro(id);
+      let result = await ctx.service.shop.editpageconfig(user, body)
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);
