@@ -7,9 +7,10 @@
 import Basemysql from '../base/mysql'
 let basemysql = new Basemysql()
 import Tools from '../util';
+import { Service } from 'egg';
 const util = new Tools();
 
-class mysql {
+export default class Topic extends Service {
   getProCountByTopic(id) {
     // 获取专题商品总数
     return new Promise((resolve) => {
@@ -150,5 +151,3 @@ class mysql {
     })
   }
 }
-
-module.exports = mysql

@@ -21,7 +21,7 @@
   },
   "Domain": {
     "type": "integer",
-    "example": "1",
+    "example": "default",
     "description": "当前页"
   },
   "User": {

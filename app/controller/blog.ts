@@ -24,7 +24,7 @@ export default class PorductController extends Controller {
     pagesize = parseInt(pagesize)
     page = parseInt(page)
     try {
-      let total = await ctx.service.blog.getBlogCount(type)
+      let total:any = await ctx.service.blog.getBlogCount(type)
 
       let sqlpage = (page - 1) * pagesize
       let tempPro = await ctx.service.blog.getBlogList(type, sqlpage, pagesize)

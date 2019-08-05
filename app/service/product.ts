@@ -7,7 +7,7 @@ const util = new Tools();
 /**
  * table service
  */
-export default class Sheet extends Service {
+export default class Product extends Service {
   addPro(data) {
     let { pro_id, main_img, name, href, sell_price, sales_volume, taoword, coupon, couponhref, topic_id } = data
     return new Promise((resolve) => {

@@ -2,11 +2,11 @@
  * Created by nero on 2017/6/2.
  */
 const fs = require('fs')
-const path = require('path')
 const Writefile = require('keeper-core/lib/writefile')
 let writefile = new Writefile()
+import { Service } from 'egg';
 
-class builder {
+export default class Shop extends Service {
   getpageconfig(user) {
     let data = {}
     let conf = JSON.parse(fs.readFileSync('./shop/' + user + '/themeconf.json').toString())
@@ -37,5 +37,3 @@ class builder {
     return isjsonstr
   }
 }
-
-module.exports = builder

@@ -7,9 +7,10 @@
 import Basemysql from '../base/mysql'
 let basemysql = new Basemysql()
 import Tools from '../util';
+import { Service } from 'egg';
 const util = new Tools();
 
-class mysql {
+export default class Blog extends Service {
   addBlog(data) {
     let { main_img, title, context, label } = data
     return new Promise((resolve) => {
@@ -71,5 +72,3 @@ class mysql {
     })
   }
 }
-
-module.exports = mysql

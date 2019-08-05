@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary } from 'egg-shell-decorators';
+import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary, Responses } from 'egg-shell-decorators';
 
 import Tools from '../util';
 const util = new Tools();
@@ -13,6 +13,10 @@ export default class ShopController extends Controller {
   @Parameters([
     { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Domain' } }
   ])
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
   public async searchProduct({ params: { user } }) {
     const { ctx } = this;
     try {
@@ -29,7 +33,10 @@ export default class ShopController extends Controller {
   @Parameters([
     { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
   ])
-  // @Responses({ "200": { description: "test", schema: { $ref: 'User' } } })
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
   public async getProduct({ params: { user }, body: { body } }) {
     const { ctx } = this;
     try {
