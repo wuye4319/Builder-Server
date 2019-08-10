@@ -1,0 +1,12 @@
+{
+  "topicPageSize": {
+    "type": "integer",
+    "description": "页数大小",
+    "example": "4"
+  },
+  "topicProID": {
+    "type": "integer",
+    "description": "关键词",
+    "example": 4
+  }
+}

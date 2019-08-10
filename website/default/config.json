@@ -1,0 +1,58 @@
+{
+  "pages": {
+    "product": {
+      "title": "商品业",
+      "module": {
+        "header": {
+          "logo": "test"
+        },
+        "carousel": {
+          "images": []
+        },
+        "recommon": {
+          "row": 3,
+          "column": 4,
+          "mainTitle": "推荐商品"
+        },
+        "footer": {
+          "text": "footer"
+        }
+      }
+    },
+    "topic": {
+      "title": "商品业",
+      "module": {
+        "header": {
+          "logo": "test"
+        },
+        "topic_card": {
+          "row": 3,
+          "column": 4
+        },
+        "footer": {
+          "text": "footer"
+        }
+      }
+    },
+    "blog": {
+      "title": "商品业",
+      "module": {
+        "header": {
+          "logo": "test"
+        },
+        "blog": {
+          "row": 3,
+          "colmn": 4
+        },
+        "blog_details": {
+          "row": 3,
+          "colmn": 4
+        },
+        "footer": {
+          "text": "footer"
+        }
+      }
+    }
+  },
+  "version": "1.0.0"
+}

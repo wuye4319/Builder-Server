@@ -4,7 +4,7 @@ import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary, Res
 import Tools from '../util';
 const util = new Tools();
 
-@TagsAll('店铺信息接口')
+@TagsAll('页面信息接口')
 @IgnoreJwtAll
 export default class ShopController extends Controller {
   @Get('/pageconfig/:user')
@@ -17,10 +17,10 @@ export default class ShopController extends Controller {
     '200': { type: 'object', description: '操作成功' },
     '500': { type: 'object', description: '操作失败' }
   })
-  public async searchProduct({ params: { user } }) {
+  public async getPageInfor({ params: { user } }) {
     const { ctx } = this;
     try {
-      let result = await ctx.service.shop.getpageconfig(user)
+      let result = await ctx.service.page.getpageconfig(user)
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);
@@ -37,10 +37,10 @@ export default class ShopController extends Controller {
     '200': { type: 'object', description: '操作成功' },
     '500': { type: 'object', description: '操作失败' }
   })
-  public async getProduct({ params: { user }, body: { body } }) {
+  public async editPageInfor({ params: { user }, body: { body } }) {
     const { ctx } = this;
     try {
-      let result = await ctx.service.shop.editpageconfig(user, body)
+      let result = await ctx.service.page.editpageconfig(user, body)
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);

@@ -9,8 +9,7 @@ import { Service } from 'egg';
 export default class Shop extends Service {
   getpageconfig(user) {
     let data = {}
-    let conf = JSON.parse(fs.readFileSync('./shop/' + user + '/themeconf.json').toString())
-    let pageconf = './shop/' + user + '/' + conf.currtheme + '/config.json'
+    let pageconf = './website/' + user + '/config.json'
     if (fs.existsSync(pageconf)) {
       data = JSON.parse(fs.readFileSync(pageconf).toString())
       return data
@@ -20,8 +19,7 @@ export default class Shop extends Service {
   }
 
   editpageconfig(user, pagestr) {
-    let conf = JSON.parse(fs.readFileSync('./shop/' + user + '/themeconf.json').toString())
-    let fspageconf = './shop/' + user + '/' + conf.currtheme + '/config.json'
+    let fspageconf = './website/' + user + '/config.json'
 
     if (this.checksavestr(pagestr)) {
       writefile.writejs(fspageconf, JSON.stringify(pagestr))

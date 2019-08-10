@@ -59,11 +59,13 @@ export default class BuilderController extends Controller {
     }
   }
 
-  @Post('/:id/:pagesize/:page/')
+  @Get('/:id/:pagesize/:page/')
   @Description('专题详情接口，包括专题信息和专题相关商品列表')
   @Summary('专题详情')
   @Parameters([
-    { name: 'id', in: 'path', required: true, schema: { $ref: '#/definitions/ProID' } }
+    { name: 'id', in: 'path', required: true, schema: { $ref: '#/definitions/topicProID' } },
+    { name: 'pagesize', in: 'path', required: true, schema: { $ref: '#/definitions/topicPageSize' } },
+    { name: 'page', in: 'path', required: true, schema: { $ref: '#/definitions/Page' } },
   ])
   @Responses({
     '200': { type: 'object', description: '操作成功' },
@@ -78,8 +80,8 @@ export default class BuilderController extends Controller {
       let sqlpage = (page - 1) * pagesize
 
       let result: any = {}
-      result.collection = await ctx.service.topic.getProListByTopic(id, sqlpage, pagesize);
-      result.product_list = await ctx.service.topic.getTopicById(id)
+      result.product_list = await ctx.service.topic.getProListByTopic(id, sqlpage, pagesize);
+      result.collection = await ctx.service.topic.getTopicById(id)
       ctx.body = util.status(result, total.total, page, pagesize)
     } catch (e) {
       ctx.body = util.errorHandler(e);

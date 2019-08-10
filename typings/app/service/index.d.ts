@@ -3,15 +3,15 @@
 
 import 'egg';
 import ExportBlog from '../../../app/service/blog';
+import ExportPage from '../../../app/service/page';
 import ExportProduct from '../../../app/service/product';
-import ExportShop from '../../../app/service/shop';
 import ExportTopic from '../../../app/service/topic';
 
 declare module 'egg' {
   interface IService {
     blog: ExportBlog;
+    page: ExportPage;
     product: ExportProduct;
-    shop: ExportShop;
     topic: ExportTopic;
   }
 }
