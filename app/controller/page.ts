@@ -7,7 +7,7 @@ const util = new Tools();
 @TagsAll('页面信息接口')
 @IgnoreJwtAll
 export default class ShopController extends Controller {
-  @Get('/pageconfig/:user')
+  @Get('/config/:user')
   @Description('根据域名，获取当前页面的数据信息')
   @Summary('获取页面信息')
   @Parameters([
@@ -27,7 +27,7 @@ export default class ShopController extends Controller {
     }
   }
 
-  @Post('/pageconfig/:user')
+  @Post('/config/:user')
   @Description('根据域名，修改对应的页面数据信息')
   @Summary('修改页面信息')
   @Parameters([
