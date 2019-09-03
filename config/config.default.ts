@@ -16,14 +16,25 @@ export default (appInfo: EggAppInfo) => {
     dir: path.join(__dirname, '/../logs/h3wind/'),
   };
 
+  // domain
   config.security = {
-    csrf: false,
+    csrf: {
+      enable: false,
+      ignoreJSON: true
+    },
+    domainWhiteList: ['http://localhost:8686']
   };
 
+  config.cors = {
+    origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH'
+  };
+
+  // listen
   config.cluster = {
     listen: {
       port: 7001,
-      hostname: '127.0.0.1',
+      hostname: 'localhost',
     }
   }
 

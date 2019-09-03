@@ -24,6 +24,7 @@
   "dependencies": {
     "ali-oss": "^6.1.1",
     "egg": "^2.6.1",
+    "egg-cors": "^2.2.0",
     "egg-scripts": "^2.6.0",
     "egg-shell-decorators": "^1.0.7",
     "keeper-core": "^1.1.10",

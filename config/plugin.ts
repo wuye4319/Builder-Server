@@ -13,6 +13,10 @@ const plugin: EggPlugin = {
   security: {
     enable: false,
     package: 'egg-security',
+  },
+  cors: {
+    enable: true,
+    package: 'egg-cors',
   }
 };
 
