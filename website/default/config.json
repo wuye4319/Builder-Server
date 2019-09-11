@@ -51,6 +51,38 @@
             "strokeLinecap": "square",
             "strokeColor": "red"
           }
+        },
+        {
+          "compName": "rate",
+          "compAttr": {
+            "allowHalf": true,
+            "allowClear": true,
+            "value": 0,
+            "count": 5,
+            "disabled": false
+          }
+        },
+        {
+          "compName": "tabs",
+          "compAttr": {
+            "animated": true,
+            "hideAdd": false,
+            "type": "line",
+            "size":"default",
+            "tabPosition": "top",
+            "tabBarGutter": 0
+          }
+        },
+        {
+          "compName": "pagination",
+          "compAttr": {
+            "simple": false,
+            "showSizeChanger": false,
+            "total": 400,
+            "showQuickJumper": false,
+            "hideOnSinglePage": false,
+            "current": 1
+          }
         }
       ]
     },

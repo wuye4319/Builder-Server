@@ -1,0 +1,400 @@
+{
+  "layout": [{
+      "compName": "input",
+      "type": "base",
+      "title": "输入框",
+      "description": "",
+      "compAttr": {
+        "width": "100%",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请输入内容",
+        "size": "small",
+        "borderRadius": "2px",
+        "borderColor": "",
+        "borderWidth": "1px",
+        "borderStyle": "solid",
+        "fontSize": "12px",
+        "fontColor": ""
+      }
+    },
+    {
+      "compName": "button",
+      "type": "base",
+      "title": "按钮",
+      "description": "",
+      "compAttr": {
+        "width": "100px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "value": "确认",
+        "size": "small",
+        "borderRadius": "2px",
+        "borderColor": "",
+        "borderWidth": "1px",
+        "borderStyle": "solid",
+        "fontSize": "12px",
+        "fontColor": ""
+      }
+    },
+    {
+      "compName": "select",
+      "type": "base",
+      "title": "下拉框",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": [],
+        "mode": "default"
+      }
+    },
+    {
+      "compName": "radio",
+      "type": "base",
+      "title": "单选框",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": "[]",
+        "mode": "default",
+        "radioOptions": ["apple", "pear", "orange"],
+        "choosen": 3
+      }
+    },
+    {
+      "compName": "checkbox",
+      "type": "base",
+      "title": "多选框",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": "[]",
+        "mode": "default",
+        "radioOptions": ["apple", "pear", "orange"],
+        "choosen": 3
+      }
+    },
+    {
+      "compName": "switch",
+      "type": "base",
+      "title": "开关",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": "[]",
+        "mode": "default",
+        "radioOptions": ["apple", "pear", "orange"],
+        "choosen": 3
+      }
+    },
+    {
+      "compName": "img",
+      "type": "effect",
+      "title": "图片框",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "200px",
+        "margin": "0px",
+        "padding": "0px",
+        "src": "",
+        "alt": "这是一张图片"
+      }
+    },
+    {
+      "compName": "audio",
+      "type": "effect",
+      "title": "音频",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "40px",
+        "margin": "0px",
+        "padding": "0px",
+        "src": "",
+        "alt": "这是一张图片"
+      }
+    },
+    {
+      "compName": "video",
+      "type": "effect",
+      "title": "视频",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "200px",
+        "margin": "0px",
+        "padding": "0px",
+        "src": ""
+      }
+    },
+    {
+      "compName": "text_area",
+      "type": "base",
+      "title": "文字框",
+      "description": "",
+      "compAttr": {
+        "width": "100%",
+        "rows": 1,
+        "placeholder": "sadasd",
+        "value": "",
+        "fontSize": "20px",
+        "color": "blue"
+      }
+    }
+  ],
+  "single": [{
+      "compName": "carousel",
+      "type": "effect",
+      "title": "轮播框",
+      "description": "",
+      "compAttr": {
+        "effect": "fade",
+        "arrows": true,
+        "vertical": false,
+        "autoplay": true,
+        "height": "300px",
+        "width": "100%",
+        "dots": true
+      }
+    },
+    {
+      "compName": "layout",
+      "type": "effect",
+      "title": "布局组件",
+      "description": "",
+      "compAttr": {
+        "row": 2,
+        "column": 3,
+        "childList": [{
+          "compName": "header",
+          "compAttr": {
+            "text": "sdf"
+          }
+        }]
+      }
+    },
+    {
+      "compName": "input",
+      "type": "base",
+      "title": "输入框",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请输入内容",
+        "size": "small",
+        "borderRadius": "2px",
+        "borderColor": "",
+        "borderWidth": "1px",
+        "borderStyle": "solid",
+        "fontSize": "12px",
+        "fontColor": ""
+      }
+    },
+    {
+      "compName": "button",
+      "type": "base",
+      "title": "按钮",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "value": "确认",
+        "size": "small",
+        "borderRadius": "2px",
+        "borderColor": "",
+        "borderWidth": "1px",
+        "borderStyle": "solid",
+        "fontSize": "12px",
+        "fontColor": ""
+      }
+    },
+    {
+      "compName": "select",
+      "type": "base",
+      "title": "下拉框",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": [],
+        "mode": "default"
+      }
+    },
+    {
+      "compName": "radio",
+      "type": "base",
+      "title": "单选组件",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": "[]",
+        "mode": "default",
+        "radioOptions": ["apple", "pear", "orange"],
+        "choosen": 3
+      }
+    },
+    {
+      "compName": "checkbox",
+      "type": "base",
+      "title": "多选组件",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": "[]",
+        "mode": "default",
+        "radioOptions": ["apple", "pear", "orange"],
+        "choosen": 3
+      }
+    },
+    {
+      "compName": "switch",
+      "type": "base",
+      "title": "开关组件",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "30px",
+        "margin": "0px",
+        "padding": "0px",
+        "placeHolder": "请选择",
+        "size": "default",
+        "fontColor": "",
+        "content": "[]",
+        "mode": "default",
+        "radioOptions": ["apple", "pear", "orange"],
+        "choosen": 3
+      }
+    },
+    {
+      "compName": "img",
+      "type": "effect",
+      "title": "图片组件",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "200px",
+        "margin": "0px",
+        "padding": "0px",
+        "src": "",
+        "alt": "这是一张图片"
+      }
+    },
+    {
+      "compName": "audio",
+      "type": "effect",
+      "title": "音频组件",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "40px",
+        "margin": "0px",
+        "padding": "0px",
+        "src": "",
+        "alt": "这是一张图片"
+      }
+    },
+    {
+      "compName": "video",
+      "type": "effect",
+      "title": "视频组件",
+      "description": "",
+      "compAttr": {
+        "width": "200px",
+        "height": "200px",
+        "margin": "0px",
+        "padding": "0px",
+        "src": ""
+      }
+    },
+    {
+      "compName": "text_area",
+      "type": "base",
+      "title": "文本框",
+      "description": "",
+      "compAttr": {
+        "width": "100%",
+        "rows": 1,
+        "placeholder": "sadasd",
+        "value": "",
+        "fontSize": "20px",
+        "color": "blue"
+      }
+    },
+    {
+      "compName": "nav_m",
+      "type": "business",
+      "title": "导航组件",
+      "description": "",
+      "compAttr": {
+        "column": 4,
+        "row": 2,
+        "gutter": 16,
+        "width": "100%"
+      }
+    },
+    {
+      "compName": "active_m",
+      "type": "business",
+      "title": "卡片组件",
+      "description": "",
+      "compAttr": {
+        "width": "90%",
+        "imgHeight": "240px",
+        "borderRadius": "10px",
+        "lineClamp": 2,
+        "fontSize": "18px",
+        "fontColor": "red",
+        "titleChecked": true
+      }
+    }
+  ]
+}

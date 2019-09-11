@@ -40,7 +40,47 @@ export default class ShopController extends Controller {
   public async editPageInfor({ params: { user }, body: { body } }) {
     const { ctx } = this;
     try {
-      let result = await ctx.service.page.editpageconfig(user, body)
+      let result = await ctx.service.page.editpageconfig(user, body, 'pages')
+      ctx.body = util.status(result)
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
+  }
+
+  @Post('/compstore/:user')
+  @Description('根据域名，修改应用下的组件库信息')
+  @Summary('修改组件库信息')
+  @Parameters([
+    { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
+  ])
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
+  public async editCompStore({ params: { user }, body: { body } }) {
+    const { ctx } = this;
+    try {
+      let result = await ctx.service.page.editpageconfig(user, body, 'compStore')
+      ctx.body = util.status(result)
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
+  }
+
+  @Post('/mobilecompstore/:user')
+  @Description('根据域名，修改应用下的手机版组件库信息')
+  @Summary('修改手机版组件库信息')
+  @Parameters([
+    { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
+  ])
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
+  public async mobileCompStore({ params: { user }, body: { body } }) {
+    const { ctx } = this;
+    try {
+      let result = await ctx.service.page.editpageconfig(user, body, 'mobileCompStore')
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);

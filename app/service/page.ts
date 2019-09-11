@@ -8,18 +8,23 @@ import { Service } from 'egg';
 
 export default class Shop extends Service {
   getpageconfig(user) {
-    let data = {}
-    let pageconf = './website/' + user + '/config.json'
-    if (fs.existsSync(pageconf)) {
-      data = JSON.parse(fs.readFileSync(pageconf).toString())
-      return data
-    } else {
-      return 'params error!'
+    let data: any = ['compStore', 'mobileCompStore', 'pages']
+    let obj = {}
+    for (let i in data) {
+      let di = data[i]
+      let pageconf = './website/' + user + '/' + di + '.json'
+      if (fs.existsSync(pageconf)) {
+        let tempjson = JSON.parse(fs.readFileSync(pageconf).toString())
+        obj[di] = tempjson
+      } else {
+        return 'params error!'
+      }
     }
+    return obj
   }
 
-  editpageconfig(user, pagestr) {
-    let fspageconf = './website/' + user + '/config.json'
+  editpageconfig(user, pagestr, file) {
+    let fspageconf = './website/' + user + '/' + file + '.json'
 
     if (this.checksavestr(pagestr)) {
       writefile.writejs(fspageconf, JSON.stringify(pagestr))

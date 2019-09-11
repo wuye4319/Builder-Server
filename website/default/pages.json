@@ -1,0 +1,133 @@
+ {
+   "product": {
+     "title": "商品业",
+     "module": [{
+         "compName": "header",
+         "compAttr": {
+           "logo": "test"
+         }
+       },
+       {
+         "compName": "carousel",
+         "compAttr": {
+           "effect": "fade",
+           "arrows": true,
+           "vertical": false,
+           "autoplay": true,
+           "height": "300px",
+           "width": "100%",
+           "dots": true
+         }
+       },
+       {
+         "compName": "text_area",
+         "compAttr": {
+           "width": "100%",
+           "rows": 1,
+           "placeholder": "sadasd",
+           "value": "",
+           "fontSize": "20px",
+           "color": "blue"
+         }
+       },
+       {
+         "compName": "progress_ant",
+         "compAttr": {
+           "percent": 10,
+           "type": "circle",
+           "status": "active",
+           "showInfo": true,
+           "width": 100,
+           "strokeWidth": 10,
+           "gapDegree": 0,
+           "gapPosition": "top",
+           "strokeLinecap": "square",
+           "strokeColor": "red"
+         }
+       }
+     ]
+   },
+   "topic": {
+     "title": "商品业",
+     "module": [{
+         "compName": "header",
+         "compAttr": {
+           "logo": "test"
+         }
+       },
+       {
+         "compName": "topic_card",
+         "compAttr": {
+           "row": 3,
+           "column": 4
+         }
+       },
+       {
+         "compName": "layout",
+         "compAttr": {
+           "row": 2,
+           "column": 3,
+           "childList": [{
+             "compName": "header",
+             "compAttr": {
+               "logo": "test"
+             }
+           }]
+         }
+       }
+     ]
+   },
+   "blog": {
+     "title": "商品业",
+     "module": [{
+         "compName": "header",
+         "compAttr": {
+           "logo": "test"
+         }
+       },
+       {
+         "compName": "blog",
+         "compAttr": {
+           "row": 3,
+           "colmn": 4
+         }
+       },
+       {
+         "compName": "blog_details",
+         "compAttr": {
+           "row": 3,
+           "colmn": 4
+         }
+       }
+     ]
+   },
+   "mobile-home": {
+     "title": "手机页",
+     "module": [{
+         "compName": "nav_m",
+         "compAttr": {
+           "column": 4,
+           "row": 2,
+           "gutter": 16,
+           "width": "100%"
+         }
+       },
+       {
+         "compName": "active_m",
+         "compAttr": {
+           "width": "90%",
+           "imgHeight": "240px",
+           "borderRadius": "10px",
+           "lineClamp": 2,
+           "fontSize": "18px",
+           "fontColor": "red",
+           "titleChecked": true
+         }
+       }
+     ]
+   },
+   "empty": {
+     "title": "空页面",
+     "module": []
+   }
+ }
