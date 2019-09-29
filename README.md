@@ -31,3 +31,9 @@ $ npm start
 
 - Node.js 8.x
 - Typescript 2.8+
+
+### 部署方案
+- Nginx
+- 80:PHP frontend
+- 443:Vue frontend
+- 7001:nodejs middle server

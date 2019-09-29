@@ -6,6 +6,7 @@ import ExportBlog from '../../../app/controller/blog';
 import ExportPage from '../../../app/controller/page';
 import ExportProduct from '../../../app/controller/product';
 import ExportTopic from '../../../app/controller/topic';
+import ExportUpload from '../../../app/controller/upload';
 
 declare module 'egg' {
   interface IController {
@@ -13,5 +14,6 @@ declare module 'egg' {
     page: ExportPage;
     product: ExportProduct;
     topic: ExportTopic;
+    upload: ExportUpload;
   }
 }

@@ -6,6 +6,7 @@ import ExportBlog from '../../../app/service/blog';
 import ExportPage from '../../../app/service/page';
 import ExportProduct from '../../../app/service/product';
 import ExportTopic from '../../../app/service/topic';
+import ExportUpload from '../../../app/service/upload';
 
 declare module 'egg' {
   interface IService {
@@ -13,5 +14,6 @@ declare module 'egg' {
     page: ExportPage;
     product: ExportProduct;
     topic: ExportTopic;
+    upload: ExportUpload;
   }
 }

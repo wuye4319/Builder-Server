@@ -1,7 +1,6 @@
 [
   {
     "compName": "carousel",
-    "compImg": "carousel",
     "type": "business",
     "title": "轮播框",
     "description": "",
@@ -17,7 +16,6 @@
   },
   {
     "compName": "layout",
-    "compImg": "layout",
     "type": "layout",
     "title": "布局",
     "description": "布局组件",
@@ -29,7 +27,6 @@
   },
   {
     "compName": "input",
-    "compImg": "input",
     "type": "base",
     "title": "输入框",
     "description": "",
@@ -50,7 +47,6 @@
   },
   {
     "compName": "button",
-    "compImg": "button",
     "type": "base",
     "title": "按钮",
     "description": "",
@@ -71,7 +67,6 @@
   },
   {
     "compName": "select",
-    "compImg": "select",
     "type": "base",
     "title": "下拉框",
     "description": "",
@@ -89,7 +84,6 @@
   },
   {
     "compName": "radio",
-    "compImg": "radio",
     "type": "base",
     "title": "单选组件",
     "description": "",
@@ -113,7 +107,6 @@
   },
   {
     "compName": "checkbox",
-    "compImg": "checkbox",
     "type": "base",
     "title": "多选组件",
     "description": "",
@@ -137,7 +130,6 @@
   },
   {
     "compName": "switch",
-    "compImg": "switch",
     "type": "base",
     "title": "开关组件",
     "description": "",
@@ -161,7 +153,6 @@
   },
   {
     "compName": "img",
-    "compImg": "img",
     "type": "base",
     "title": "图片组件",
     "description": "",
@@ -176,7 +167,6 @@
   },
   {
     "compName": "audio",
-    "compImg": "audio",
     "type": "base",
     "title": "音频组件",
     "description": "",
@@ -191,7 +181,6 @@
   },
   {
     "compName": "video",
-    "compImg": "video",
     "type": "base",
     "title": "视频组件",
     "description": "",
@@ -205,7 +194,6 @@
   },
   {
     "compName": "text_area",
-    "compImg": "text_area",
     "type": "base",
     "title": "文本框",
     "description": "",
@@ -220,7 +208,6 @@
   },
   {
     "compName": "nav_m",
-    "compImg": "nav_m",
     "type": "business",
     "title": "导航组件",
     "description": "",
@@ -233,7 +220,6 @@
   },
   {
     "compName": "active_m",
-    "compImg": "active_m",
     "type": "business",
     "title": "卡片组件",
     "description": "",
@@ -249,7 +235,6 @@
   },
   {
     "compName": "subfield",
-    "compImg": "subfield",
     "type": "layout",
     "title": "分栏",
     "description": "",
@@ -260,7 +245,6 @@
   },
   {
     "compName": "grid",
-    "compImg": "grid",
     "type": "layout",
     "title": "栅格",
     "description": "",
@@ -330,7 +314,6 @@
   },
   {
     "compName": "nav",
-    "compImg": "nav",
     "type": "business",
     "title": "导航",
     "description": "",
@@ -340,7 +323,6 @@
   },
   {
     "compName": "footer",
-    "compImg": "footer",
     "type": "business",
     "title": "页脚",
     "description": "",
@@ -350,7 +332,6 @@
   },
   {
     "compName": "card",
-    "compImg": "card",
     "type": "business",
     "title": "页脚",
     "description": "",
@@ -361,7 +342,6 @@
   },
   {
     "compName": "list",
-    "compImg": "list",
     "type": "business",
     "title": "列表",
     "description": "",
@@ -371,67 +351,10 @@
     }
   },
   {
-    "compName": "table",
-    "compImg": "table",
-    "type": "business",
-    "title": "表格",
-    "description": "",
-    "items": [],
-    "compAttr": {
-      "width": "100%"
-    }
-  },
-  {
-    "compName": "portal",
-    "compImg": "portal",
-    "type": "business",
-    "title": "布局",
-    "description": "",
-    "compAttr": {
-      "childlist": [
-        {
-          "compName": "table",
-          "compImg": "table",
-          "type": "business",
-          "title": "表格",
-          "description": "",
-          "items": [],
-          "compAttr": {
-            "width": "100%"
-          }
-        }
-      ],
-      "width": "100%",
-      "header": {
-        "theme": "light",
-        "mode": "horizontal",
-        "show": true
-      },
-      "sider": {
-        "theme": "dark",
-        "mode": "vertical",
-        "show": true
-      },
-      "logo": {
-        "background": "#fff",
-        "text": "logo",
-        "color": "black"
-      }
-    }
-  },
-  {
     "compName": "map",
-    "compImg": "map",
     "type": "base",
     "title": "地图",
     "description": "",
     "compAttr": {}
-  },
-  {
-    "edit": true,
-    "compDesc": "gggghhhh",
-    "apiDesc": "#33\n##eee\n###ffff",
-    "compName": "demoComp",
-    "type": "custom"
   }
 ]

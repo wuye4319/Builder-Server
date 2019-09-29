@@ -1,5 +1,5 @@
 import { Controller } from 'egg';
-import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary, Responses } from 'egg-shell-decorators';
+import { Get, IgnoreJwtAll, Description, TagsAll, Parameters, Post, Summary, Responses, Delete } from 'egg-shell-decorators';
 
 import Tools from '../util';
 const util = new Tools();
@@ -37,10 +37,30 @@ export default class ShopController extends Controller {
     '200': { type: 'object', description: '操作成功' },
     '500': { type: 'object', description: '操作失败' }
   })
-  public async editPageInfor({ params: { user }, body: { body } }) {
+  public async editPageInfor({ params: { user }, body: { page } }) {
     const { ctx } = this;
     try {
-      let result = await ctx.service.page.editpageconfig(user, body, 'pages')
+      let result = await ctx.service.page.editpageconfig(user, page, 'pages')
+      ctx.body = util.status(result)
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
+  }
+
+  @Get('/compstore/:user')
+  @Description('根据组件类型，获取组件列表')
+  @Summary('查询组件列表文件')
+  @Parameters([
+    { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
+  ])
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
+  public async getCompStores({ params: { user }, query }) {
+    const { ctx } = this;
+    try {
+      let result = await ctx.service.page.getCompStore(user, 'compStore', query)
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);
@@ -57,10 +77,30 @@ export default class ShopController extends Controller {
     '200': { type: 'object', description: '操作成功' },
     '500': { type: 'object', description: '操作失败' }
   })
-  public async editCompStore({ params: { user }, body: { body } }) {
+  public async saveCompStore({ params: { user }, body: { params } }) {
     const { ctx } = this;
     try {
-      let result = await ctx.service.page.editpageconfig(user, body, 'compStore')
+      let result = await ctx.service.page.saveCompStore(user, params, 'compStore')
+      ctx.body = util.status(result)
+    } catch (e) {
+      ctx.body = util.errorHandler(e);
+    }
+  }
+
+  @Delete('/compstore/:user')
+  @Description('根据域名，修改应用下的组件库信息')
+  @Summary('修改组件库信息')
+  @Parameters([
+    { name: 'user', in: 'path', required: true, schema: { $ref: '#/definitions/Key' } }
+  ])
+  @Responses({
+    '200': { type: 'object', description: '操作成功' },
+    '500': { type: 'object', description: '操作失败' }
+  })
+  public async deleteCompStore({ params: { user }, query }) {
+    const { ctx } = this;
+    try {
+      let result = await ctx.service.page.deleteCompStore(user, 'compStore', query)
       ctx.body = util.status(result)
     } catch (e) {
       ctx.body = util.errorHandler(e);

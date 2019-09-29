@@ -48,8 +48,8 @@ export default (appInfo: EggAppInfo) => {
   }
 
   config.multipart = {
-    mode: 'file',
-    fileExtensions: ['.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.apk', '.dll', '.avi', '.rmvb', 'mov', '.xmind', '.apk', '.rar'],
+    mode: 'stream',
+    fileExtensions: ['.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.avi', '.rmvb', '.zip'],
   }
 
   config.onerror = {
