@@ -10,7 +10,7 @@ export default (app: Application) => {
     quickStart: false,
     swaggerOpt: {
       open: true,
-      title: 'wssso接口文档库',
+      title: 'server接口文档库',
       version: '1.0.0',
       host: listen.hostname,
       port: listen.port,

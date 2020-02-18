@@ -1,19 +1,23 @@
-// This file is created by egg-ts-helper@1.25.4
+// This file is created by egg-ts-helper@1.25.6
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
-import ExportBlog from '../../../app/controller/blog';
+import ExportApps from '../../../app/controller/apps';
+import ExportComps from '../../../app/controller/comps';
+import ExportFile from '../../../app/controller/file';
 import ExportPage from '../../../app/controller/page';
-import ExportProduct from '../../../app/controller/product';
-import ExportTopic from '../../../app/controller/topic';
+import ExportTables from '../../../app/controller/tables';
 import ExportUpload from '../../../app/controller/upload';
+import ExportUser from '../../../app/controller/user';
 
 declare module 'egg' {
   interface IController {
-    blog: ExportBlog;
+    apps: ExportApps;
+    comps: ExportComps;
+    file: ExportFile;
     page: ExportPage;
-    product: ExportProduct;
-    topic: ExportTopic;
+    tables: ExportTables;
     upload: ExportUpload;
+    user: ExportUser;
   }
 }

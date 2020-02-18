@@ -4,11 +4,6 @@
     "description": "关键词",
     "example": 1
   },
-  "ProID": {
-    "type": "integer",
-    "description": "关键词",
-    "example": 120
-  },
   "PageSize": {
     "type": "integer",
     "description": "页数大小",
@@ -19,10 +14,10 @@
     "example": "1",
     "description": "当前页"
   },
-  "Domain": {
+  "AppID": {
     "type": "integer",
-    "example": "default",
-    "description": "当前页"
+    "example": "e3b0c44298fc1c1",
+    "description": "应用的ID"
   },
   "User": {
     "type": "object",

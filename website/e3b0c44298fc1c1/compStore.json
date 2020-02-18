@@ -22,9 +22,8 @@
     "title": "布局",
     "description": "布局组件",
     "compAttr": {
-      "logo": "test",
-      "number": "3",
-      "childList": []
+      "typeVal": "1:1",
+      "childList": [[], []]
     }
   },
   {
@@ -34,7 +33,7 @@
     "title": "输入框",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "30px",
       "margin": "0px",
       "padding": "0px",
@@ -55,7 +54,7 @@
     "title": "按钮",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "30px",
       "margin": "0px",
       "padding": "0px",
@@ -76,7 +75,7 @@
     "title": "下拉框",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "30px",
       "margin": "0px",
       "padding": "0px",
@@ -94,7 +93,7 @@
     "title": "单选组件",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "30px",
       "margin": "0px",
       "padding": "0px",
@@ -103,11 +102,7 @@
       "fontColor": "",
       "content": "[]",
       "mode": "default",
-      "radioOptions": [
-        "apple",
-        "pear",
-        "orange"
-      ],
+      "radioOptions": ["apple", "pear", "orange"],
       "choosen": 3
     }
   },
@@ -118,7 +113,7 @@
     "title": "多选组件",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "30px",
       "margin": "0px",
       "padding": "0px",
@@ -127,11 +122,7 @@
       "fontColor": "",
       "content": "[]",
       "mode": "default",
-      "radioOptions": [
-        "apple",
-        "pear",
-        "orange"
-      ],
+      "radioOptions": ["apple", "pear", "orange"],
       "choosen": 3
     }
   },
@@ -142,7 +133,7 @@
     "title": "开关组件",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "30px",
       "margin": "0px",
       "padding": "0px",
@@ -151,11 +142,7 @@
       "fontColor": "",
       "content": "[]",
       "mode": "default",
-      "radioOptions": [
-        "apple",
-        "pear",
-        "orange"
-      ],
+      "radioOptions": ["apple", "pear", "orange"],
       "choosen": 3
     }
   },
@@ -166,7 +153,7 @@
     "title": "图片组件",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "200px",
       "margin": "0px",
       "padding": "0px",
@@ -181,7 +168,7 @@
     "title": "音频组件",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "40px",
       "margin": "0px",
       "padding": "0px",
@@ -196,7 +183,7 @@
     "title": "视频组件",
     "description": "",
     "compAttr": {
-      "width": "200px",
+      "width": "100%",
       "height": "200px",
       "margin": "0px",
       "padding": "0px",
@@ -245,17 +232,6 @@
       "fontSize": "18px",
       "fontColor": "red",
       "titleChecked": true
-    }
-  },
-  {
-    "compName": "subfield",
-    "compImg": "subfield",
-    "type": "layout",
-    "title": "分栏",
-    "description": "",
-    "compAttr": {
-      "type": "",
-      "typeVal": []
     }
   },
   {
@@ -428,10 +404,81 @@
     "compAttr": {}
   },
   {
-    "edit": true,
-    "compDesc": "gggghhhh",
+    "description": "gggghhhh",
     "apiDesc": "#33\n##eee\n###ffff",
     "compName": "demoComp",
-    "type": "custom"
+    "type": "custom",
+    "title": "示例",
+    "compAttr": {
+      "percent": 10
+    }
+  },
+  {
+    "compName": "progress_ant",
+    "type": "business",
+    "title": "进度条",
+    "compAttr": {
+      "percent": 10,
+      "type": "circle",
+      "status": "active",
+      "showInfo": true,
+      "width": 100,
+      "strokeWidth": 10,
+      "gapDegree": 0,
+      "gapPosition": "top",
+      "strokeLinecap": "square",
+      "strokeColor": "red"
+    }
+  },
+  {
+    "compName": "title",
+    "title": "标题",
+    "type": "business",
+    "compAttr": {
+      "cont": "dsffds",
+      "height": "50px",
+      "fontSize": "20px",
+      "color": "#333",
+      "showMore": false,
+      "align": "left"
+    }
+  },
+  {
+    "compName": "rate",
+    "type": "business",
+    "title": "评分",
+    "compAttr": {
+      "allowHalf": false,
+      "allowClear": false,
+      "value": 0,
+      "count": 5,
+      "disabled": false
+    }
+  },
+  {
+    "compName": "tabs",
+    "type": "business",
+    "title": "标签页",
+    "compAttr": {
+      "animated": true,
+      "type": "line",
+      "hideAdd": false,
+      "size": "default",
+      "tabPosition": "top",
+      "tabBarGutter": 0
+    }
+  },
+  {
+    "compName": "pagination",
+    "type": "business",
+    "title": "分页",
+    "compAttr": {
+      "simple": false,
+      "showSizeChanger": false,
+      "showQuickJumper": false,
+      "hideOnSinglePage": false,
+      "current": 1,
+      "total": 50
+    }
   }
 ]

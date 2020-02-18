@@ -13,7 +13,7 @@ export default (appInfo: EggAppInfo) => {
 
   config.logger = {
     outputJSON: true,
-    dir: path.join(__dirname, '/../logs/h3wind/'),
+    dir: path.join(__dirname, '/../logs/designer/'),
   };
 
   // domain
@@ -49,7 +49,7 @@ export default (appInfo: EggAppInfo) => {
 
   config.multipart = {
     mode: 'stream',
-    fileExtensions: ['.txt', '.ppt', '.pptx', '.doc', '.docx', '.xls', '.xlsx', '.pdf', '.avi', '.rmvb', '.zip'],
+    fileExtensions: ['.txt', '.rar', '.vue'],
   }
 
   config.onerror = {

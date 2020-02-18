@@ -4,32 +4,33 @@
  * plugin:init js
  */
 'use strict'
-
 const mysql = require('mysql')
+
 let config = {
   // host: 'localhost',
-  host: 'www.wssso.com',
+  host: '120.25.77.12',
   port: '3306',
   user: 'root',
-  password: 'Lovelian4319!',
-  // password: '4319',
-  database: 'wssso',
+  password: 'H3password',
+  database: 'designer',
   queueLimit: 10
 }
 let pool = mysql.createPool(config)
 
 export default class basesql {
-  myquery(sql, param, fn) {
-    pool.getConnection((err, connection) => {
-      // Use the connection
-      if (err) throw err
-      connection.query(sql, param, (error, results) => {
-        connection.release()
-        if (error) {
-          console.log(error)
-          throw error
-        }
-        fn(results)
+  myquery(sql: string, param: Array<any>) {
+    return new Promise((resolve) => {
+      pool.getConnection((err, connection) => {
+        // Use the connection
+        if (err) throw err
+        connection.query(sql, param, (error, results) => {
+          connection.release()
+          if (error) {
+            console.log(error)
+            throw error
+          }
+          resolve(results)
+        })
       })
     })
   }

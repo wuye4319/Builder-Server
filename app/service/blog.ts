@@ -6,69 +6,46 @@
 'use strict'
 import Basemysql from '../base/mysql'
 let basemysql = new Basemysql()
-import Tools from '../util';
+// import Tools from '../util';
 import { Service } from 'egg';
-const util = new Tools();
+// const util = new Tools();
 
 export default class Blog extends Service {
-  addBlog(data) {
-    let { main_img, title, context, label } = data
-    return new Promise((resolve) => {
-      basemysql.myquery(`insert into blogs set main_img=?,title=?,context=?,label=?`,
-        [main_img, title, context, label],
-        function (results) {
-          if (results.insertId) {
-            console.log('data insert success! insertid is : ' + results.insertId)
-            resolve(results.insertId)
-          } else {
-            console.log('data insert failed!' + results)
-            resolve(false)
-          }
-        })
-    })
+  async addBlog(data) {
+    let { mainImg, title, context, label } = data
+    let results: any = await basemysql.myquery(`insert into blogs set mainImg=?,title=?,context=?,label=?`,
+      [mainImg, title, context, label])
+
+    if (results.insertId) {
+      console.log('data insert success! insertid is : ' + results.insertId)
+      return (results.insertId)
+    } else {
+      console.log('data insert failed!' + results)
+      return (false)
+    }
   }
 
-  getBlogCount(type) {
+  async getBlogCount(type) {
     // 获取博客数量
-    return new Promise((resolve) => {
-      basemysql.myquery('SELECT COUNT(*) AS total FROM blogs WHERE is_pub=1 AND type=?', type, function (results) {
-        let data = util.getarrt(results, ['total'], 1)
-        resolve(data)
-      })
-    })
+    let data = await basemysql.myquery('SELECT COUNT(*) AS total FROM blogs WHERE isPub=1 AND type=?', type)
+    return data
   }
 
-  getBlogList(type, page, size) {
+  async getBlogList(type, page, size) {
     // 获取博客列表信息
-    return new Promise((resolve) => {
-      basemysql.myquery('SELECT * FROM blogs WHERE is_pub=1 AND type=? LIMIT ?,?', [type, page, size], function (results) {
-        let data = util.getarrt(results, [
-          'id', 'title', 'main_img', 'edit_date'
-        ])
-        resolve(data)
-      })
-    })
+    let results = await basemysql.myquery('SELECT id,title,mainImg,editDate FROM blogs WHERE isPub=1 AND type=? LIMIT ?,?', [type, page, size])
+    return results
   }
 
-  getBlogLastId() {
+  async getBlogLastId() {
     // 获取专题最后的ID
-    return new Promise((resolve) => {
-      basemysql.myquery('SELECT id FROM blogs ORDER BY id DESC', '', function (results) {
-        let data = util.getarrt(results, ['id'], 1)
-        resolve(data)
-      })
-    })
+    let data = await basemysql.myquery('SELECT id FROM blogs ORDER BY id DESC', '')
+    return data
   }
 
-  getBlog(id) {
+  async getBlog(id) {
     // 获取博客详情
-    return new Promise((resolve) => {
-      basemysql.myquery('SELECT * FROM blogs WHERE id=? and is_pub=1', id, function (results) {
-        let data = util.getarrt(results, [
-          'context', 'title', 'edit_date', 'kind'
-        ], 1)
-        resolve(data)
-      })
-    })
+    let data = await basemysql.myquery('SELECT context,title,editDate,kind FROM blogs WHERE id=? and isPub=1', id)
+    return data
   }
 }

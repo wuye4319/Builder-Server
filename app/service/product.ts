@@ -1,97 +1,67 @@
 import { Service } from 'egg';
 import Basemysql from '../base/mysql'
 let basemysql = new Basemysql()
-import Tools from '../util';
-const util = new Tools();
+// import Tools from '../util';
+// const util = new Tools();
 
 /**
  * table service
  */
 export default class Product extends Service {
-  addPro(data) {
-    let { pro_id, main_img, name, href, sell_price, sales_volume, taoword, coupon, couponhref, topic_id } = data
-    return new Promise((resolve) => {
-      basemysql.myquery(`insert into product set pro_id=?,main_img=?,name=?,href=?,sell_price=?,sales_volume=?,taoword=?,coupon=?,couponhref=?,topic_id=?`,
-        [pro_id, main_img, name, href, sell_price, sales_volume, taoword, coupon, couponhref, topic_id],
-        function (results) {
-          if (results.insertId) {
-            console.log('data insert success! insertid is : ' + results.insertId)
-            resolve(results.insertId)
-          } else {
-            console.log('data insert failed!' + results)
-            resolve(false)
-          }
-        })
-    })
+  async addPro(data) {
+    let { proID, mainImg, name, href, sellPrice, salesVolume, taoword, coupon, couponhref, topicID } = data
+    let results: any = await basemysql.myquery(`insert into product set proID=?,mainImg=?,name=?,href=?,sellPrice=?,salesVolume=?,taoword=?,coupon=?,couponhref=?,topicID=?`,
+      [proID, mainImg, name, href, sellPrice, salesVolume, taoword, coupon, couponhref, topicID])
+
+    if (results.insertId) {
+      console.log('data insert success! insertid is : ' + results.insertId)
+      return (results.insertId)
+    } else {
+      console.log('data insert failed!' + results)
+      return (false)
+    }
   }
 
-  updatePro(data) {
-    let { pro_id, main_img, name, href, sell_price, sales_volume, taoword, coupon, couponhref, topic_id } = data
-    return new Promise((resolve) => {
-      basemysql.myquery(`update product set main_img=?,name=?,href=?,sell_price=?,sales_volume=?,taoword=?,coupon=?,couponhref=?,topic_id=? where pro_id=?`,
-        [main_img, name, href, sell_price, sales_volume, taoword, coupon, couponhref, topic_id, pro_id],
-        function (results) {
-          if (results) {
-            console.log('changed ' + results.changedRows + ' rows');
-            // console.log('deleted ' + results.affectedRows + ' rows');
-            resolve(results.changedRows)
-          }
-        })
-    })
+  async updatePro(data) {
+    let { proID, mainImg, name, href, sellPrice, salesVolume, taoword, coupon, couponhref, topicID } = data
+    let results: any = await basemysql.myquery(`update product set mainImg=?,name=?,href=?,sellPrice=?,salesVolume=?,taoword=?,coupon=?,couponhref=?,topicID=? where proID=?`,
+      [mainImg, name, href, sellPrice, salesVolume, taoword, coupon, couponhref, topicID, proID])
+    if (results) {
+      console.log('changed ' + results.changedRows + ' rows');
+      // console.log('deleted ' + results.affectedRows + ' rows');
+      return (results.changedRows)
+    }
   }
 
-  getProID() {
+  async getProID() {
     // 获取商品信息
-    return new Promise((resolve) => {
-      basemysql.myquery('SELECT id FROM product ORDER BY id DESC', '', function (results) {
-        let data = util.getarrt(results, ['id'], 1)
-        resolve(data)
-      })
-    })
+    let data = await basemysql.myquery('SELECT id FROM product ORDER BY id DESC', '')
+    return data
   }
 
-  getPro(id) {
+  async getPro(id) {
     // 获取商品信息
-    return new Promise((resolve) => {
-      basemysql.myquery('select * from product where id=?', id, function (results) {
-        let data = util.getarrt(results, ['main_img', 'name', 'href', 'sell_price', 'currency'], 1)
-        resolve(data)
-      })
-    })
+    let data = await basemysql.myquery('select mainImg,name,href,sellPrice,currency from product where id=?', id)
+    return data
   }
 
-  hasPro(id) {
+  async hasPro(id) {
     // 获取商品信息
-    return new Promise((resolve) => {
-      basemysql.myquery('select * from product where pro_id=?', id, function (results) {
-        let data = util.getarrt(results, ['name'], 1)
-        resolve(data)
-      })
-    })
+    let data = await basemysql.myquery('select name from product where proID=?', id)
+    return data
   }
 
-  getProCount(key) {
+  async getProCount(key) {
     // 获取博客数量
-    return new Promise((resolve) => {
-      basemysql.myquery('SELECT COUNT(*) AS total FROM product WHERE name LIKE ? AND is_pub=1', '%' + key + '%', function (results) {
-        let data = util.getarrt(results, ['total'], 1)
-        resolve(data)
-      })
-    })
+    let data = await basemysql.myquery('SELECT COUNT(*) AS total FROM product WHERE name LIKE ? AND isPub=1', '%' + key + '%')
+    return data
   }
 
-  getProListByKey(page, size, key) {
+  async getProListByKey(page, size, key) {
     // 根据关键词搜索商品
-    return new Promise((resolve) => {
-      basemysql.myquery('SELECT * FROM product WHERE name LIKE ? AND is_pub=1 ORDER BY edit_date LIMIT ?,?', [
-        '%' + key + '%', page, size
-      ],
-        function (results) {
-          let data = util.getarrt(results, [
-            'main_img', 'name', 'href', 'sell_price', 'currency', 'sales_volume', 'taoword', 'coupon', 'couponhref'
-          ])
-          resolve(data)
-        })
-    })
+    let data = await basemysql.myquery('SELECT mainImg,name,href,sellPrice,currency,salesVolume,taoword,coupon,couponhref FROM product WHERE name LIKE ? AND isPub=1 ORDER BY editDate LIMIT ?,?', [
+      '%' + key + '%', page, size
+    ])
+    return data
   }
 }
