@@ -11,7 +11,7 @@ let config = {
   host: '120.25.77.12',
   port: '3306',
   user: 'root',
-  password: 'H3password',
+  password: '1234',
   database: 'designer',
   queueLimit: 10
 }
